@@ -18,4 +18,9 @@ export const TagContainer = styled.a<Props>`
   border: ${(props) =>
     props.border === 'none' ? 'none' : `1px solid ${cores.chumbo}`};
   color: ${cores.preto};
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 `

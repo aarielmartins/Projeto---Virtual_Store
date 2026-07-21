@@ -34,6 +34,11 @@ export const Badge = styled.a`
   border-radius: 999px;
   margin-bottom: 24px;
   text-decoration: none;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: scale(1.05);
+  }
 
   &::before {
     content: '';
@@ -94,13 +99,19 @@ export const ButtonSecondary = styled.a`
   border: 1px solid ${cores.chumbo};
 `
 
-export const ImageWrapper = styled.div`
+export const ImageWrapper = styled.a`
   position: relative;
   flex-shrink: 0;
   width: 550px;
   height: 500px;
   border-radius: 25px;
   overflow: hidden;
+  transition: transform 0.2s ease;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.02);
+  }
 
   img {
     width: 100%;
