@@ -1,6 +1,5 @@
+import { MdSearch, MdShoppingBag } from 'react-icons/md'
 import logo from '../../assets/images/logo.png'
-import search from '../../assets/images/search.svg'
-import shop from '../../assets/images/shop.svg'
 import { HeaderContainer, Logo, Menu, Icons } from './styles'
 
 const Header = () => (
@@ -23,10 +22,10 @@ const Header = () => (
 
     <Icons>
       <a href="#">
-        <img src={search} alt="logotipo trama"></img>
+        <MdSearch />
       </a>
       <a href="#">
-        <img src={shop} alt="logotipo trama"></img>
+        <MdShoppingBag />
       </a>
     </Icons>
   </HeaderContainer>

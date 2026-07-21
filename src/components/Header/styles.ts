@@ -47,16 +47,16 @@ export const Icons = styled.div`
 
   a {
     display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-
-  img {
-    width: 30px;
-    height: 30px;
+    color: ${cores.preto};
+    transition: color 0.2s ease;
 
     &:hover {
       color: ${cores.chumbo};
     }
+  }
+
+  svg {
+    width: 30px;
+    height: 30px;
   }
 `
