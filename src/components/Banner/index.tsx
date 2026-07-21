@@ -1,4 +1,5 @@
 import chairImage from '../../assets/images/Poltrona.jpg'
+import Tag from '../Tag'
 import {
   BannerContainer,
   Content,
@@ -25,8 +26,10 @@ const Banner = () => (
       </Description>
 
       <Actions>
-        <ButtonPrimary href="#">Explorar Habitar →</ButtonPrimary>
-        <ButtonSecondary href="#">Explorar Vestir</ButtonSecondary>
+        <Tag>Explorar Habitar</Tag>
+        <Tag color="background" border="solid">
+          Explorar Vestir
+        </Tag>
       </Actions>
     </Content>
 
