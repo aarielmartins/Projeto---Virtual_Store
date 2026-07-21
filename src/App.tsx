@@ -1,3 +1,4 @@
+import Banner from './components/Banner'
 import Header from './components/Header'
 import { Container, GlobalCss } from './styles'
 
@@ -6,7 +7,9 @@ function App() {
     <>
       <GlobalCss />
       <Header />
-      <Container></Container>
+      <Container>
+        <Banner />
+      </Container>
     </>
   )
 }

@@ -2,10 +2,11 @@ import styled, { createGlobalStyle } from 'styled-components'
 
 export const cores = {
   branco: '#ffffff',
+  cinzaClaro: '#f7f6f6',
   cinza: '#c5c3c3',
   chumbo: '#848484',
   preto: '#0b0b0b',
-  detalhe: '#a33419',
+  detalhe: '#ec780c',
   detalheClaro: '#dc6b4f'
 }
 
@@ -25,7 +26,7 @@ export const GlobalCss = createGlobalStyle`
 `
 
 export const Container = styled.div`
-  max-width: 1024px;
+  max-width: 1300px;
   width: 100%;
   margin: 0 auto;
 `
