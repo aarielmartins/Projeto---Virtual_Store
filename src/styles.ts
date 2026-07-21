@@ -10,6 +10,13 @@ export const cores = {
   detalheClaro: '#dc6b4f'
 }
 
+export const texto = {
+  detalhe: '16px',
+  titulo: '20px',
+  subtitulo: '18px',
+  chamada: '70px'
+}
+
 export const GlobalCss = createGlobalStyle`
   *{
     margin: 0;
@@ -21,7 +28,7 @@ export const GlobalCss = createGlobalStyle`
   body {
     background-color: ${cores.branco};
     color: ${cores.preto};
-    font-size: 20px;
+    font-size: 16px;
   }
 `
 

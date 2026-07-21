@@ -14,7 +14,7 @@ export const HeaderContainer = styled.header`
 `
 
 export const Logo = styled.img`
-  height: 22px;
+  height: 18px;
 `
 
 export const Menu = styled.nav`
@@ -56,7 +56,7 @@ export const Icons = styled.div`
   }
 
   svg {
-    width: 30px;
-    height: 30px;
+    width: 20px;
+    height: 20px;
   }
 `

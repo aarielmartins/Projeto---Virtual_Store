@@ -1,5 +1,5 @@
 import styled from 'styled-components'
-import { cores } from '../../styles'
+import { cores, texto } from '../../styles'
 
 export const BannerContainer = styled.section`
   display: flex;
@@ -28,7 +28,7 @@ export const Badge = styled.a`
   gap: 8px;
   background: ${cores.detalhe};
   color: ${cores.preto};
-  font-size: 18px;
+  font-size: ${texto.detalhe};
   font-weight: 500;
   padding: 8px 16px;
   border-radius: 999px;
@@ -46,9 +46,8 @@ export const Badge = styled.a`
 
 export const Title = styled.h1`
   font-weight: 700;
-  font-size: 70px;
+  font-size: ${texto.chamada};
   line-height: 1.1;
-  letter-spacing: -0.02em;
   color: ${cores.preto};
   margin-bottom: 24px;
 
@@ -58,7 +57,6 @@ export const Title = styled.h1`
 `
 
 export const Description = styled.p`
-  font-size: 18px;
   line-height: 1.6;
   color: ${cores.chumbo};
   margin-bottom: 32px;
@@ -75,7 +73,6 @@ export const ButtonPrimary = styled.a`
   gap: 8px;
   padding: 14px 28px;
   border-radius: 999px;
-  font-size: 18px;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
@@ -89,7 +86,6 @@ export const ButtonSecondary = styled.a`
   gap: 8px;
   padding: 14px 28px;
   border-radius: 999px;
-  font-size: 18px;
   font-weight: 600;
   text-decoration: none;
   cursor: pointer;
@@ -129,7 +125,7 @@ export const HighlightTag = styled.div`
   padding: 10px 16px;
 
   .label {
-    font-size: 12px;
+    font-size: ${texto.detalhe};
     text-transform: uppercase;
     color: ${cores.chumbo};
     display: block;
@@ -137,7 +133,6 @@ export const HighlightTag = styled.div`
   }
 
   .name {
-    font-size: 14px;
     font-weight: 600;
     color: ${cores.preto};
   }
