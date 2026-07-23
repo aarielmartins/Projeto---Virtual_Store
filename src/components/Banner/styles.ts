@@ -9,7 +9,7 @@ export const BannerContainer = styled.section`
   background: ${cores.cinzaClaro};
   border-radius: 24px;
   padding: 56px;
-  margin: 30px 30px;
+  margin: 32px 32px;
 
   @media (max-width: 900px) {
     flex-direction: column;
@@ -70,33 +70,6 @@ export const Description = styled.p`
 export const Actions = styled.div`
   display: flex;
   gap: 12px;
-`
-
-export const ButtonPrimary = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 28px;
-  border-radius: 999px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  background: ${cores.detalhe};
-  color: ${cores.preto};
-`
-
-export const ButtonSecondary = styled.a`
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 14px 28px;
-  border-radius: 999px;
-  font-weight: 600;
-  text-decoration: none;
-  cursor: pointer;
-  background: ${cores.branco};
-  color: ${cores.preto};
-  border: 1px solid ${cores.chumbo};
 `
 
 export const ImageWrapper = styled.a`

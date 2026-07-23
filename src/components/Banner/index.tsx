@@ -7,8 +7,6 @@ import {
   Title,
   Description,
   Actions,
-  ButtonPrimary,
-  ButtonSecondary,
   ImageWrapper,
   HighlightTag
 } from './styles'
@@ -33,7 +31,7 @@ const Banner = () => (
       </Actions>
     </Content>
 
-    <ImageWrapper>
+    <ImageWrapper href="#">
       <img src={chairImage} alt="Poltrona Orbe" />
       <HighlightTag>
         <span className="label">Em destaque</span>
