@@ -7,7 +7,7 @@ export const cores = {
   chumbo: '#848484',
   preto: '#0b0b0b',
   detalhe: '#ec780c',
-  detalheClaro: '#dc6b4f'
+  detalheClaro: '#fdbc80'
 }
 
 export const texto = {
