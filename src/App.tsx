@@ -1,6 +1,7 @@
 import Banner from './components/Banner'
 import Collections from './components/Collections'
 import Header from './components/Header'
+import Highlights from './components/Highlights'
 import { Container, GlobalCss } from './styles'
 
 function App() {
@@ -11,6 +12,7 @@ function App() {
       <Container>
         <Banner />
         <Collections />
+        <Highlights />
       </Container>
     </>
   )

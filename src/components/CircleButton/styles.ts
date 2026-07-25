@@ -2,7 +2,7 @@ import styled from 'styled-components'
 import { cores } from '../../styles'
 
 export const CircleButton = styled.button`
-  position: relative;
+  position: absolute;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -29,5 +29,9 @@ export const CircleButton = styled.button`
   svg {
     width: 25px;
     height: 25px;
+  }
+
+  @media (max-width: 1024px) {
+    display: none;
   }
 `
