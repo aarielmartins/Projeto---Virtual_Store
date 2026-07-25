@@ -1,5 +1,6 @@
 import Banner from './components/Banner'
 import Collections from './components/Collections'
+import Footer from './components/Footer'
 import Header from './components/Header'
 import Highlights from './components/Highlights'
 import Manifest from './components/Manifest'
@@ -16,6 +17,7 @@ function App() {
         <Highlights />
         <Manifest />
       </Container>
+      <Footer />
     </>
   )
 }
