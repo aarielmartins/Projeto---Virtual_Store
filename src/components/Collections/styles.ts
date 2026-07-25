@@ -45,42 +45,33 @@ export const Grid = styled.div`
 
 export const Card = styled.a`
   position: relative;
-  display: block;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
   height: 420px;
   border-radius: 24px;
   overflow: hidden;
   text-decoration: none;
 
   img {
+    position: absolute;
     width: 100%;
     height: 100%;
     object-fit: cover;
-    display: block;
     transition: transform 0.4s ease;
   }
 
   &:hover img {
     transform: scale(1.05);
   }
-
-  &::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: linear-gradient(
-      to top,
-      rgba(0, 0, 0, 0.5),
-      rgba(0, 0, 0, 0) 50%
-    );
-  }
 `
 
 export const CardInfo = styled.div`
-  position: absolute;
+  position: relative;
   left: 24px;
   bottom: 24px;
-  z-index: 1;
-  background: ${cores.branco};
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
   padding: 10px 16px;
 `
@@ -97,32 +88,4 @@ export const CardLabel = styled.span`
 export const CardName = styled.span`
   font-size: ${texto.detalhe};
   color: ${cores.chumbo};
-`
-export const CircleButton = styled.button`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  border: none;
-  background: #c9f24d;
-  color: #1a1a1a;
-  font-size: 18px;
-  cursor: pointer;
-  transition: transform 0.2s ease, background 0.2s ease;
-
-  &:hover {
-    transform: scale(1.08);
-    background: #b8e63c;
-  }
-
-  &:active {
-    transform: scale(0.96);
-  }
-
-  svg {
-    width: 18px;
-    height: 18px;
-  }
 `

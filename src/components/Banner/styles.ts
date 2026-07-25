@@ -104,7 +104,7 @@ export const HighlightTag = styled.div`
   position: absolute;
   left: 24px;
   bottom: 24px;
-  background: ${cores.branco};
+  background: rgba(255, 255, 255, 0.95);
   border-radius: 12px;
   padding: 10px 16px;
 

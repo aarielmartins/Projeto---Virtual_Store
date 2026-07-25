@@ -1,7 +1,7 @@
 import vestirImage from '../../assets/images/colecao-vestir.png'
 import habitarImage from '../../assets/images/colecao-habitar.png'
+import ColorButton from '../CircleButton'
 import { FiArrowRight } from 'react-icons/fi'
-// FiPlus
 import {
   CollectionsContainer,
   Header,
@@ -11,8 +11,7 @@ import {
   Card,
   CardInfo,
   CardLabel,
-  CardName,
-  CircleButton
+  CardName
 } from './styles'
 
 const Collections = () => (
@@ -30,10 +29,8 @@ const Collections = () => (
           <CardName>
             Peças em tecidos nobre, cortadas e trançadas a mão.
           </CardName>
-          <CircleButton aria-label="Ver mais">
-            <FiArrowRight />
-          </CircleButton>
         </CardInfo>
+        <ColorButton icon={FiArrowRight} />
       </Card>
 
       <Card href="#">
@@ -41,10 +38,8 @@ const Collections = () => (
         <CardInfo>
           <CardLabel>Habitar</CardLabel>
           <CardName>Mobiliário para descansar o corpo e o olhar.</CardName>
-          <CircleButton aria-label="Ver mais">
-            <FiArrowRight />
-          </CircleButton>
         </CardInfo>
+        <ColorButton icon={FiArrowRight} />
       </Card>
     </Grid>
   </CollectionsContainer>
