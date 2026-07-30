@@ -1,10 +1,15 @@
-import Banner from './components/Banner'
-import Collections from './components/Collections'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import Highlights from './components/Highlights'
-import Manifest from './components/Manifest'
 import { Container, GlobalCss } from './styles'
+import Home from './pages/Home'
+
+const rotas = createBrowserRouter([
+  {
+    path: '/',
+    element: <Home />
+  }
+])
 
 function App() {
   return (
@@ -12,10 +17,7 @@ function App() {
       <GlobalCss />
       <Header />
       <Container>
-        <Banner />
-        <Collections />
-        <Highlights />
-        <Manifest />
+        <RouterProvider router={rotas} />
       </Container>
       <Footer />
     </>

@@ -50,7 +50,7 @@ const CardProduct = () => (
       <Card key={product.id} href="#">
         <ImageWrapper>
           <img src={product.image} alt={product.name} />
-          <ColorButton />
+          <ColorButton to="/vestir" />
         </ImageWrapper>
 
         <InfoRow>

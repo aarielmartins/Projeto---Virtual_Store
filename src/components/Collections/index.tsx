@@ -30,7 +30,7 @@ const Collections = () => (
             Peças em tecidos nobre, cortadas e trançadas a mão.
           </CardName>
         </CardInfo>
-        <ColorButton icon={FiArrowRight} />
+        <ColorButton icon={FiArrowRight} to="/vestir" />
       </Card>
 
       <Card href="#">
@@ -39,7 +39,7 @@ const Collections = () => (
           <CardLabel>Habitar</CardLabel>
           <CardName>Mobiliário para descansar o corpo e o olhar.</CardName>
         </CardInfo>
-        <ColorButton icon={FiArrowRight} />
+        <ColorButton icon={FiArrowRight} to="/habitar" />
       </Card>
     </Grid>
   </CollectionsContainer>

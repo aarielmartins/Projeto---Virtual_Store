@@ -4,10 +4,11 @@ import { CircleButton } from './styles'
 
 type Props = {
   icon?: IconType
+  to: string
 }
 
-const ColorButton = ({ icon: Icon = FiPlus }: Props) => (
-  <CircleButton>
+const ColorButton = ({ icon: Icon = FiPlus, to }: Props) => (
+  <CircleButton to={to}>
     <Icon />
   </CircleButton>
 )
