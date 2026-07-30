@@ -45,9 +45,20 @@ export const Name = styled.h3`
   font-weight: 600;
   color: ${cores.preto};
 `
+export const PriceWrapper = styled.div`
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+`
 
-export const Price = styled.span`
+export const OldPrice = styled.span`
   font-size: ${texto.detalhe};
+  color: ${cores.cinza};
+  text-decoration: line-through;
+`
+
+export const CurrentPrice = styled.span`
+  font-size: ${texto.detalhe};
+  font-weight: 600;
   color: ${cores.preto};
-  white-space: nowrap;
 `
