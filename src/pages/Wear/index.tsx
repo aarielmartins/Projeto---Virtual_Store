@@ -1,6 +1,6 @@
 import CardProduct from '../../components/CardProduct'
 import CollectionHeader from '../../components/CollectionHeader'
-import wearProducts from '../../data/vestirProducts'
+import wearProducts from '../../data/wearProducts'
 import { GridPages } from '../../styles'
 
 const Wear = () => {
