@@ -1,6 +1,6 @@
 import { HighlightsContainer, Title, Grid } from './styles'
 import CardProduct from '../CardProduct'
-import Product from '../../data/wearProducts'
+import Product from '../../data/allProducts'
 
 const Highlights = () => (
   <HighlightsContainer>
