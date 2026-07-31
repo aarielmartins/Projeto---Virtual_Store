@@ -8,32 +8,32 @@ const allProducts: Product[] = [
   {
     id: 1,
     image: tapecariaParede,
-    category: 'Sofá',
-    name: 'Sofá Onda',
-    price: 'R$ 8.490,00',
-    discount: 'R$ 7.490,00'
+    category: 'Tapeçaria',
+    name: 'Tapete Onda',
+    price: 'R$500,00',
+    discount: 'R$300,00'
   },
   {
     id: 2,
     image: vestidoVermelho,
-    category: 'Puff',
-    name: 'Puff Lua',
-    price: 'R$ 890,00'
+    category: 'Vestido',
+    name: 'Vestido Lia',
+    price: 'R$890,00'
   },
   {
     id: 3,
     image: manta,
-    category: 'Cabeceira',
-    name: 'Cabeceira Arco',
-    price: 'R$ 2.390,00'
+    category: 'Manta',
+    name: 'Manta Trama',
+    price: 'R$200,00'
   },
   {
     id: 4,
     image: vestidoDourado,
-    category: 'Cama',
-    name: 'Cama Nuvem',
-    price: 'R$ 6.290,00',
-    discount: 'R$ 5.290,00'
+    category: 'Saia',
+    name: 'Saia Curvas',
+    price: 'R$500,00',
+    discount: 'R$400,00'
   }
 ]
 

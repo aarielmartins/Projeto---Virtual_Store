@@ -6,32 +6,17 @@ const wearProducts: Product[] = [
   {
     id: 2,
     image: vestidoVermelho,
-    category: 'Puff',
-    name: 'Puff Lua',
-    price: 'R$ 890,00'
+    category: 'Vestido',
+    name: 'Vestido Lia',
+    price: 'R$890,00'
   },
   {
     id: 4,
     image: vestidoDourado,
-    category: 'Cama',
-    name: 'Cama Nuvem',
-    price: 'R$ 6.290,00',
-    discount: 'R$ 5.290,00'
-  },
-  {
-    id: 5,
-    image: vestidoVermelho,
-    category: 'Puff',
-    name: 'Puff Lua',
-    price: 'R$ 890,00'
-  },
-  {
-    id: 6,
-    image: vestidoDourado,
-    category: 'Cama',
-    name: 'Cama Nuvem',
-    price: 'R$ 6.290,00',
-    discount: 'R$ 5.290,00'
+    category: 'Saia',
+    name: 'Saia Curvas',
+    price: 'R$500,00',
+    discount: 'R$400,00'
   }
 ]
 

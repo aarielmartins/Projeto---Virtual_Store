@@ -1,20 +1,20 @@
 import CardProduct from '../../components/CardProduct'
 import CollectionHeader from '../../components/CollectionHeader'
-import wearProducts from '../../data/wearProducts'
+import inhabitProducts from '../../data/inhabitProducts'
 import { GridPages } from '../../styles'
 
-const Wear = () => {
+const Inhabit = () => {
   return (
     <>
       <CollectionHeader
-        title="Vestir"
+        title="Habitar"
         description="Peças em tecidos nobres, feitas a mão."
       />
       <GridPages>
-        <CardProduct products={wearProducts} />
+        <CardProduct products={inhabitProducts} />
       </GridPages>
     </>
   )
 }
 
-export default Wear
+export default Inhabit

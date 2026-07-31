@@ -4,6 +4,7 @@ import Header from './components/Header'
 import { Container, GlobalCss } from './styles'
 import Home from './pages/Home'
 import Wear from './pages/Wear'
+import Inhabit from './pages/Inhabit'
 
 const rotas = createBrowserRouter([
   {
@@ -13,6 +14,10 @@ const rotas = createBrowserRouter([
   {
     path: '/vestir',
     element: <Wear />
+  },
+  {
+    path: '/habitar',
+    element: <Inhabit />
   }
 ])
 

@@ -6,17 +6,17 @@ const inhabitProducts: Product[] = [
   {
     id: 3,
     image: manta,
-    category: 'Cabeceira',
-    name: 'Cabeceira Arco',
-    price: 'R$ 2.390,00'
+    category: 'Manta',
+    name: 'Manta Trama',
+    price: 'R$200,00'
   },
   {
     id: 1,
     image: tapecariaParede,
-    category: 'Sofá',
-    name: 'Sofá Onda',
-    price: 'R$ 8.490,00',
-    discount: 'R$ 7.490,00'
+    category: 'Tapeçaria',
+    name: 'Tapete Onda',
+    price: 'R$500,00',
+    discount: 'R$300,00'
   }
 ]
 
