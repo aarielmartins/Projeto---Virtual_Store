@@ -9,7 +9,9 @@ export const BannerContainer = styled.section`
   background: ${cores.cinzaClaro};
   border-radius: 24px;
   padding: 56px;
-  margin: 32px 32px;
+  margin-top: 122px;
+  margin-right: 32px;
+  margin-left: 32px;
 
   @media (max-width: 900px) {
     flex-direction: column;

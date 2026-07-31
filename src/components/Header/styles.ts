@@ -2,10 +2,18 @@ import styled from 'styled-components'
 import { cores } from '../../styles'
 
 export const HeaderContainer = styled.header`
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 100;
   display: flex;
   align-items: center;
   justify-content: space-between;
   padding: 30px 30px;
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid ${cores.cinza};
 
   @media (max-width: 640px) {
