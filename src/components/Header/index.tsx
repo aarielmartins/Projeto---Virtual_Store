@@ -9,13 +9,13 @@ const Header = () => (
     <Menu>
       <ul>
         <li>
-          <a href="#">Vestir</a>
+          <a href="#">Home</a>
         </li>
         <li>
           <a href="#">Habitar</a>
         </li>
         <li>
-          <a href="#">Sobre</a>
+          <a href="#">Vestir</a>
         </li>
       </ul>
     </Menu>

@@ -22,7 +22,7 @@ const Collections = () => (
     </Header>
 
     <Grid>
-      <Card href="#">
+      <Card to="/vestir">
         <img src={vestirImage} alt="Coleção Vestir" />
         <CardInfo>
           <CardLabel>Vestir</CardLabel>
@@ -33,7 +33,7 @@ const Collections = () => (
         <ColorButton icon={FiArrowRight} to="/vestir" />
       </Card>
 
-      <Card href="#">
+      <Card to="/habitar">
         <img src={habitarImage} alt="Coleção Habitar" />
         <CardInfo>
           <CardLabel>Habitar</CardLabel>

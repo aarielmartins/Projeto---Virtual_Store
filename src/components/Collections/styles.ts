@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { cores, texto } from '../../styles'
+import { Link } from 'react-router-dom'
 
 export const CollectionsContainer = styled.section`
   margin: 32px 32px;
@@ -43,7 +44,7 @@ export const Grid = styled.div`
   }
 `
 
-export const Card = styled.a`
+export const Card = styled(Link)`
   position: relative;
   display: flex;
   align-items: flex-end;

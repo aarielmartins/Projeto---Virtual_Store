@@ -24,8 +24,8 @@ const Banner = () => (
       </Description>
 
       <Actions>
-        <Tag>Explorar Habitar</Tag>
-        <Tag color="background" border="solid">
+        <Tag to="/habitar">Explorar Habitar</Tag>
+        <Tag to="/vestir" color="background" border="solid">
           Explorar Vestir
         </Tag>
       </Actions>

@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import { cores } from '../../styles'
+import { Link } from 'react-router-dom'
 
 import { Props } from '.'
 
-export const TagContainer = styled.a<Props>`
+export const TagContainer = styled(Link)<Props>`
   display: inline-flex;
   align-items: center;
   gap: 8px;
