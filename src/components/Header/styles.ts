@@ -33,19 +33,18 @@ export const Menu = styled.nav`
     list-style: none;
   }
 
-  a {
-    text-decoration: none;
-    color: ${cores.preto};
-    font-weight: 500;
-    transition: color 0.2s ease;
-
-    &:hover {
-      color: ${cores.chumbo};
-    }
-  }
-
   @media (max-width: 640px) {
     display: none;
+  }
+`
+export const Item = styled(Link)`
+  text-decoration: none;
+  color: ${cores.preto};
+  font-weight: 500;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: ${cores.chumbo};
   }
 `
 

@@ -1,4 +1,4 @@
-import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
 import Footer from './components/Footer'
 import Header from './components/Header'
 import { Container, GlobalCss } from './styles'
@@ -8,16 +8,20 @@ import Inhabit from './pages/Inhabit'
 
 const rotas = createBrowserRouter([
   {
-    path: '/',
-    element: <Home />
-  },
-  {
-    path: '/vestir',
-    element: <Wear />
-  },
-  {
-    path: '/habitar',
-    element: <Inhabit />
+    element: (
+      <>
+        <Header />
+        <Container>
+          <Outlet />
+        </Container>
+        <Footer />
+      </>
+    ),
+    children: [
+      { path: '/', element: <Home /> },
+      { path: '/vestir', element: <Wear /> },
+      { path: '/habitar', element: <Inhabit /> }
+    ]
   }
 ])
 
@@ -25,11 +29,7 @@ function App() {
   return (
     <>
       <GlobalCss />
-      <Header />
-      <Container>
-        <RouterProvider router={rotas} />
-      </Container>
-      <Footer />
+      <RouterProvider router={rotas} />
     </>
   )
 }

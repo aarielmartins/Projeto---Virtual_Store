@@ -24,7 +24,7 @@ export const Content = styled.div`
   max-width: 480px;
 `
 
-export const Badge = styled.a`
+export const Badge = styled.h1`
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -37,10 +37,6 @@ export const Badge = styled.a`
   margin-bottom: 24px;
   text-decoration: none;
   transition: transform 0.2s ease;
-
-  &:hover {
-    transform: scale(1.05);
-  }
 
   &::before {
     content: '';

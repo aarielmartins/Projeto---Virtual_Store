@@ -14,7 +14,7 @@ import {
 const Banner = () => (
   <BannerContainer>
     <Content>
-      <Badge href="#">Nova coleção · Outono</Badge>
+      <Badge href="#">Nova coleção · Primavera</Badge>
 
       <Title>Vestir a casa, habitar o corpo.</Title>
 

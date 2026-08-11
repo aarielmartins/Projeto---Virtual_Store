@@ -1,6 +1,6 @@
 import { MdSearch, MdShoppingBag } from 'react-icons/md'
 import logo from '../../assets/images/logo.png'
-import { HeaderContainer, Logo, Menu, Icons } from './styles'
+import { HeaderContainer, Logo, Menu, Icons, Item } from './styles'
 
 const Header = () => (
   <HeaderContainer>
@@ -9,13 +9,13 @@ const Header = () => (
     <Menu>
       <ul>
         <li>
-          <a href="#">Home</a>
+          <Item to="/">Home</Item>
         </li>
         <li>
-          <a href="#">Habitar</a>
+          <Item to="/habitar">Habitar</Item>
         </li>
         <li>
-          <a href="#">Vestir</a>
+          <Item to="/vestir">Vestir</Item>
         </li>
       </ul>
     </Menu>
