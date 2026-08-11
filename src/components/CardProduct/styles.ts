@@ -41,7 +41,6 @@ export const Category = styled.span`
 `
 
 export const Name = styled.h3`
-  display: inline-block;
   font-size: ${texto.subtitulo};
   font-weight: 600;
   color: ${cores.preto};

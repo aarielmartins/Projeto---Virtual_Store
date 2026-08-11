@@ -3,6 +3,7 @@ import { cores, texto } from '../../styles'
 
 export const HeaderContainer = styled.div`
   margin-bottom: 32px;
+  padding-top: 76px;
 `
 
 export const Category = styled.span`
