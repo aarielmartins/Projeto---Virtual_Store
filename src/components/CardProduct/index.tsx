@@ -15,23 +15,30 @@ type Props = {
   products: Product[]
 }
 
+const formatarPreco = (valor: number) =>
+  valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
+
 const CardProduct = ({ products }: Props) => (
   <>
     {products.map((product) => (
       <Card key={product.id} href="#">
         <ImageWrapper>
-          <img src={product.image} alt={product.name} />
-          <ColorButton to="/vestir" />
+          <img src={product.imagem} alt={product.titulo} />
+          <ColorButton to={`/produtos/${product.id}`} />
         </ImageWrapper>
 
         <InfoRow>
           <div>
-            <Category>{product.category}</Category>
-            <Name>{product.name}</Name>
+            <Category>{product.categoria}</Category>
+            <Name>{product.titulo}</Name>
           </div>
           <PriceWrapper>
-            {product.discount && <OldPrice>{product.price}</OldPrice>}
-            <CurrentPrice>{product.discount ?? product.price}</CurrentPrice>
+            {product.valorComDesconto && (
+              <OldPrice>{formatarPreco(product.valor)}</OldPrice>
+            )}
+            <CurrentPrice>
+              {formatarPreco(product.valorComDesconto ?? product.valor)}
+            </CurrentPrice>
           </PriceWrapper>
         </InfoRow>
       </Card>

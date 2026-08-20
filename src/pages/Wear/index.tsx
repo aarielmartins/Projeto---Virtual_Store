@@ -1,9 +1,20 @@
+import { useEffect, useState } from 'react'
 import CardProduct from '../../components/CardProduct'
 import CollectionHeader from '../../components/CollectionHeader'
-import wearProducts from '../../data/wearProducts'
 import { GridPages } from '../../styles'
+import Product from '../../models/Product'
 
 const Wear = () => {
+  const [products, setProducts] = useState<Product[]>([])
+
+  useEffect(() => {
+    fetch(
+      'https://projeto-virtual-store-api.onrender.com/products?colecao=vestir'
+    )
+      .then((res) => res.json())
+      .then((res) => setProducts(res))
+  }, [])
+
   return (
     <>
       <CollectionHeader
@@ -11,7 +22,7 @@ const Wear = () => {
         description="Peças em tecidos nobres, feitas a mão."
       />
       <GridPages>
-        <CardProduct products={wearProducts} />
+        <CardProduct products={products} />
       </GridPages>
     </>
   )
