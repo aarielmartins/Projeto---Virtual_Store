@@ -5,6 +5,7 @@ import { Container, GlobalCss } from './styles'
 import Home from './pages/Home'
 import Wear from './pages/Wear'
 import Inhabit from './pages/Inhabit'
+import ProductPage from './pages/ProductPage'
 
 const rotas = createBrowserRouter([
   {
@@ -21,6 +22,7 @@ const rotas = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/vestir', element: <Wear /> },
       { path: '/habitar', element: <Inhabit /> }
+      { path: '/produtos/:id', element: <ProductPage /> }
     ]
   }
 ])

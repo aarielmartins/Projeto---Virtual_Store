@@ -15,7 +15,7 @@ type Props = {
   products: Product[]
 }
 
-const formatarPreco = (valor: number) =>
+export const formatarPreco = (valor: number) =>
   valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
 const CardProduct = ({ products }: Props) => (
