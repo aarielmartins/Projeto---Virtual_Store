@@ -18,7 +18,7 @@ export const HeaderContainer = styled.header`
   border-bottom: 1px solid ${cores.cinza};
 
   @media (max-width: 640px) {
-    padding: 16px 20px;
+    mangin: 16px 20px;
   }
 `
 

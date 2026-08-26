@@ -1,9 +1,9 @@
 import styled from 'styled-components'
 import { cores, texto } from '../../styles'
 
-export const Card = styled.a`
+export const Card = styled.div`
   display: block;
-  text-decoration: none;
+  cursor: default;
 `
 
 export const ImageWrapper = styled.div`

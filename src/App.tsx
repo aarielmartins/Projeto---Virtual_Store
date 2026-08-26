@@ -21,7 +21,7 @@ const rotas = createBrowserRouter([
     children: [
       { path: '/', element: <Home /> },
       { path: '/vestir', element: <Wear /> },
-      { path: '/habitar', element: <Inhabit /> }
+      { path: '/habitar', element: <Inhabit /> },
       { path: '/produtos/:id', element: <ProductPage /> }
     ]
   }

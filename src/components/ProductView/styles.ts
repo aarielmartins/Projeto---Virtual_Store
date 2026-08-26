@@ -2,10 +2,11 @@ import styled from 'styled-components'
 import { cores, texto } from '../../styles'
 
 export const PageContainer = styled.div`
-  padding: 48px 32px 80px;
+  padding-top: 116px;
 
   @media (max-width: 900px) {
-    padding: 32px 20px 56px;
+    padding-top: 46px;
+    margin: 20px 20px;
   }
 `
 

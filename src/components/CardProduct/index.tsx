@@ -21,7 +21,7 @@ export const formatarPreco = (valor: number) =>
 const CardProduct = ({ products }: Props) => (
   <>
     {products.map((product) => (
-      <Card key={product.id} href="#">
+      <Card key={product.id}>
         <ImageWrapper>
           <img src={product.imagem} alt={product.titulo} />
           <ColorButton to={`/produtos/${product.id}`} />
