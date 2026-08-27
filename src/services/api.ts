@@ -6,11 +6,21 @@ const api = createApi({
     baseUrl: 'https://projeto-virtual-store-api.onrender.com'
   }),
   endpoints: (builder) => ({
-    getFeatureGames: builder.query<Product, void>({
+    getProduct: builder.query<Product, string>({
+      query: (id) => `/products/${id}`
+    }),
+    getFeatureProducts: builder.query<Product[], void>({
       query: () => '/products'
+    }),
+    getProductsByCollection: builder.query<Product[], string>({
+      query: (colecao) => `/products?colecao=${colecao}`
     })
   })
 })
 
-export const { useGetFeatureGamesQuery } = api
+export const {
+  useGetFeatureProductsQuery,
+  useGetProductQuery,
+  useGetProductsByCollectionQuery
+} = api
 export default api

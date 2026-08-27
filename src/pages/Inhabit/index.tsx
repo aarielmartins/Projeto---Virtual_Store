@@ -1,19 +1,25 @@
-import { useEffect, useState } from 'react'
 import CardProduct from '../../components/CardProduct'
 import CollectionHeader from '../../components/CollectionHeader'
 import { GridPages } from '../../styles'
-import Product from '../../models/Product'
+import { useGetProductsByCollectionQuery } from '../../services/api'
 
 const Inhabit = () => {
-  const [products, setProducts] = useState<Product[]>([])
+  const { data: products } = useGetProductsByCollectionQuery('habitar')
 
-  useEffect(() => {
-    fetch(
-      'https://projeto-virtual-store-api.onrender.com/products?colecao=habitar'
-    )
-      .then((res) => res.json())
-      .then((res) => setProducts(res))
-  }, [])
+  if (!products) {
+    return <p>Carregando...</p>
+  }
+
+  //modelo de requisição usando useState e useEffect apenas para fins de estudo
+  // const [products, setProducts] = useState<Product[]>([])
+
+  // useEffect(() => {
+  //   fetch(
+  //     'https://projeto-virtual-store-api.onrender.com/products?colecao=habitar'
+  //   )
+  //     .then((res) => res.json())
+  //     .then((res) => setProducts(res))
+  // }, [])
 
   return (
     <>

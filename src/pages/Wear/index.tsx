@@ -1,19 +1,25 @@
-import { useEffect, useState } from 'react'
+import { GridPages } from '../../styles'
+import { useGetProductsByCollectionQuery } from '../../services/api'
 import CardProduct from '../../components/CardProduct'
 import CollectionHeader from '../../components/CollectionHeader'
-import { GridPages } from '../../styles'
-import Product from '../../models/Product'
 
 const Wear = () => {
-  const [products, setProducts] = useState<Product[]>([])
+  const { data: products } = useGetProductsByCollectionQuery('vestir')
 
-  useEffect(() => {
-    fetch(
-      'https://projeto-virtual-store-api.onrender.com/products?colecao=vestir'
-    )
-      .then((res) => res.json())
-      .then((res) => setProducts(res))
-  }, [])
+  if (!products) {
+    return <p>Carregando...</p>
+  }
+
+  //modelo de requisição usando useState e useEffect apenas para fins de estudo
+  // const [products, setProducts] = useState<Product[]>([])
+
+  // useEffect(() => {
+  //   fetch(
+  //     'https://projeto-virtual-store-api.onrender.com/products?colecao=vestir'
+  //   )
+  //     .then((res) => res.json())
+  //     .then((res) => setProducts(res))
+  // }, [])
 
   return (
     <>

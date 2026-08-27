@@ -1,4 +1,8 @@
-import { useEffect, useState } from 'react'
+import {
+  useGetProductQuery,
+  useGetProductsByCollectionQuery
+} from '../../services/api'
+import { skipToken } from '@reduxjs/toolkit/query'
 import { useParams, Link } from 'react-router-dom'
 import CardProduct, { formatarPreco } from '../../components/CardProduct'
 import Product from '../../models/Product'
@@ -22,8 +26,6 @@ import {
   RelatedGrid
 } from './styles'
 
-const API_URL = 'https://projeto-virtual-store-api.onrender.com'
-
 //pega os valores do campo "dimensões" e transforma em uma string formatada
 const formatarDimensoes = (dimensoes: Product['dimensoes']) => {
   if (!dimensoes) return ''
@@ -37,35 +39,23 @@ const colecaoLabel: Record<Product['colecao'], string> = {
 }
 
 const ProductPage = () => {
-  //pega o parâmetro para criar a rota
+  //pega o parâmetro id da URL usando useParams do react-router-dom
   const { id } = useParams()
-  //estado para armazenar o produto atual que começa nulo
-  const [product, setProduct] = useState<Product | null>(null)
-  //estado para armazenar os produtos relacionados que começa como um array vazio
-  const [related, setRelated] = useState<Product[]>([])
 
-  useEffect(() => {
-    //limpa o produto antes de carregar um novo
-    setProduct(null)
+  //usa o hook useGetProductQuery para buscar o produto pelo id, se id for undefined, usa skipToken para não fazer a requisição
+  const { data: product } = useGetProductQuery(id ?? skipToken)
 
-    fetch(`${API_URL}/products/${id}`)
-      .then((res) => res.json())
-      .then((res) => setProduct(res))
-    //executa quando muda o id do produto, ou seja, quando o usuário clica em outro produto
-  }, [id])
+  //usa o hook useGetProductsByCollectionQuery para buscar produtos relacionados da mesma coleção
+  // se product for undefined, usa skipToken para não fazer a requisição
+  const { data: relatedRaw } = useGetProductsByCollectionQuery(
+    product?.colecao ?? skipToken
+  )
 
-  //armazena o estado dos produtos relacionados
-  useEffect(() => {
-    //só inicia quanto o produto atual estiver carregado
-    if (!product) return
-
-    fetch(`${API_URL}/products?colecao=${product.colecao}`)
-      .then((res) => res.json())
-      .then((res: Product[]) =>
-        //filtra excluindo o produto atual e limitando a 3 produtos
-        setRelated(res.filter((item) => item.id !== product.id).slice(0, 3))
-      )
-  }, [product])
+  //o "?" é usado para verificar se relatedRaw é undefined, se for retorna sem quebrar
+  //filtra os produtos relacionados para não incluir o produto atual e limita a 3 produtos
+  const related = relatedRaw
+    ?.filter((item) => item.id !== product?.id)
+    .slice(0, 3)
 
   //enquanto o produto não for carregado retorne null, ou seja, não renderiza nada
   if (!product) return null
@@ -137,7 +127,7 @@ const ProductPage = () => {
         </Info>
       </ProductGrid>
 
-      {related.length > 0 && (
+      {related && related.length > 0 && (
         <RelatedSection>
           <RelatedTitle>Você também pode gostar</RelatedTitle>
           <RelatedGrid>
