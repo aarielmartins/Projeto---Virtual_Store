@@ -8,6 +8,7 @@ import Wear from './pages/Wear'
 import Inhabit from './pages/Inhabit'
 import ProductPage from './pages/ProductPage'
 import { store } from './store'
+import Cart from './components/Cart'
 
 const rotas = createBrowserRouter([
   {
@@ -35,6 +36,7 @@ function App() {
       <Provider store={store}>
         <GlobalCss />
         <RouterProvider router={rotas} />
+        <Cart />
       </Provider>
     </>
   )

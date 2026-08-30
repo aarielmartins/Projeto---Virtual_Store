@@ -50,7 +50,7 @@ export const ImageWrapper = styled.div`
   flex: 1;
   border-radius: 16px;
   overflow: hidden;
-  background: #f4f4f2;
+  background: ${cores.branco};
 
   img {
     width: 100%;

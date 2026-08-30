@@ -44,6 +44,7 @@ const ProductPage = () => {
 
   //usa o hook useGetProductQuery para buscar o produto pelo id, se id for undefined, usa skipToken para não fazer a requisição
   const { data: product } = useGetProductQuery(id ?? skipToken)
+  //COLOCAR APENAS "ID!" E TESTAR!!!!!!!!
 
   //usa o hook useGetProductsByCollectionQuery para buscar produtos relacionados da mesma coleção
   // se product for undefined, usa skipToken para não fazer a requisição
@@ -58,7 +59,9 @@ const ProductPage = () => {
     .slice(0, 3)
 
   //enquanto o produto não for carregado retorne null, ou seja, não renderiza nada
-  if (!product) return null
+  if (!product) {
+    return <p>Carregando...</p>
+  }
 
   return (
     <PageContainer>
