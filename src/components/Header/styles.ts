@@ -57,6 +57,7 @@ export const Icons = styled.div`
     display: flex;
     color: ${cores.preto};
     transition: color 0.2s ease;
+    cursor: pointer;
 
     &:hover {
       color: ${cores.chumbo};

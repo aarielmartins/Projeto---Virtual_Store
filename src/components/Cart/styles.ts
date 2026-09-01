@@ -17,9 +17,13 @@ export const CartContainer = styled.aside`
   max-width: 100vw;
   background: ${cores.branco};
   z-index: 201;
-  display: flex;
+  display: none;
   flex-direction: column;
   border-radius: 34px;
+
+  &.is-open {
+    display: flex;
+  }
 `
 
 export const Header = styled.div`
