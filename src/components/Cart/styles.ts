@@ -1,6 +1,14 @@
 import styled from 'styled-components'
 import { cores, texto } from '../../styles'
 
+export const CardBar = styled.div`
+  display: none;
+
+  &.is-open {
+    display: flex;
+  }
+`
+
 export const Overlay = styled.div`
   position: fixed;
   inset: 0;
@@ -17,13 +25,9 @@ export const CartContainer = styled.aside`
   max-width: 100vw;
   background: ${cores.branco};
   z-index: 201;
-  display: none;
+  display: flex;
   flex-direction: column;
   border-radius: 34px;
-
-  &.is-open {
-    display: flex;
-  }
 `
 
 export const Header = styled.div`

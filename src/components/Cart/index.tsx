@@ -4,6 +4,7 @@ import { FiMinus, FiPlus, FiX } from 'react-icons/fi'
 import { close } from '../../store/reducers/cart'
 import imagem from '../../assets/images/Poltrona.jpg'
 import {
+  CardBar,
   Item,
   ItemImage,
   ItemInfo,
@@ -38,66 +39,68 @@ const Cart = () => {
 
   return (
     <>
-      <Overlay className={isOpen ? 'is-open' : ''} />
-      <aside>
-        <CartContainer className={isOpen ? 'is-open' : ''}>
-          <Header>
-            <Title>Seu carrinho</Title>
-            <CloseButton onClick={closeCart}>
-              <FiX />
-            </CloseButton>
-          </Header>
+      <CardBar className={isOpen ? 'is-open' : ''}>
+        <Overlay onClick={closeCart} />
+        <div>
+          <CartContainer>
+            <Header>
+              <Title>Seu carrinho</Title>
+              <CloseButton onClick={closeCart}>
+                <FiX />
+              </CloseButton>
+            </Header>
 
-          <ItemsList>
-            <EmptyMessage>Seu carrinho ainda está vazio.</EmptyMessage>
+            <ItemsList>
+              <EmptyMessage>Seu carrinho ainda está vazio.</EmptyMessage>
 
-            <Item>
-              <ItemImage src={imagem} alt="Sofa" />
+              <Item>
+                <ItemImage src={imagem} alt="Sofa" />
 
-              <ItemInfo>
-                <ItemHeader>
-                  <div>
-                    <ItemCategory>Mobiliario</ItemCategory>
-                    <ItemName>Sofa</ItemName>
-                  </div>
-                  <ItemPrice>R$200,00</ItemPrice>
-                </ItemHeader>
+                <ItemInfo>
+                  <ItemHeader>
+                    <div>
+                      <ItemCategory>Mobiliario</ItemCategory>
+                      <ItemName>Sofa</ItemName>
+                    </div>
+                    <ItemPrice>R$200,00</ItemPrice>
+                  </ItemHeader>
 
-                <Quantity>
-                  <QuantityButton>
-                    <FiMinus />
-                  </QuantityButton>
+                  <Quantity>
+                    <QuantityButton>
+                      <FiMinus />
+                    </QuantityButton>
 
-                  <QuantityValue>2</QuantityValue>
+                    <QuantityValue>2</QuantityValue>
 
-                  <QuantityButton>
-                    <FiPlus />
-                  </QuantityButton>
-                </Quantity>
-              </ItemInfo>
-            </Item>
-          </ItemsList>
+                    <QuantityButton>
+                      <FiPlus />
+                    </QuantityButton>
+                  </Quantity>
+                </ItemInfo>
+              </Item>
+            </ItemsList>
 
-          <Footer>
-            <SummaryRow>
-              <span>1 item</span>
-              <span>R$ 8.000,00</span>
-            </SummaryRow>
+            <Footer>
+              <SummaryRow>
+                <span>1 item</span>
+                <span>R$ 8.000,00</span>
+              </SummaryRow>
 
-            <SummaryRow>
-              <span>Entrega</span>
-              <span>R$40,00</span>
-            </SummaryRow>
+              <SummaryRow>
+                <span>Entrega</span>
+                <span>R$40,00</span>
+              </SummaryRow>
 
-            <TotalRow>
-              <span>Total</span>
-              <span>R$8,040,00</span>
-            </TotalRow>
+              <TotalRow>
+                <span>Total</span>
+                <span>R$8,040,00</span>
+              </TotalRow>
 
-            <CheckoutButton>Finalizar compra</CheckoutButton>
-          </Footer>
-        </CartContainer>
-      </aside>
+              <CheckoutButton>Finalizar compra</CheckoutButton>
+            </Footer>
+          </CartContainer>
+        </div>
+      </CardBar>
     </>
   )
 }
