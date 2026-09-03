@@ -1,3 +1,4 @@
+import { useDispatch } from 'react-redux'
 import {
   useGetProductQuery,
   useGetProductsByCollectionQuery
@@ -6,6 +7,7 @@ import { skipToken } from '@reduxjs/toolkit/query'
 import { useParams, Link } from 'react-router-dom'
 import CardProduct, { formatarPreco } from '../../components/CardProduct'
 import Product from '../../models/Product'
+import { add } from '../../store/reducers/cart'
 import {
   PageContainer,
   Breadcrumb,
@@ -39,12 +41,12 @@ const colecaoLabel: Record<Product['colecao'], string> = {
 }
 
 const ProductPage = () => {
+  const dispatch = useDispatch()
   //pega o parâmetro id da URL usando useParams do react-router-dom
   const { id } = useParams()
 
   //usa o hook useGetProductQuery para buscar o produto pelo id, se id for undefined, usa skipToken para não fazer a requisição
   const { data: product } = useGetProductQuery(id ?? skipToken)
-  //COLOCAR APENAS "ID!" E TESTAR!!!!!!!!
 
   //usa o hook useGetProductsByCollectionQuery para buscar produtos relacionados da mesma coleção
   // se product for undefined, usa skipToken para não fazer a requisição
@@ -57,6 +59,13 @@ const ProductPage = () => {
   const related = relatedRaw
     ?.filter((item) => item.id !== product?.id)
     .slice(0, 3)
+
+  //se o produto não for carregado não faça nada, se for pode adicionar ao carrinho, usando o dispatch para chamar a action add do slice cart
+  const addToCart = () => {
+    if (!product) return
+
+    dispatch(add(product))
+  }
 
   //enquanto o produto não for carregado retorne null, ou seja, não renderiza nada
   if (!product) {
@@ -93,7 +102,9 @@ const ProductPage = () => {
 
           <Description>{product.descricao}</Description>
 
-          <AddToCartButton>Adicionar ao carrinho</AddToCartButton>
+          <AddToCartButton onClick={addToCart}>
+            Adicionar ao carrinho
+          </AddToCartButton>
 
           <DetailsTable>
             <DetailRow>
