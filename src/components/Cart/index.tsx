@@ -2,7 +2,6 @@ import { RootReducer } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
 import { FiMinus, FiPlus, FiX } from 'react-icons/fi'
 import { close } from '../../store/reducers/cart'
-import imagem from '../../assets/images/Poltrona.jpg'
 import {
   CardBar,
   Item,
@@ -27,9 +26,10 @@ import {
   TotalRow,
   CheckoutButton
 } from './styles'
+import { formatarPreco } from '../CardProduct'
 
 const Cart = () => {
-  const { isOpen } = useSelector((state: RootReducer) => state.cart)
+  const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
 
   const dispatch = useDispatch()
 
@@ -53,31 +53,34 @@ const Cart = () => {
             <ItemsList>
               <EmptyMessage>Seu carrinho ainda está vazio.</EmptyMessage>
 
-              <Item>
-                <ItemImage src={imagem} alt="Sofa" />
+              {items.map((item) => (
+                <Item key={item.id}>
+                  <ItemImage src={item.imagem} alt={item.titulo} />
+                  <ItemInfo>
+                    <ItemHeader>
+                      <div>
+                        <ItemCategory>{item.categoria}</ItemCategory>
+                        <ItemName>{item.titulo}</ItemName>
+                      </div>
+                      <ItemPrice>
+                        {formatarPreco(item.valorComDesconto ?? item.valor)}
+                      </ItemPrice>
+                    </ItemHeader>
 
-                <ItemInfo>
-                  <ItemHeader>
-                    <div>
-                      <ItemCategory>Mobiliario</ItemCategory>
-                      <ItemName>Sofa</ItemName>
-                    </div>
-                    <ItemPrice>R$200,00</ItemPrice>
-                  </ItemHeader>
+                    <Quantity>
+                      <QuantityButton>
+                        <FiMinus />
+                      </QuantityButton>
 
-                  <Quantity>
-                    <QuantityButton>
-                      <FiMinus />
-                    </QuantityButton>
+                      <QuantityValue>2</QuantityValue>
 
-                    <QuantityValue>2</QuantityValue>
-
-                    <QuantityButton>
-                      <FiPlus />
-                    </QuantityButton>
-                  </Quantity>
-                </ItemInfo>
-              </Item>
+                      <QuantityButton>
+                        <FiPlus />
+                      </QuantityButton>
+                    </Quantity>
+                  </ItemInfo>
+                </Item>
+              ))}
             </ItemsList>
 
             <Footer>

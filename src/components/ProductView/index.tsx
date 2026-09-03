@@ -7,7 +7,7 @@ import { skipToken } from '@reduxjs/toolkit/query'
 import { useParams, Link } from 'react-router-dom'
 import CardProduct, { formatarPreco } from '../../components/CardProduct'
 import Product from '../../models/Product'
-import { add } from '../../store/reducers/cart'
+import { add, open } from '../../store/reducers/cart'
 import {
   PageContainer,
   Breadcrumb,
@@ -65,6 +65,7 @@ const ProductPage = () => {
     if (!product) return
 
     dispatch(add(product))
+    dispatch(open())
   }
 
   //enquanto o produto não for carregado retorne null, ou seja, não renderiza nada
