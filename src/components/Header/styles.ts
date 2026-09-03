@@ -54,6 +54,7 @@ export const Icons = styled.div`
   gap: 22px;
 
   a {
+    position: relative;
     display: flex;
     color: ${cores.preto};
     transition: color 0.2s ease;
@@ -67,5 +68,31 @@ export const Icons = styled.div`
   svg {
     width: 20px;
     height: 20px;
+  }
+`
+
+export const CartQuantity = styled.span`
+  position: absolute;
+  top: -8px;
+  right: -8px;
+
+  display: none;
+  align-items: center;
+  justify-content: center;
+
+  width: 15px;
+  height: 15px;
+
+  background-color: ${cores.detalhe};
+  color: ${cores.preto};
+
+  border-radius: 50%;
+
+  font-size: 9px;
+  font-weight: 600;
+  line-height: 1;
+
+  &.lenght-products {
+    display: flex;
   }
 `
