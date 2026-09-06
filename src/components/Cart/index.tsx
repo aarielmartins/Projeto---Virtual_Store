@@ -1,7 +1,9 @@
 import { RootReducer } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
 import { FiMinus, FiPlus, FiX } from 'react-icons/fi'
-import { add, remove, close } from '../../store/reducers/cart'
+import { add, remove, close, CartItem } from '../../store/reducers/cart'
+import { formatarPreco } from '../CardProduct'
+import Product from '../../models/Product'
 import {
   CardBar,
   Item,
@@ -26,8 +28,6 @@ import {
   TotalRow,
   CheckoutButton
 } from './styles'
-import { formatarPreco } from '../CardProduct'
-import Product from '../../models/Product'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -44,6 +44,11 @@ const Cart = () => {
 
   const removeItem = (number: number) => {
     dispatch(remove(number))
+  }
+
+  const totalItem = (item: CartItem) => {
+    const preco = item.valorComDesconto ?? item.valor
+    return preco * item.quantity
   }
 
   return (
@@ -73,9 +78,7 @@ const Cart = () => {
                         <ItemCategory>{item.categoria}</ItemCategory>
                         <ItemName>{item.titulo}</ItemName>
                       </div>
-                      <ItemPrice>
-                        {formatarPreco(item.valorComDesconto ?? item.valor)}
-                      </ItemPrice>
+                      <ItemPrice>{formatarPreco(totalItem(item))}</ItemPrice>
                     </ItemHeader>
 
                     <Quantity>
@@ -94,7 +97,7 @@ const Cart = () => {
 
             <Footer>
               <SummaryRow>
-                <span>1 item</span>
+                <span>Valor total</span>
                 <span>R$ 8.000,00</span>
               </SummaryRow>
 

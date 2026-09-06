@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import Product from '../../models/Product'
 
 //cria um novo tipo de cartItem com quantidade
-type CartItem = Product & {
+export type CartItem = Product & {
   quantity: number
 }
 
