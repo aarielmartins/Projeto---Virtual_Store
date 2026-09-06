@@ -38,6 +38,10 @@ const cartSlice = createSlice({
       if (!item) return
 
       item.quantity -= 1
+
+      if (item.quantity <= 0) {
+        state.items = state.items.filter((item) => item.id !== action.payload)
+      }
     },
     open: (state) => {
       state.isOpen = true
