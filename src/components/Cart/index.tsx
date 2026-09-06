@@ -1,7 +1,7 @@
 import { RootReducer } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
 import { FiMinus, FiPlus, FiX } from 'react-icons/fi'
-import { close } from '../../store/reducers/cart'
+import { add, remove, close } from '../../store/reducers/cart'
 import {
   CardBar,
   Item,
@@ -27,6 +27,7 @@ import {
   CheckoutButton
 } from './styles'
 import { formatarPreco } from '../CardProduct'
+import Product from '../../models/Product'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -35,6 +36,14 @@ const Cart = () => {
 
   const closeCart = () => {
     dispatch(close())
+  }
+
+  const addItem = (product: Product) => {
+    dispatch(add(product))
+  }
+
+  const removeItem = (number: number) => {
+    dispatch(remove(number))
   }
 
   return (
@@ -68,13 +77,13 @@ const Cart = () => {
                     </ItemHeader>
 
                     <Quantity>
-                      <QuantityButton>
+                      <QuantityButton onClick={() => removeItem(item.id)}>
                         <FiMinus />
                       </QuantityButton>
 
-                      <QuantityValue>2</QuantityValue>
+                      <QuantityValue>{item.quantity}</QuantityValue>
 
-                      <QuantityButton>
+                      <QuantityButton onClick={() => addItem(item)}>
                         <FiPlus />
                       </QuantityButton>
                     </Quantity>
