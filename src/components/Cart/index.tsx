@@ -60,7 +60,9 @@ const Cart = () => {
             </Header>
 
             <ItemsList>
-              <EmptyMessage>Seu carrinho ainda está vazio.</EmptyMessage>
+              {items.length === 0 && (
+                <EmptyMessage>Seu carrinho ainda está vazio.</EmptyMessage>
+              )}
 
               {items.map((item) => (
                 <Item key={item.id}>
@@ -80,9 +82,7 @@ const Cart = () => {
                       <QuantityButton onClick={() => removeItem(item.id)}>
                         <FiMinus />
                       </QuantityButton>
-
                       <QuantityValue>{item.quantity}</QuantityValue>
-
                       <QuantityButton onClick={() => addItem(item)}>
                         <FiPlus />
                       </QuantityButton>
