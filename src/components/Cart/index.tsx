@@ -46,10 +46,21 @@ const Cart = () => {
     dispatch(remove(number))
   }
 
+  //calcula o valor total do item multiplicando o preço pelo quantidade
   const totalItem = (item: CartItem) => {
     const preco = item.valorComDesconto ?? item.valor
     return preco * item.quantity
   }
+
+  const valorFinalItens = (items: CartItem[]) => {
+    return items.reduce((total, item) => total + totalItem(item), 0)
+  }
+
+  const valorFinal = (items: CartItem[]) => {
+    return valorFinalItens(items) + 40
+  }
+
+  const totalItens = items.reduce((total, item) => total + item.quantity, 0)
 
   return (
     <>
@@ -94,25 +105,28 @@ const Cart = () => {
                 </Item>
               ))}
             </ItemsList>
+            {items.length !== 0 && (
+              <Footer>
+                <SummaryRow>
+                  <span>
+                    {totalItens} {totalItens === 1 ? 'item' : 'itens'}
+                  </span>
+                  <span>{formatarPreco(valorFinalItens(items))}</span>
+                </SummaryRow>
 
-            <Footer>
-              <SummaryRow>
-                <span>Valor total</span>
-                <span>R$ 8.000,00</span>
-              </SummaryRow>
+                <SummaryRow>
+                  <span>Entrega</span>
+                  <span>R$40,00</span>
+                </SummaryRow>
 
-              <SummaryRow>
-                <span>Entrega</span>
-                <span>R$40,00</span>
-              </SummaryRow>
+                <TotalRow>
+                  <span>Total</span>
+                  <span>{formatarPreco(valorFinal(items))}</span>
+                </TotalRow>
 
-              <TotalRow>
-                <span>Total</span>
-                <span>R$8,040,00</span>
-              </TotalRow>
-
-              <CheckoutButton>Finalizar compra</CheckoutButton>
-            </Footer>
+                <CheckoutButton>Finalizar compra</CheckoutButton>
+              </Footer>
+            )}
           </CartContainer>
         </div>
       </CardBar>
