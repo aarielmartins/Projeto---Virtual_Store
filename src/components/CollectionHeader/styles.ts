@@ -3,16 +3,7 @@ import { cores, texto } from '../../styles'
 
 export const HeaderContainer = styled.div`
   margin-bottom: 32px;
-  padding-top: 76px;
-`
-
-export const Category = styled.span`
-  font-size: ${texto.detalhe};
-  text-transform: uppercase;
-  color: ${cores.chumbo};
-  display: block;
-  margin-bottom: 12px;
-  margin-top: 32px;
+  padding-top: 100px;
 `
 
 export const Title = styled.h1`

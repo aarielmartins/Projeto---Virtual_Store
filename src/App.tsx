@@ -1,14 +1,15 @@
 import { Provider } from 'react-redux'
 import { createBrowserRouter, Outlet, RouterProvider } from 'react-router-dom'
+import { Container, GlobalCss } from './styles'
+import { store } from './store'
 import Footer from './components/Footer'
 import Header from './components/Header'
-import { Container, GlobalCss } from './styles'
 import Home from './pages/Home'
 import Wear from './pages/Wear'
 import Inhabit from './pages/Inhabit'
 import ProductPage from './pages/ProductPage'
-import { store } from './store'
 import Cart from './components/Cart'
+import Checkout from './pages/Checkout'
 
 const rotas = createBrowserRouter([
   {
@@ -25,7 +26,8 @@ const rotas = createBrowserRouter([
       { path: '/', element: <Home /> },
       { path: '/vestir', element: <Wear /> },
       { path: '/habitar', element: <Inhabit /> },
-      { path: '/produtos/:id', element: <ProductPage /> }
+      { path: '/produtos/:id', element: <ProductPage /> },
+      { path: '/checkout', element: <Checkout /> }
     ]
   }
 ])

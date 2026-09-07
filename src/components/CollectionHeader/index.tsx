@@ -1,4 +1,4 @@
-import { HeaderContainer, Category, Title, Description } from './styles'
+import { HeaderContainer, Title, Description } from './styles'
 
 type Props = {
   title: string
@@ -7,7 +7,6 @@ type Props = {
 
 const CollectionHeader = ({ title, description }: Props) => (
   <HeaderContainer>
-    <Category>coleção</Category>
     <Title>{title}</Title>
     <Description>{description}</Description>
   </HeaderContainer>
