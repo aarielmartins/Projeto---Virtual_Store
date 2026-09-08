@@ -31,10 +31,8 @@ export type Props = {
   gapNumber?: number
 }
 
-type FormaPagamento = 'boleto' | 'cartao'
-
 const Checkout = () => {
-  const [formaPagamento, setFormaPagamento] = useState<FormaPagamento>('boleto')
+  const [formaPagamento, setFormaPagamento] = useState(false)
   const { items } = useSelector((state: RootReducer) => state.cart)
 
   const totalItem = (
@@ -108,8 +106,8 @@ const Checkout = () => {
           <PaymentTabs>
             <PaymentTab
               type="button"
-              $active={formaPagamento === 'boleto'}
-              onClick={() => setFormaPagamento('boleto')}
+              isActive={!formaPagamento}
+              onClick={() => setFormaPagamento(false)}
             >
               <RiBarcodeLine />
               Boleto bancário
@@ -117,23 +115,15 @@ const Checkout = () => {
 
             <PaymentTab
               type="button"
-              $active={formaPagamento === 'cartao'}
-              onClick={() => setFormaPagamento('cartao')}
+              isActive={formaPagamento}
+              onClick={() => setFormaPagamento(true)}
             >
               <FiCreditCard />
               Cartão de crédito
             </PaymentTab>
           </PaymentTabs>
 
-          {formaPagamento === 'boleto' && (
-            <PaymentNotice>
-              Ao optar por essa forma de pagamento, a confirmação pode levar até
-              3 dias úteis, devido aos prazos das instituições financeiras. O
-              envio das peças só é iniciado após a aprovação do boleto.
-            </PaymentNotice>
-          )}
-
-          {formaPagamento === 'cartao' && (
+          {formaPagamento ? (
             <>
               <Row>
                 <Field gapNumber={2}>
@@ -180,6 +170,12 @@ const Checkout = () => {
                 </Field>
               </Row>
             </>
+          ) : (
+            <PaymentNotice>
+              Ao optar por essa forma de pagamento, a confirmação pode levar até
+              3 dias úteis, devido aos prazos das instituições financeiras.
+              <br />O envio das peças só é iniciado após a aprovação do boleto.
+            </PaymentNotice>
           )}
         </>
       </Card>

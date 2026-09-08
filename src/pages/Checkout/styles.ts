@@ -2,6 +2,10 @@ import styled from 'styled-components'
 import { cores, texto } from '../../styles'
 import { Props } from '.'
 
+type PaymentTabType = {
+  isActive: boolean
+}
+
 export const Row = styled.div<Props>`
   display: grid;
   grid-template-columns: repeat(${(props) => props.gapNumber ?? 3}, 1fr);
@@ -74,7 +78,7 @@ export const PaymentTabs = styled.div`
   margin-bottom: 24px;
 `
 
-export const PaymentTab = styled.button<{ $active: boolean }>`
+export const PaymentTab = styled.button<PaymentTabType>`
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -85,13 +89,14 @@ export const PaymentTab = styled.button<{ $active: boolean }>`
   cursor: pointer;
   transition: background 0.2s ease, border 0.2s ease;
 
-  background: ${(props) => (props.$active ? cores.detalheClaro : cores.branco)};
-  border: 1px solid ${(props) => (props.$active ? 'transparent' : cores.cinza)};
+  background: ${(props) =>
+    props.isActive ? cores.detalheClaro : cores.branco};
+  border: 1px solid ${(props) => (props.isActive ? 'transparent' : cores.cinza)};
   color: ${cores.preto};
 
   &:hover {
     background: ${(props) =>
-      props.$active ? cores.detalheClaro : cores.cinzaClaro};
+      props.isActive ? cores.detalheClaro : cores.cinzaClaro};
   }
 
   svg {
