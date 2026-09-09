@@ -114,7 +114,7 @@ export const ItemsList = styled.div`
   flex-direction: column;
   gap: 12px;
   padding-bottom: 20px;
-  border-bottom: 1px dashed #ccc;
+  border-bottom: 1px dashed ${cores.cinza};
   margin-bottom: 20px;
 `
 
@@ -131,7 +131,6 @@ export const ItemName = styled.span`
 
 export const ItemPrice = styled.span`
   color: ${cores.preto};
-  white-space: nowrap;
 `
 
 export const Totals = styled.div`
@@ -139,7 +138,7 @@ export const Totals = styled.div`
   flex-direction: column;
   gap: 8px;
   padding-bottom: 20px;
-  border-bottom: 1px dashed #ccc;
+  border-bottom: 1px dashed ${cores.cinza};
   margin-bottom: 20px;
 `
 
@@ -167,15 +166,15 @@ export const CheckoutButton = styled.button`
   border-radius: 999px;
   border: none;
   background: ${cores.preto};
-  color: #fff;
+  color: ${cores.branco};
   font-size: 15px;
-  font-weight: 600;
+  font-weight: 700;
   cursor: pointer;
   transition: background 0.2s ease;
   margin-bottom: 16px;
 
   &:hover {
-    background: #222;
+    background: ${cores.chumbo};
   }
 
   &:disabled {
@@ -192,6 +191,7 @@ export const SecureNotice = styled.p`
   font-size: 13px;
   color: ${cores.detalhe};
   text-align: center;
+  padding-top: 10px;
 
   svg {
     width: 14px;

@@ -200,6 +200,7 @@ export const TotalRow = styled.div`
 `
 
 export const CheckoutButton = styled(Link)`
+  display: block;
   width: 100%;
   padding: 16px 24px;
   border-radius: 999px;
@@ -210,6 +211,8 @@ export const CheckoutButton = styled(Link)`
   font-weight: 700;
   cursor: pointer;
   transition: background 0.2s ease;
+  text-align: center;
+  text-decoration: none;
 
   &:hover {
     background: ${cores.detalheClaro};
