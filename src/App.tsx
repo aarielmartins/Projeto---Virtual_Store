@@ -16,6 +16,7 @@ const rotas = createBrowserRouter([
     element: (
       <>
         <Header />
+        <Cart />
         <Container>
           <Outlet />
         </Container>
@@ -38,7 +39,6 @@ function App() {
       <Provider store={store}>
         <GlobalCss />
         <RouterProvider router={rotas} />
-        <Cart />
       </Provider>
     </>
   )

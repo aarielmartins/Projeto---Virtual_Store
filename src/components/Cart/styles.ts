@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { cores, texto } from '../../styles'
+import { Link } from 'react-router-dom'
 
 export const CardBar = styled.div`
   display: none;
@@ -198,7 +199,7 @@ export const TotalRow = styled.div`
   border-top: 1px solid ${cores.cinza};
 `
 
-export const CheckoutButton = styled.button`
+export const CheckoutButton = styled(Link)`
   width: 100%;
   padding: 16px 24px;
   border-radius: 999px;

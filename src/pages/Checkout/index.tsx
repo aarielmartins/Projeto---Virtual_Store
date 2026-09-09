@@ -26,6 +26,7 @@ import {
 } from './styles'
 import Card from '../../components/Card'
 import CollectionHeader from '../../components/CollectionHeader'
+import { totalItem, valorFinalItens, valorFinal } from '../../components/Cart'
 
 export type Props = {
   gapNumber?: number
@@ -34,20 +35,6 @@ export type Props = {
 const Checkout = () => {
   const [formaPagamento, setFormaPagamento] = useState(false)
   const { items } = useSelector((state: RootReducer) => state.cart)
-
-  const totalItem = (
-    valor: number,
-    valorComDesconto: number | undefined,
-    quantity: number
-  ) => (valorComDesconto ?? valor) * quantity
-
-  const subtotal = items.reduce(
-    (total, item) =>
-      total + totalItem(item.valor, item.valorComDesconto, item.quantity),
-    0
-  )
-
-  const total = items.length > 0 ? subtotal + 40 : 0
 
   return (
     <>
@@ -185,13 +172,9 @@ const Checkout = () => {
             {items.map((item) => (
               <ItemRow key={item.id}>
                 <ItemName>
-                  {item.quantity}x {item.titulo}
+                  {item.quantity} x {item.titulo}
                 </ItemName>
-                <ItemPrice>
-                  {formatarPreco(
-                    totalItem(item.valor, item.valorComDesconto, item.quantity)
-                  )}
-                </ItemPrice>
+                <ItemPrice>{formatarPreco(totalItem(item))}</ItemPrice>
               </ItemRow>
             ))}
           </ItemsList>
@@ -199,7 +182,7 @@ const Checkout = () => {
           <Totals>
             <TotalRow>
               <span>Subtotal</span>
-              <span>{formatarPreco(subtotal)}</span>
+              <span>{formatarPreco(valorFinalItens(items))}</span>
             </TotalRow>
             <TotalRow>
               <span>Entrega</span>
@@ -209,7 +192,7 @@ const Checkout = () => {
 
           <GrandTotal>
             <span>Total</span>
-            <span>{formatarPreco(total)}</span>
+            <span>{formatarPreco(valorFinal(items))}</span>
           </GrandTotal>
 
           <CheckoutButton disabled={items.length === 0}>

@@ -29,6 +29,24 @@ import {
   CheckoutButton
 } from './styles'
 
+//calcula o valor total do item multiplicando o preço pelo quantidade
+export const totalItem = (item: CartItem) => {
+  const preco = item.valorComDesconto ?? item.valor
+  return preco * item.quantity
+}
+
+export const valorFinalItens = (items: CartItem[]) => {
+  return items.reduce((total, item) => total + totalItem(item), 0)
+}
+
+export const valorFinal = (items: CartItem[]) => {
+  return valorFinalItens(items) + 40
+}
+
+export const totalItens = (items: CartItem[]) => {
+  return items.reduce((total, item) => total + item.quantity, 0)
+}
+
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
 
@@ -45,22 +63,6 @@ const Cart = () => {
   const removeItem = (number: number) => {
     dispatch(remove(number))
   }
-
-  //calcula o valor total do item multiplicando o preço pelo quantidade
-  const totalItem = (item: CartItem) => {
-    const preco = item.valorComDesconto ?? item.valor
-    return preco * item.quantity
-  }
-
-  const valorFinalItens = (items: CartItem[]) => {
-    return items.reduce((total, item) => total + totalItem(item), 0)
-  }
-
-  const valorFinal = (items: CartItem[]) => {
-    return valorFinalItens(items) + 40
-  }
-
-  const totalItens = items.reduce((total, item) => total + item.quantity, 0)
 
   return (
     <>
@@ -109,7 +111,8 @@ const Cart = () => {
               <Footer>
                 <SummaryRow>
                   <span>
-                    {totalItens} {totalItens === 1 ? 'item' : 'itens'}
+                    {totalItens(items)}
+                    {totalItens(items) === 1 ? 'item' : 'itens'}
                   </span>
                   <span>{formatarPreco(valorFinalItens(items))}</span>
                 </SummaryRow>
@@ -124,7 +127,7 @@ const Cart = () => {
                   <span>{formatarPreco(valorFinal(items))}</span>
                 </TotalRow>
 
-                <CheckoutButton>Finalizar compra</CheckoutButton>
+                <CheckoutButton to="/checkout">Finalizar compra</CheckoutButton>
               </Footer>
             )}
           </CartContainer>
