@@ -1,6 +1,49 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import Product from '../models/Product'
 
+type ProductOrder = {
+  id: string
+  price: number
+}
+
+type PurchasePayload = {
+  products: ProductOrder[]
+  billing: {
+    name: string
+    email: string
+    document: string
+  }
+  delivery: {
+    email: string
+    address: string
+    number: string
+    city: string
+    state: string
+    zipCode: string
+  }
+  payment: {
+    card: {
+      active: boolean
+      owner?: {
+        name: string
+        document: string
+      }
+      name?: string
+      number?: string
+      expires?: {
+        month: number
+        year: number
+      }
+      code?: number
+    }
+    installments: number
+  }
+}
+
+type PurchaseResponse = {
+  orderId: string
+}
+
 const api = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: 'https://projeto-virtual-store-api.onrender.com'
@@ -14,6 +57,13 @@ const api = createApi({
     }),
     getProductsByCollection: builder.query<Product[], string>({
       query: (colecao) => `/products?colecao=${colecao}`
+    }),
+    purchase: builder.mutation<PurchaseResponse, PurchasePayload>({
+      query: (body) => ({
+        url: 'checkout',
+        method: 'POST',
+        body
+      })
     })
   })
 })
@@ -21,6 +71,7 @@ const api = createApi({
 export const {
   useGetFeatureProductsQuery,
   useGetProductQuery,
-  useGetProductsByCollectionQuery
+  useGetProductsByCollectionQuery,
+  usePurchaseMutation
 } = api
 export default api
