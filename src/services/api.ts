@@ -41,7 +41,7 @@ type PurchasePayload = {
 }
 
 type PurchaseResponse = {
-  orderId: string
+  id: string
 }
 
 const api = createApi({
