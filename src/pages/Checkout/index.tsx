@@ -197,7 +197,7 @@ const Checkout = () => {
 
   return (
     <>
-      {isSuccess ? (
+      {isSuccess && data ? (
         <OrderConfirmation
           orderId={data.id}
           formaPagamento={formaPagamento}
