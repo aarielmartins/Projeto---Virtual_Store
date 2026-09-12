@@ -38,6 +38,7 @@ const Checkout = () => {
   const [formaPagamento, setFormaPagamento] = useState(false)
   const { items } = useSelector((state: RootReducer) => state.cart)
 
+  //validação do formulário com Formik e Yup
   const form = useFormik({
     initialValues: {
       nomeCompleto: '',
@@ -57,13 +58,15 @@ const Checkout = () => {
       parcelamento: 1
     },
     validationSchema: Yup.object({
-      nomeCompleto: Yup.string().required('Campo obrigatório'),
+      nomeCompleto: Yup.string()
+        .min(5, 'Nome completo inválido')
+        .required('Campo obrigatório'),
       email: Yup.string()
         .email('E-mail inválido')
         .required('Campo obrigatório'),
       cpf: Yup.string()
-        .min(14, 'CPF inválido')
-        .max(14, 'CPF inválido')
+        .min(11, 'CPF inválido')
+        .max(11, 'CPF inválido')
         .required('Campo obrigatório'),
       endereco: Yup.string().required('Campo obrigatório'),
       numero: Yup.string().required('Campo obrigatório'),
@@ -73,35 +76,83 @@ const Checkout = () => {
         .required('Campo obrigatório'),
       cidade: Yup.string().required('Campo obrigatório'),
       estado: Yup.string().required('Campo obrigatório'),
-      nomeTitular: Yup.string().required('Campo obrigatório'),
-      cpfTitular: Yup.string()
-        .min(14, 'CPF inválido')
-        .max(14, 'CPF inválido')
-        .required('Campo obrigatório'),
-      numeroCartao: Yup.string()
-        .min(19, 'Número do cartão inválido')
-        .max(19, 'Número do cartão inválido')
-        .required('Campo obrigatório'),
-      mes: Yup.string()
-        .min(2, 'Mês inválido')
-        .max(2, 'Mês inválido')
-        .required('Campo obrigatório'),
-      ano: Yup.string()
-        .min(2, 'Ano inválido')
-        .max(2, 'Ano inválido')
-        .required('Campo obrigatório'),
-      cvv: Yup.string()
-        .min(3, 'CVV inválido')
-        .max(3, 'CVV inválido')
-        .required('Campo obrigatório'),
-      parcelamento: Yup.number().required('Campo obrigatório')
+
+      nomeTitular: Yup.string().when([], {
+        is: () => formaPagamento,
+        then: (schema) => schema.required('Campo obrigatório'),
+        otherwise: (schema) => schema
+      }),
+
+      cpfTitular: Yup.string().when([], {
+        is: () => formaPagamento,
+        then: (schema) =>
+          schema
+            .min(11, 'CPF inválido')
+            .max(11, 'CPF inválido')
+            .required('Campo obrigatório'),
+        otherwise: (schema) => schema
+      }),
+      //funciona apenas quando a forma de pagamento é cartão de crédito,
+      // caso contrário não é necessário validar
+      numeroCartao: Yup.string().when([], {
+        is: () => formaPagamento,
+        then: (schema) =>
+          schema
+            .min(19, 'Número do cartão inválido')
+            .max(19, 'Número do cartão inválido')
+            .required('Campo obrigatório'),
+        otherwise: (schema) => schema
+      }),
+
+      mes: Yup.string().when([], {
+        is: () => formaPagamento,
+        then: (schema) =>
+          schema
+            .min(2, 'Mês inválido')
+            .max(2, 'Mês inválido')
+            .required('Campo obrigatório'),
+        otherwise: (schema) => schema
+      }),
+
+      ano: Yup.string().when([], {
+        is: () => formaPagamento,
+        then: (schema) =>
+          schema
+            .min(2, 'Ano inválido')
+            .max(2, 'Ano inválido')
+            .required('Campo obrigatório'),
+        otherwise: (schema) => schema
+      }),
+
+      cvv: Yup.string().when([], {
+        is: () => formaPagamento,
+        then: (schema) =>
+          schema
+            .min(3, 'CVV inválido')
+            .max(3, 'CVV inválido')
+            .required('Campo obrigatório'),
+        otherwise: (schema) => schema
+      }),
+
+      parcelamento: Yup.string().when([], {
+        is: () => formaPagamento,
+        then: (schema) => schema.required('Campo obrigatório'),
+        otherwise: (schema) => schema
+      })
     }),
     onSubmit: (values) => {
       console.log(values)
     }
   })
 
-  console.log(form)
+  //mostra o erro só depois que o usuário interagir com o campo
+  const getErrorMessage = (fieldName: string, message?: string) => {
+    const isTouched = fieldName in form.touched
+    const isValid = fieldName in form.errors
+
+    if (isTouched && isValid) return message
+    return ''
+  }
 
   return (
     <form onSubmit={form.handleSubmit}>
@@ -122,6 +173,9 @@ const Checkout = () => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
               />
+              <small>
+                {getErrorMessage('nomeCompleto', form.errors.nomeCompleto)}
+              </small>
             </Field>
             <Field>
               <Label htmlFor="email">E-mail</Label>
@@ -133,6 +187,7 @@ const Checkout = () => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
               />
+              <small>{getErrorMessage('email', form.errors.email)}</small>
             </Field>
             <Field>
               <Label htmlFor="cpf">CPF</Label>
@@ -145,6 +200,7 @@ const Checkout = () => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
               />
+              <small>{getErrorMessage('cpf', form.errors.cpf)}</small>
             </Field>
           </Row>
 
@@ -162,6 +218,7 @@ const Checkout = () => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
               />
+              <small>{getErrorMessage('endereco', form.errors.endereco)}</small>
             </Field>
             <Field gapNumber={1}>
               <Label htmlFor="numero">Número</Label>
@@ -173,6 +230,7 @@ const Checkout = () => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
               />
+              <small>{getErrorMessage('numero', form.errors.numero)}</small>
             </Field>
           </Row>
           <Row>
@@ -187,6 +245,7 @@ const Checkout = () => {
                 onBlur={form.handleBlur}
                 placeholder="00000-000"
               />
+              <small>{getErrorMessage('cep', form.errors.cep)}</small>
             </Field>
             <Field>
               <Label htmlFor="cidade">Cidade</Label>
@@ -198,6 +257,7 @@ const Checkout = () => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
               />
+              <small>{getErrorMessage('cidade', form.errors.cidade)}</small>
             </Field>
             <Field>
               <Label htmlFor="estado">Estado</Label>
@@ -209,6 +269,7 @@ const Checkout = () => {
                 onChange={form.handleChange}
                 onBlur={form.handleBlur}
               />
+              <small>{getErrorMessage('estado', form.errors.estado)}</small>
             </Field>
           </Row>
         </>
@@ -248,6 +309,9 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                   />
+                  <small>
+                    {getErrorMessage('nomeTitular', form.errors.nomeTitular)}
+                  </small>
                 </Field>
                 <Field gapNumber={1}>
                   <Label htmlFor="cpfTitular">CPF do titular</Label>
@@ -260,6 +324,9 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                   />
+                  <small>
+                    {getErrorMessage('cpfTitular', form.errors.cpfTitular)}
+                  </small>
                 </Field>
               </Row>
               <Row gapNumber={6}>
@@ -274,6 +341,9 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                   />
+                  <small>
+                    {getErrorMessage('numeroCartao', form.errors.numeroCartao)}
+                  </small>
                 </Field>
                 <Field gapNumber={1}>
                   <Label htmlFor="mes">Mês</Label>
@@ -286,6 +356,7 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                   />
+                  <small>{getErrorMessage('mes', form.errors.mes)}</small>
                 </Field>
                 <Field gapNumber={1}>
                   <Label htmlFor="ano">Ano</Label>
@@ -298,6 +369,7 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                   />
+                  <small>{getErrorMessage('ano', form.errors.ano)}</small>
                 </Field>
                 <Field gapNumber={1}>
                   <Label htmlFor="cvv">CVV</Label>
@@ -310,6 +382,7 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                   />
+                  <small>{getErrorMessage('cvv', form.errors.cvv)}</small>
                 </Field>
                 <Field gapNumber={1}>
                   <Label htmlFor="parcelamento">Parcelamento</Label>
@@ -320,10 +393,13 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                   >
-                    <option>1x de R$ 2.439,90</option>
-                    <option>2x de R$ 1.219,95</option>
-                    <option>3x de R$ 813,30</option>
+                    <option value="1">1x de R$ 2.439,90</option>
+                    <option value="2">2x de R$ 1.219,95</option>
+                    <option value="3">3x de R$ 813,30</option>
                   </Select>
+                  <small>
+                    {getErrorMessage('parcelamento', form.errors.parcelamento)}
+                  </small>
                 </Field>
               </Row>
             </>
@@ -348,7 +424,6 @@ const Checkout = () => {
               </ItemRow>
             ))}
           </ItemsList>
-
           <Totals>
             <TotalRow>
               <span>Subtotal</span>
@@ -359,16 +434,14 @@ const Checkout = () => {
               <span>{items.length > 0 ? formatarPreco(40) : '—'}</span>
             </TotalRow>
           </Totals>
-
           <GrandTotal>
             <span>Total</span>
             <span>{formatarPreco(valorFinal(items))}</span>
           </GrandTotal>
-
-          <CheckoutButton disabled={items.length === 0}>
+          {/* impede que o usuário finalize a compra sem ter itens no carrinho */}
+          <CheckoutButton disabled={items.length === 0} type="submit">
             Finalizar compra
           </CheckoutButton>
-
           <SecureNotice>
             <FiShield />
             Pagamento seguro criptografado
