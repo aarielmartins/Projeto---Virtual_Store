@@ -127,7 +127,9 @@ const Cart = () => {
                   <span>{formatarPreco(valorFinal(items))}</span>
                 </TotalRow>
 
-                <CheckoutButton to="/checkout">Finalizar compra</CheckoutButton>
+                <CheckoutButton to="/checkout" onClick={closeCart}>
+                  Finalizar compra
+                </CheckoutButton>
               </Footer>
             )}
           </CartContainer>
