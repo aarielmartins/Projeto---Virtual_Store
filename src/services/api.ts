@@ -19,7 +19,7 @@ type PurchasePayload = {
     number: string
     city: string
     state: string
-    zipCode: string
+    zipCode: number
   }
   payment: {
     card: {
@@ -60,7 +60,7 @@ const api = createApi({
     }),
     purchase: builder.mutation<PurchaseResponse, PurchasePayload>({
       query: (body) => ({
-        url: 'checkout',
+        url: 'orders',
         method: 'POST',
         body
       })

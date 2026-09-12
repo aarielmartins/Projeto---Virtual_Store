@@ -29,6 +29,7 @@ import {
   CheckoutButton,
   SecureNotice
 } from './styles'
+import { usePurchaseMutation } from '../../services/api'
 
 export type Props = {
   gapNumber?: number
@@ -36,6 +37,7 @@ export type Props = {
 
 const Checkout = () => {
   const [formaPagamento, setFormaPagamento] = useState(false)
+  const [purchase, { isLoading, isError, data }] = usePurchaseMutation()
   const { items } = useSelector((state: RootReducer) => state.cart)
 
   //validação do formulário com Formik e Yup
@@ -141,7 +143,44 @@ const Checkout = () => {
       })
     }),
     onSubmit: (values) => {
-      console.log(values)
+      purchase({
+        billing: {
+          name: values.nomeCompleto,
+          email: values.email,
+          document: values.cpf
+        },
+        delivery: {
+          email: values.email,
+          address: values.endereco,
+          number: values.numero,
+          city: values.cidade,
+          state: values.estado,
+          zipCode: Number(values.cep)
+        },
+        payment: {
+          card: {
+            active: formaPagamento,
+            owner: {
+              name: values.nomeTitular,
+              document: values.cpfTitular
+            },
+            name: values.nomeCompleto,
+            number: values.numeroCartao,
+            expires: {
+              month: Number(values.mes),
+              year: Number(values.ano)
+            },
+            code: Number(values.cvv)
+          },
+          installments: 1
+        },
+        products: [
+          {
+            id: '1',
+            price: 20
+          }
+        ]
+      })
     }
   })
 
