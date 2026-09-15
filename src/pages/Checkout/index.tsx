@@ -189,12 +189,17 @@ const Checkout = () => {
   })
 
   //mostra o erro só depois que o usuário interagir com o campo
-  const getErrorMessage = (fieldName: string, message?: string) => {
+  const checkInputHasError = (fieldName: string) => {
     const isTouched = fieldName in form.touched
     const isValid = fieldName in form.errors
+    const hasError = isTouched && isValid
 
-    if (isTouched && isValid) return message
-    return ''
+    return hasError
+  }
+
+  //mostra a mensagem de erro
+  const getErrorMessage = (fieldName: string, message?: string) => {
+    return checkInputHasError(fieldName) ? message : ''
   }
 
   return (
@@ -224,10 +229,14 @@ const Checkout = () => {
                     value={form.values.nomeCompleto}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={
+                      checkInputHasError('nomeCompleto') ? 'error' : ''
+                    }
+                    placeholder={getErrorMessage(
+                      'nomeCompleto',
+                      form.errors.nomeCompleto
+                    )}
                   />
-                  <small>
-                    {getErrorMessage('nomeCompleto', form.errors.nomeCompleto)}
-                  </small>
                 </Field>
                 <Field>
                   <Label htmlFor="email">E-mail</Label>
@@ -238,8 +247,9 @@ const Checkout = () => {
                     value={form.values.email}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={checkInputHasError('email') ? 'error' : ''}
+                    placeholder={getErrorMessage('email', form.errors.email)}
                   />
-                  <small>{getErrorMessage('email', form.errors.email)}</small>
                 </Field>
                 <Field>
                   <Label htmlFor="cpf">CPF</Label>
@@ -248,11 +258,14 @@ const Checkout = () => {
                     type="text"
                     name="cpf"
                     value={form.values.cpf}
-                    placeholder="000.000.000-00"
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={checkInputHasError('cpf') ? 'error' : ''}
+                    placeholder={
+                      getErrorMessage('cpf', form.errors.cpf) ||
+                      '000.000.000-00'
+                    }
                   />
-                  <small>{getErrorMessage('cpf', form.errors.cpf)}</small>
                 </Field>
               </Row>
 
@@ -269,10 +282,12 @@ const Checkout = () => {
                     value={form.values.endereco}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={checkInputHasError('endereco') ? 'error' : ''}
+                    placeholder={getErrorMessage(
+                      'endereco',
+                      form.errors.endereco
+                    )}
                   />
-                  <small>
-                    {getErrorMessage('endereco', form.errors.endereco)}
-                  </small>
                 </Field>
                 <Field gapNumber={1}>
                   <Label htmlFor="numero">Número</Label>
@@ -283,8 +298,9 @@ const Checkout = () => {
                     value={form.values.numero}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={checkInputHasError('numero') ? 'error' : ''}
+                    placeholder={getErrorMessage('numero', form.errors.numero)}
                   />
-                  <small>{getErrorMessage('numero', form.errors.numero)}</small>
                 </Field>
                 <Field gapNumber={1}>
                   <Label htmlFor="complemento">Complemento</Label>
@@ -295,10 +311,12 @@ const Checkout = () => {
                     value={form.values.numero}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={checkInputHasError('complemento') ? 'error' : ''}
+                    placeholder={getErrorMessage(
+                      'complemento',
+                      form.errors.complemento
+                    )}
                   />
-                  <small>
-                    {getErrorMessage('complemento', form.errors.complemento)}
-                  </small>
                 </Field>
               </Row>
               <Row>
@@ -311,9 +329,11 @@ const Checkout = () => {
                     value={form.values.cep}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
-                    placeholder="00000-000"
+                    className={checkInputHasError('cep') ? 'error' : ''}
+                    placeholder={
+                      getErrorMessage('cep', form.errors.cep) || '00000-00'
+                    }
                   />
-                  <small>{getErrorMessage('cep', form.errors.cep)}</small>
                 </Field>
                 <Field>
                   <Label htmlFor="cidade">Cidade</Label>
@@ -324,8 +344,9 @@ const Checkout = () => {
                     value={form.values.cidade}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={checkInputHasError('cidade') ? 'error' : ''}
+                    placeholder={getErrorMessage('cidade', form.errors.cidade)}
                   />
-                  <small>{getErrorMessage('cidade', form.errors.cidade)}</small>
                 </Field>
                 <Field>
                   <Label htmlFor="estado">Estado</Label>
@@ -336,8 +357,9 @@ const Checkout = () => {
                     value={form.values.estado}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
+                    className={checkInputHasError('estado') ? 'error' : ''}
+                    placeholder={getErrorMessage('estado', form.errors.estado)}
                   />
-                  <small>{getErrorMessage('estado', form.errors.estado)}</small>
                 </Field>
               </Row>
             </>
@@ -378,28 +400,34 @@ const Checkout = () => {
                         value={form.values.nomeTitular}
                         onChange={form.handleChange}
                         onBlur={form.handleBlur}
-                      />
-                      <small>
-                        {getErrorMessage(
+                        className={
+                          checkInputHasError('nomeTitular') ? 'error' : ''
+                        }
+                        placeholder={getErrorMessage(
                           'nomeTitular',
                           form.errors.nomeTitular
                         )}
-                      </small>
+                      />
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="cpfTitular">CPF do titular</Label>
                       <Input
                         id="cpfTitular"
                         type="text"
-                        placeholder="000.000.000-00"
                         name="cpfTitular"
                         value={form.values.cpfTitular}
                         onChange={form.handleChange}
                         onBlur={form.handleBlur}
+                        className={
+                          checkInputHasError('cpfTitular') ? 'error' : ''
+                        }
+                        placeholder={
+                          getErrorMessage(
+                            'cpfTitular',
+                            form.errors.cpfTitular
+                          ) || '000.000.000-00'
+                        }
                       />
-                      <small>
-                        {getErrorMessage('cpfTitular', form.errors.cpfTitular)}
-                      </small>
                     </Field>
                   </Row>
                   <Row gapNumber={6}>
@@ -408,57 +436,65 @@ const Checkout = () => {
                       <Input
                         id="numeroCartao"
                         type="text"
-                        placeholder="0000 0000 0000 0000"
                         name="numeroCartao"
                         value={form.values.numeroCartao}
                         onChange={form.handleChange}
                         onBlur={form.handleBlur}
+                        className={
+                          checkInputHasError('numeroCartao') ? 'error' : ''
+                        }
+                        placeholder={
+                          getErrorMessage(
+                            'numeroCartao',
+                            form.errors.numeroCartao
+                          ) || '0000 0000 0000 0000'
+                        }
                       />
-                      <small>
-                        {getErrorMessage(
-                          'numeroCartao',
-                          form.errors.numeroCartao
-                        )}
-                      </small>
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="mes">Mês</Label>
                       <Input
                         id="mes"
                         type="text"
-                        placeholder="MM"
                         name="mes"
                         value={form.values.mes}
                         onChange={form.handleChange}
                         onBlur={form.handleBlur}
+                        className={checkInputHasError('mes') ? 'error' : ''}
+                        placeholder={
+                          getErrorMessage('mes', form.errors.mes) || 'MM'
+                        }
                       />
-                      <small>{getErrorMessage('mes', form.errors.mes)}</small>
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="ano">Ano</Label>
                       <Input
                         id="ano"
                         type="text"
-                        placeholder="AA"
                         name="ano"
                         value={form.values.ano}
                         onChange={form.handleChange}
                         onBlur={form.handleBlur}
+                        className={checkInputHasError('ano') ? 'error' : ''}
+                        placeholder={
+                          getErrorMessage('ano', form.errors.ano) || 'AA'
+                        }
                       />
-                      <small>{getErrorMessage('ano', form.errors.ano)}</small>
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="cvv">CVV</Label>
                       <Input
                         id="cvv"
                         type="text"
-                        placeholder="123"
                         name="cvv"
                         value={form.values.cvv}
                         onChange={form.handleChange}
                         onBlur={form.handleBlur}
+                        className={checkInputHasError('cvv') ? 'error' : ''}
+                        placeholder={
+                          getErrorMessage('cvv', form.errors.cvv) || '000'
+                        }
                       />
-                      <small>{getErrorMessage('cvv', form.errors.cvv)}</small>
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="parcelamento">Parcelamento</Label>
@@ -468,17 +504,14 @@ const Checkout = () => {
                         value={form.values.parcelamento}
                         onChange={form.handleChange}
                         onBlur={form.handleBlur}
+                        className={
+                          checkInputHasError('parcelamento') ? 'error' : ''
+                        }
                       >
                         <option value="1">1x de R$ 2.439,90</option>
                         <option value="2">2x de R$ 1.219,95</option>
                         <option value="3">3x de R$ 813,30</option>
                       </Select>
-                      <small>
-                        {getErrorMessage(
-                          'parcelamento',
-                          form.errors.parcelamento
-                        )}
-                      </small>
                     </Field>
                   </Row>
                 </>

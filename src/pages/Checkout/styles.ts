@@ -49,6 +49,14 @@ export const Input = styled.input`
   &:focus {
     border-color: ${cores.preto};
   }
+
+  &.error {
+    border: 1px solid ${cores.detalhe};
+  }
+
+  &::placeholder {
+    color: ${cores.detalhe};
+  }
 `
 
 export const Select = styled.select`
@@ -64,6 +72,10 @@ export const Select = styled.select`
 
   &:focus {
     border-color: ${cores.preto};
+  }
+
+  &.error {
+    border: 1px solid ${cores.detalhe};
   }
 
   option {
