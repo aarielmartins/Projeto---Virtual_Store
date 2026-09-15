@@ -17,6 +17,7 @@ type PurchasePayload = {
     email: string
     address: string
     number: string
+    add: string
     city: string
     state: string
     zipCode: number

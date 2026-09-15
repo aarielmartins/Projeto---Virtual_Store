@@ -1,13 +1,14 @@
-import { formatarPreco } from '../../components/CardProduct'
 import { RootReducer } from '../../store'
 import { useSelector } from 'react-redux'
-import { SectionTitle } from '../../components/Card/styles'
 import { FiCreditCard, FiShield } from 'react-icons/fi'
-import { RiBarcodeLine } from 'react-icons/ri'
 import { useFormik } from 'formik'
 import { useState } from 'react'
-import { totalItem, valorFinalItens, valorFinal } from '../../components/Cart'
 import * as Yup from 'yup'
+import { usePurchaseMutation } from '../../services/api'
+import { formatarPreco } from '../../components/CardProduct'
+import { SectionTitle } from '../../components/Card/styles'
+import { RiBarcodeLine } from 'react-icons/ri'
+import { totalItem, valorFinalItens, valorFinal } from '../../components/Cart'
 import Card from '../../components/Card'
 import CollectionHeader from '../../components/CollectionHeader'
 import {
@@ -29,7 +30,6 @@ import {
   CheckoutButton,
   SecureNotice
 } from './styles'
-import { usePurchaseMutation } from '../../services/api'
 import OrderConfirmation from '../../components/OrderConfirmation'
 
 export type Props = {
@@ -38,8 +38,7 @@ export type Props = {
 
 const Checkout = () => {
   const [formaPagamento, setFormaPagamento] = useState(false)
-  const [purchase, { isLoading, isError, data, isSuccess }] =
-    usePurchaseMutation()
+  const [purchase, { data, isSuccess }] = usePurchaseMutation()
   const { items } = useSelector((state: RootReducer) => state.cart)
 
   //validação do formulário com Formik e Yup
@@ -50,6 +49,7 @@ const Checkout = () => {
       cpf: '',
       endereco: '',
       numero: '',
+      complemento: '',
       cep: '',
       cidade: '',
       estado: '',
@@ -74,6 +74,7 @@ const Checkout = () => {
         .required('Campo obrigatório'),
       endereco: Yup.string().required('Campo obrigatório'),
       numero: Yup.string().required('Campo obrigatório'),
+      complemento: Yup.string().required('Campo obrigatório'),
       cep: Yup.string()
         .min(8, 'CEP inválido')
         .max(8, 'CEP inválido')
@@ -155,6 +156,7 @@ const Checkout = () => {
           email: values.email,
           address: values.endereco,
           number: values.numero,
+          add: values.complemento,
           city: values.cidade,
           state: values.estado,
           zipCode: Number(values.cep)
@@ -257,7 +259,7 @@ const Checkout = () => {
               <SectionTitle style={{ marginTop: '32px' }}>
                 Dados de entrega
               </SectionTitle>
-              <Row>
+              <Row gapNumber={4}>
                 <Field gapNumber={2}>
                   <Label htmlFor="endereco">Endereço</Label>
                   <Input
@@ -283,6 +285,20 @@ const Checkout = () => {
                     onBlur={form.handleBlur}
                   />
                   <small>{getErrorMessage('numero', form.errors.numero)}</small>
+                </Field>
+                <Field gapNumber={1}>
+                  <Label htmlFor="complemento">Complemento</Label>
+                  <Input
+                    id="complemento"
+                    type="text"
+                    name="complemento"
+                    value={form.values.numero}
+                    onChange={form.handleChange}
+                    onBlur={form.handleBlur}
+                  />
+                  <small>
+                    {getErrorMessage('complemento', form.errors.complemento)}
+                  </small>
                 </Field>
               </Row>
               <Row>
