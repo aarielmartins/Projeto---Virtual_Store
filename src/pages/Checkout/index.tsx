@@ -28,7 +28,8 @@ import {
   TotalRow,
   GrandTotal,
   CheckoutButton,
-  SecureNotice
+  SecureNotice,
+  ErrorMessage
 } from './styles'
 import OrderConfirmation from '../../components/OrderConfirmation'
 
@@ -232,11 +233,10 @@ const Checkout = () => {
                     className={
                       checkInputHasError('nomeCompleto') ? 'error' : ''
                     }
-                    placeholder={getErrorMessage(
-                      'nomeCompleto',
-                      form.errors.nomeCompleto
-                    )}
                   />
+                  <ErrorMessage>
+                    {getErrorMessage('nomeCompleto', form.errors.nomeCompleto)}
+                  </ErrorMessage>
                 </Field>
                 <Field>
                   <Label htmlFor="email">E-mail</Label>
@@ -248,8 +248,10 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     className={checkInputHasError('email') ? 'error' : ''}
-                    placeholder={getErrorMessage('email', form.errors.email)}
                   />
+                  <ErrorMessage>
+                    {getErrorMessage('email', form.errors.email)}
+                  </ErrorMessage>
                 </Field>
                 <Field>
                   <Label htmlFor="cpf">CPF</Label>
@@ -261,11 +263,11 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     className={checkInputHasError('cpf') ? 'error' : ''}
-                    placeholder={
-                      getErrorMessage('cpf', form.errors.cpf) ||
-                      '000.000.000-00'
-                    }
+                    placeholder="000.000.000-00"
                   />
+                  <ErrorMessage>
+                    {getErrorMessage('cpf', form.errors.cpf)}
+                  </ErrorMessage>
                 </Field>
               </Row>
 
@@ -283,11 +285,10 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     className={checkInputHasError('endereco') ? 'error' : ''}
-                    placeholder={getErrorMessage(
-                      'endereco',
-                      form.errors.endereco
-                    )}
                   />
+                  <ErrorMessage>
+                    {getErrorMessage('endereco', form.errors.endereco)}
+                  </ErrorMessage>
                 </Field>
                 <Field gapNumber={1}>
                   <Label htmlFor="numero">Número</Label>
@@ -299,8 +300,10 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     className={checkInputHasError('numero') ? 'error' : ''}
-                    placeholder={getErrorMessage('numero', form.errors.numero)}
                   />
+                  <ErrorMessage>
+                    {getErrorMessage('numero', form.errors.numero)}
+                  </ErrorMessage>
                 </Field>
                 <Field gapNumber={1}>
                   <Label htmlFor="complemento">Complemento</Label>
@@ -308,15 +311,14 @@ const Checkout = () => {
                     id="complemento"
                     type="text"
                     name="complemento"
-                    value={form.values.numero}
+                    value={form.values.complemento}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     className={checkInputHasError('complemento') ? 'error' : ''}
-                    placeholder={getErrorMessage(
-                      'complemento',
-                      form.errors.complemento
-                    )}
                   />
+                  <ErrorMessage>
+                    {getErrorMessage('complemento', form.errors.complemento)}
+                  </ErrorMessage>
                 </Field>
               </Row>
               <Row>
@@ -330,10 +332,11 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     className={checkInputHasError('cep') ? 'error' : ''}
-                    placeholder={
-                      getErrorMessage('cep', form.errors.cep) || '00000-00'
-                    }
+                    placeholder="00000-00"
                   />
+                  <ErrorMessage>
+                    {getErrorMessage('cep', form.errors.cep)}
+                  </ErrorMessage>
                 </Field>
                 <Field>
                   <Label htmlFor="cidade">Cidade</Label>
@@ -345,8 +348,10 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     className={checkInputHasError('cidade') ? 'error' : ''}
-                    placeholder={getErrorMessage('cidade', form.errors.cidade)}
                   />
+                  <ErrorMessage>
+                    {getErrorMessage('cidade', form.errors.cidade)}
+                  </ErrorMessage>
                 </Field>
                 <Field>
                   <Label htmlFor="estado">Estado</Label>
@@ -358,8 +363,10 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                     className={checkInputHasError('estado') ? 'error' : ''}
-                    placeholder={getErrorMessage('estado', form.errors.estado)}
                   />
+                  <ErrorMessage>
+                    {getErrorMessage('estado', form.errors.estado)}
+                  </ErrorMessage>
                 </Field>
               </Row>
             </>
@@ -403,11 +410,13 @@ const Checkout = () => {
                         className={
                           checkInputHasError('nomeTitular') ? 'error' : ''
                         }
-                        placeholder={getErrorMessage(
+                      />
+                      <ErrorMessage>
+                        {getErrorMessage(
                           'nomeTitular',
                           form.errors.nomeTitular
                         )}
-                      />
+                      </ErrorMessage>
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="cpfTitular">CPF do titular</Label>
@@ -421,13 +430,11 @@ const Checkout = () => {
                         className={
                           checkInputHasError('cpfTitular') ? 'error' : ''
                         }
-                        placeholder={
-                          getErrorMessage(
-                            'cpfTitular',
-                            form.errors.cpfTitular
-                          ) || '000.000.000-00'
-                        }
+                        placeholder="000.000.000-00"
                       />
+                      <ErrorMessage>
+                        {getErrorMessage('cpfTitular', form.errors.cpfTitular)}
+                      </ErrorMessage>
                     </Field>
                   </Row>
                   <Row gapNumber={6}>
@@ -443,13 +450,14 @@ const Checkout = () => {
                         className={
                           checkInputHasError('numeroCartao') ? 'error' : ''
                         }
-                        placeholder={
-                          getErrorMessage(
-                            'numeroCartao',
-                            form.errors.numeroCartao
-                          ) || '0000 0000 0000 0000'
-                        }
+                        placeholder="0000 0000 0000 0000"
                       />
+                      <ErrorMessage>
+                        {getErrorMessage(
+                          'numeroCartao',
+                          form.errors.numeroCartao
+                        )}
+                      </ErrorMessage>
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="mes">Mês</Label>
@@ -461,10 +469,11 @@ const Checkout = () => {
                         onChange={form.handleChange}
                         onBlur={form.handleBlur}
                         className={checkInputHasError('mes') ? 'error' : ''}
-                        placeholder={
-                          getErrorMessage('mes', form.errors.mes) || 'MM'
-                        }
+                        placeholder="MM"
                       />
+                      <ErrorMessage>
+                        {getErrorMessage('mes', form.errors.mes)}
+                      </ErrorMessage>
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="ano">Ano</Label>
@@ -476,10 +485,11 @@ const Checkout = () => {
                         onChange={form.handleChange}
                         onBlur={form.handleBlur}
                         className={checkInputHasError('ano') ? 'error' : ''}
-                        placeholder={
-                          getErrorMessage('ano', form.errors.ano) || 'AA'
-                        }
+                        placeholder="AA"
                       />
+                      <ErrorMessage>
+                        {getErrorMessage('ano', form.errors.ano)}
+                      </ErrorMessage>
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="cvv">CVV</Label>
@@ -491,10 +501,11 @@ const Checkout = () => {
                         onChange={form.handleChange}
                         onBlur={form.handleBlur}
                         className={checkInputHasError('cvv') ? 'error' : ''}
-                        placeholder={
-                          getErrorMessage('cvv', form.errors.cvv) || '000'
-                        }
+                        placeholder="000"
                       />
+                      <ErrorMessage>
+                        {getErrorMessage('cvv', form.errors.cvv)}
+                      </ErrorMessage>
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="parcelamento">Parcelamento</Label>
@@ -512,6 +523,12 @@ const Checkout = () => {
                         <option value="2">2x de R$ 1.219,95</option>
                         <option value="3">3x de R$ 813,30</option>
                       </Select>
+                      <ErrorMessage>
+                        {getErrorMessage(
+                          'parcelamento',
+                          form.errors.parcelamento
+                        )}
+                      </ErrorMessage>
                     </Field>
                   </Row>
                 </>

@@ -53,10 +53,12 @@ export const Input = styled.input`
   &.error {
     border: 1px solid ${cores.detalhe};
   }
+`
 
-  &::placeholder {
-    color: ${cores.detalhe};
-  }
+export const ErrorMessage = styled.small`
+  color: ${cores.detalhe};
+  font-size: 12px;
+  min-height: 16px;
 `
 
 export const Select = styled.select`
