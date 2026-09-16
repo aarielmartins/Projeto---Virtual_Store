@@ -1,6 +1,7 @@
 import { RootReducer } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
 import { FiMinus, FiPlus, FiX } from 'react-icons/fi'
+import { useNavigate } from 'react-router-dom'
 import { add, remove, close, CartItem } from '../../store/reducers/cart'
 import { formatarPreco } from '../CardProduct'
 import Product from '../../models/Product'
@@ -49,6 +50,7 @@ export const totalItens = (items: CartItem[]) => {
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
+  const navigate = useNavigate()
 
   const dispatch = useDispatch()
 
@@ -62,6 +64,11 @@ const Cart = () => {
 
   const removeItem = (number: number) => {
     dispatch(remove(number))
+  }
+
+  const goToCheckout = () => {
+    navigate('/checkout')
+    closeCart()
   }
 
   return (
@@ -127,7 +134,7 @@ const Cart = () => {
                   <span>{formatarPreco(valorFinal(items))}</span>
                 </TotalRow>
 
-                <CheckoutButton to="/checkout" onClick={closeCart}>
+                <CheckoutButton onClick={goToCheckout}>
                   Finalizar compra
                 </CheckoutButton>
               </Footer>

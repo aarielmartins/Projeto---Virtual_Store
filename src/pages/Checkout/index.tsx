@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux'
 import { FiCreditCard, FiShield } from 'react-icons/fi'
 import { useFormik } from 'formik'
 import { useState } from 'react'
+import { Navigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import { usePurchaseMutation } from '../../services/api'
 import { formatarPreco } from '../../components/CardProduct'
@@ -204,6 +205,10 @@ const Checkout = () => {
 
   const getErrorMessage = (fieldName: string, message?: string) => {
     return checkInputHasError(fieldName) ? message : ''
+  }
+
+  if (items.length === 0) {
+    return <Navigate to="/" />
   }
 
   return (
