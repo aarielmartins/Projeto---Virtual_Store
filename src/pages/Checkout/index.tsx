@@ -60,7 +60,7 @@ const Checkout = () => {
       mes: '',
       ano: '',
       cvv: '',
-      parcelamento: 1
+      parcelamento: ''
     },
     validationSchema: Yup.object({
       nomeCompleto: Yup.string()
@@ -141,7 +141,10 @@ const Checkout = () => {
 
       parcelamento: Yup.string().when([], {
         is: () => formaPagamento,
-        then: (schema) => schema.required('Campo obrigatório'),
+        then: (schema) =>
+          schema
+            .required('Selecione o parcelamento')
+            .notOneOf([''], 'Selecione o parcelamento'),
         otherwise: (schema) => schema
       })
     }),
@@ -533,9 +536,16 @@ const Checkout = () => {
                           checkInputHasError('parcelamento') ? 'error' : ''
                         }
                       >
-                        <option value="1">1x de R$ 2.439,90</option>
-                        <option value="2">2x de R$ 1.219,95</option>
-                        <option value="3">3x de R$ 813,30</option>
+                        <option value="">Selecione</option>
+                        {Array.from(
+                          { length: 12 },
+                          (_, index) => index + 1
+                        ).map((parcela) => (
+                          <option key={parcela} value={parcela}>
+                            {parcela}x de{' '}
+                            {formatarPreco(valorFinal(items) / parcela)}
+                          </option>
+                        ))}
                       </Select>
                       <ErrorMessage>
                         {getErrorMessage(
