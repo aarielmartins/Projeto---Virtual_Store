@@ -16,6 +16,7 @@ import {
   Row,
   Label,
   Input,
+  MaskedInput,
   PaymentTabs,
   PaymentTab,
   PaymentNotice,
@@ -42,7 +43,6 @@ const Checkout = () => {
   const [purchase, { data, isSuccess }] = usePurchaseMutation()
   const { items } = useSelector((state: RootReducer) => state.cart)
 
-  //validação do formulário com Formik e Yup
   const form = useFormik({
     initialValues: {
       nomeCompleto: '',
@@ -70,15 +70,15 @@ const Checkout = () => {
         .email('E-mail inválido')
         .required('Campo obrigatório'),
       cpf: Yup.string()
-        .min(11, 'CPF inválido')
-        .max(11, 'CPF inválido')
+        .min(14, 'CPF inválido') // 11 dígitos + 2 pontos + 1 traço
+        .max(14, 'CPF inválido')
         .required('Campo obrigatório'),
       endereco: Yup.string().required('Campo obrigatório'),
       numero: Yup.string().required('Campo obrigatório'),
       complemento: Yup.string().required('Campo obrigatório'),
       cep: Yup.string()
-        .min(8, 'CEP inválido')
-        .max(8, 'CEP inválido')
+        .min(9, 'CEP inválido') // 8 dígitos + 1 traço
+        .max(9, 'CEP inválido')
         .required('Campo obrigatório'),
       cidade: Yup.string().required('Campo obrigatório'),
       estado: Yup.string().required('Campo obrigatório'),
@@ -93,18 +93,17 @@ const Checkout = () => {
         is: () => formaPagamento,
         then: (schema) =>
           schema
-            .min(11, 'CPF inválido')
-            .max(11, 'CPF inválido')
+            .min(14, 'CPF inválido')
+            .max(14, 'CPF inválido')
             .required('Campo obrigatório'),
         otherwise: (schema) => schema
       }),
-      //funciona apenas quando a forma de pagamento é cartão de crédito,
-      // caso contrário não é necessário validar
+
       numeroCartao: Yup.string().when([], {
         is: () => formaPagamento,
         then: (schema) =>
           schema
-            .min(19, 'Número do cartão inválido')
+            .min(19, 'Número do cartão inválido') // 16 dígitos + 3 espaços
             .max(19, 'Número do cartão inválido')
             .required('Campo obrigatório'),
         otherwise: (schema) => schema
@@ -147,11 +146,14 @@ const Checkout = () => {
       })
     }),
     onSubmit: (values) => {
+      // remove pontos, traços e espaços antes de enviar pra API
+      const onlyDigits = (value: string) => value.replace(/\D/g, '')
+
       purchase({
         billing: {
           name: values.nomeCompleto,
           email: values.email,
-          document: values.cpf
+          document: onlyDigits(values.cpf)
         },
         delivery: {
           email: values.email,
@@ -160,17 +162,17 @@ const Checkout = () => {
           add: values.complemento,
           city: values.cidade,
           state: values.estado,
-          zipCode: Number(values.cep)
+          zipCode: Number(onlyDigits(values.cep))
         },
         payment: {
           card: {
             active: formaPagamento,
             owner: {
               name: values.nomeTitular,
-              document: values.cpfTitular
+              document: onlyDigits(values.cpfTitular)
             },
             name: values.nomeCompleto,
-            number: values.numeroCartao,
+            number: onlyDigits(values.numeroCartao),
             expires: {
               month: Number(values.mes),
               year: Number(values.ano)
@@ -189,7 +191,6 @@ const Checkout = () => {
     }
   })
 
-  //mostra o erro só depois que o usuário interagir com o campo
   const checkInputHasError = (fieldName: string) => {
     const isTouched = fieldName in form.touched
     const isValid = fieldName in form.errors
@@ -198,7 +199,6 @@ const Checkout = () => {
     return hasError
   }
 
-  //mostra a mensagem de erro
   const getErrorMessage = (fieldName: string, message?: string) => {
     return checkInputHasError(fieldName) ? message : ''
   }
@@ -255,12 +255,14 @@ const Checkout = () => {
                 </Field>
                 <Field>
                   <Label htmlFor="cpf">CPF</Label>
-                  <Input
+                  <MaskedInput
+                    mask="000.000.000-00"
                     id="cpf"
-                    type="text"
                     name="cpf"
                     value={form.values.cpf}
-                    onChange={form.handleChange}
+                    onAccept={(value: string) =>
+                      form.setFieldValue('cpf', value)
+                    }
                     onBlur={form.handleBlur}
                     className={checkInputHasError('cpf') ? 'error' : ''}
                     placeholder="000.000.000-00"
@@ -324,15 +326,17 @@ const Checkout = () => {
               <Row>
                 <Field>
                   <Label htmlFor="cep">CEP</Label>
-                  <Input
+                  <MaskedInput
+                    mask="00000-000"
                     id="cep"
-                    type="text"
                     name="cep"
                     value={form.values.cep}
-                    onChange={form.handleChange}
+                    onAccept={(value: string) =>
+                      form.setFieldValue('cep', value)
+                    }
                     onBlur={form.handleBlur}
                     className={checkInputHasError('cep') ? 'error' : ''}
-                    placeholder="00000-00"
+                    placeholder="00000-000"
                   />
                   <ErrorMessage>
                     {getErrorMessage('cep', form.errors.cep)}
@@ -420,12 +424,14 @@ const Checkout = () => {
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="cpfTitular">CPF do titular</Label>
-                      <Input
+                      <MaskedInput
+                        mask="000.000.000-00"
                         id="cpfTitular"
-                        type="text"
                         name="cpfTitular"
                         value={form.values.cpfTitular}
-                        onChange={form.handleChange}
+                        onAccept={(value: string) =>
+                          form.setFieldValue('cpfTitular', value)
+                        }
                         onBlur={form.handleBlur}
                         className={
                           checkInputHasError('cpfTitular') ? 'error' : ''
@@ -440,12 +446,14 @@ const Checkout = () => {
                   <Row gapNumber={6}>
                     <Field gapNumber={2}>
                       <Label htmlFor="numeroCartao">Número do cartão</Label>
-                      <Input
+                      <MaskedInput
+                        mask="0000 0000 0000 0000"
                         id="numeroCartao"
-                        type="text"
                         name="numeroCartao"
                         value={form.values.numeroCartao}
-                        onChange={form.handleChange}
+                        onAccept={(value: string) =>
+                          form.setFieldValue('numeroCartao', value)
+                        }
                         onBlur={form.handleBlur}
                         className={
                           checkInputHasError('numeroCartao') ? 'error' : ''
@@ -461,12 +469,14 @@ const Checkout = () => {
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="mes">Mês</Label>
-                      <Input
+                      <MaskedInput
+                        mask="00"
                         id="mes"
-                        type="text"
                         name="mes"
                         value={form.values.mes}
-                        onChange={form.handleChange}
+                        onAccept={(value: string) =>
+                          form.setFieldValue('mes', value)
+                        }
                         onBlur={form.handleBlur}
                         className={checkInputHasError('mes') ? 'error' : ''}
                         placeholder="MM"
@@ -477,12 +487,14 @@ const Checkout = () => {
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="ano">Ano</Label>
-                      <Input
+                      <MaskedInput
+                        mask="00"
                         id="ano"
-                        type="text"
                         name="ano"
                         value={form.values.ano}
-                        onChange={form.handleChange}
+                        onAccept={(value: string) =>
+                          form.setFieldValue('ano', value)
+                        }
                         onBlur={form.handleBlur}
                         className={checkInputHasError('ano') ? 'error' : ''}
                         placeholder="AA"
@@ -493,12 +505,14 @@ const Checkout = () => {
                     </Field>
                     <Field gapNumber={1}>
                       <Label htmlFor="cvv">CVV</Label>
-                      <Input
+                      <MaskedInput
+                        mask="000"
                         id="cvv"
-                        type="text"
                         name="cvv"
                         value={form.values.cvv}
-                        onChange={form.handleChange}
+                        onAccept={(value: string) =>
+                          form.setFieldValue('cvv', value)
+                        }
                         onBlur={form.handleBlur}
                         className={checkInputHasError('cvv') ? 'error' : ''}
                         placeholder="000"
@@ -569,7 +583,6 @@ const Checkout = () => {
                 <span>Total</span>
                 <span>{formatarPreco(valorFinal(items))}</span>
               </GrandTotal>
-              {/* impede que o usuário finalize a compra sem ter itens no carrinho */}
               <CheckoutButton disabled={items.length === 0} type="submit">
                 Finalizar compra
               </CheckoutButton>

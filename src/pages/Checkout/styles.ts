@@ -1,4 +1,5 @@
 import styled from 'styled-components'
+import { IMaskInput } from 'react-imask'
 import { cores, texto } from '../../styles'
 import { Props } from '.'
 
@@ -30,6 +31,29 @@ export const Field = styled.div<Props>`
 
 export const Label = styled.label`
   color: ${cores.preto};
+`
+
+export const MaskedInput = styled(IMaskInput)`
+  padding: 12px 16px;
+  border-radius: 999px;
+  border: 1px solid ${cores.cinza};
+  background: ${cores.cinzaClaro};
+  font-size: ${texto.detalhe};
+  color: ${cores.preto};
+  outline: none;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
+
+  &::placeholder {
+    color: ${cores.cinza};
+  }
+
+  &:focus {
+    border-color: ${cores.preto};
+  }
+
+  &.error {
+    border: 1px solid ${cores.detalhe};
+  }
 `
 
 export const Input = styled.input`
