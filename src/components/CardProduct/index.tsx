@@ -6,7 +6,8 @@ import {
   Name,
   PriceWrapper,
   OldPrice,
-  CurrentPrice
+  CurrentPrice,
+  TittleBox
 } from './styles'
 import ColorButton from '../CircleButton'
 import Product from '../../models/Product'
@@ -28,18 +29,18 @@ const CardProduct = ({ products }: Props) => (
         </ImageWrapper>
 
         <InfoRow>
-          <div>
+          <TittleBox>
             <Category>{product.categoria}</Category>
-            <Name>{product.titulo}</Name>
-          </div>
-          <PriceWrapper>
-            {product.valorComDesconto && (
-              <OldPrice>{formatarPreco(product.valor)}</OldPrice>
-            )}
-            <CurrentPrice>
-              {formatarPreco(product.valorComDesconto ?? product.valor)}
-            </CurrentPrice>
-          </PriceWrapper>
+            <PriceWrapper>
+              {product.valorComDesconto && (
+                <OldPrice>{formatarPreco(product.valor)}</OldPrice>
+              )}
+              <CurrentPrice>
+                {formatarPreco(product.valorComDesconto ?? product.valor)}
+              </CurrentPrice>
+            </PriceWrapper>
+          </TittleBox>
+          <Name>{product.titulo}</Name>
         </InfoRow>
       </Card>
     ))}

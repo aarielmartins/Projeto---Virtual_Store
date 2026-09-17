@@ -26,10 +26,14 @@ export const ImageWrapper = styled.div`
   }
 `
 
-export const InfoRow = styled.div`
+export const TittleBox = styled.div`
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
+`
+
+export const InfoRow = styled.div`
+  flex-direction: column;
 `
 
 export const Category = styled.span`
