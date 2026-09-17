@@ -85,7 +85,6 @@ const Checkout = () => {
         .required('Campo obrigatório'),
       endereco: Yup.string().required('Campo obrigatório'),
       numero: Yup.string().required('Campo obrigatório'),
-      complemento: Yup.string().required('Campo obrigatório'),
       cep: Yup.string()
         .min(9, 'CEP inválido') // 8 dígitos + 1 traço
         .max(9, 'CEP inválido')
@@ -333,11 +332,7 @@ const Checkout = () => {
                     value={form.values.complemento}
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
-                    className={checkInputHasError('complemento') ? 'error' : ''}
                   />
-                  <ErrorMessage>
-                    {getErrorMessage('complemento', form.errors.complemento)}
-                  </ErrorMessage>
                 </Field>
               </Row>
               <Row>
