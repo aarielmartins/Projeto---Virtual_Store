@@ -8,8 +8,7 @@ const Wear = () => {
   const { data: products } = useGetProductsByCollectionQuery('vestir')
 
   if (!products) {
-    return
-    ;<Loader />
+    return <Loader />
   }
 
   //modelo de requisição usando useState e useEffect apenas para fins de estudo

@@ -41,7 +41,7 @@ export type Props = {
 
 const Checkout = () => {
   const [formaPagamento, setFormaPagamento] = useState(false)
-  const [purchase, { data, isSuccess }] = usePurchaseMutation()
+  const [purchase, { data, isSuccess, isLoading }] = usePurchaseMutation()
   const { items } = useSelector((state: RootReducer) => state.cart)
 
   const form = useFormik({
@@ -599,7 +599,7 @@ const Checkout = () => {
                 <span>{formatarPreco(valorFinal(items))}</span>
               </GrandTotal>
               <CheckoutButton disabled={items.length === 0} type="submit">
-                Finalizar compra
+                {isLoading ? 'Enviando...' : 'Finalizar compra'}
               </CheckoutButton>
               <SecureNotice>
                 <FiShield />
