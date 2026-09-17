@@ -1,5 +1,6 @@
 import { RootReducer } from '../../store'
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { FiCreditCard, FiShield } from 'react-icons/fi'
 import { useFormik } from 'formik'
 import { useState } from 'react'
@@ -34,6 +35,7 @@ import {
   ErrorMessage
 } from './styles'
 import OrderConfirmation from '../../components/OrderConfirmation'
+import { clear } from '../../store/reducers/cart'
 
 export type Props = {
   gapNumber?: number
@@ -41,8 +43,15 @@ export type Props = {
 
 const Checkout = () => {
   const [formaPagamento, setFormaPagamento] = useState(false)
+  const dispatch = useDispatch()
   const [purchase, { data, isSuccess, isLoading }] = usePurchaseMutation()
   const { items } = useSelector((state: RootReducer) => state.cart)
+
+  useEffect(() => {
+    if (isSuccess) {
+      dispatch(clear())
+    }
+  }, [isSuccess, dispatch])
 
   const form = useFormik({
     initialValues: {
@@ -207,7 +216,7 @@ const Checkout = () => {
     return checkInputHasError(fieldName) ? message : ''
   }
 
-  if (items.length === 0) {
+  if (items.length === 0 && !isSuccess) {
     return <Navigate to="/" />
   }
 
