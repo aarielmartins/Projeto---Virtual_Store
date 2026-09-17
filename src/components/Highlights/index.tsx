@@ -1,6 +1,7 @@
 import { HighlightsContainer, Title, Grid } from './styles'
 import { useGetFeatureProductsQuery } from '../../services/api'
 import CardProduct from '../CardProduct'
+import Loader from '../Loader'
 
 const Highlights = () => {
   const { data: products } = useGetFeatureProductsQuery()
@@ -15,7 +16,7 @@ const Highlights = () => {
   // }, [])
 
   if (!products) {
-    return <p>Carregando...</p>
+    return <Loader />
   }
 
   return (

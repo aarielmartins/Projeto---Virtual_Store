@@ -2,12 +2,13 @@ import CardProduct from '../../components/CardProduct'
 import CollectionHeader from '../../components/CollectionHeader'
 import { GridPages } from '../../styles'
 import { useGetProductsByCollectionQuery } from '../../services/api'
+import Loader from '../../components/Loader'
 
 const Inhabit = () => {
   const { data: products } = useGetProductsByCollectionQuery('habitar')
 
   if (!products) {
-    return <p>Carregando...</p>
+    return <Loader />
   }
 
   //modelo de requisição usando useState e useEffect apenas para fins de estudo

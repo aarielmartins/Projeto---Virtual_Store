@@ -8,6 +8,7 @@ import { useParams, Link } from 'react-router-dom'
 import CardProduct, { formatarPreco } from '../../components/CardProduct'
 import Product from '../../models/Product'
 import { add, open } from '../../store/reducers/cart'
+import Loader from '../Loader'
 import {
   PageContainer,
   Breadcrumb,
@@ -70,7 +71,7 @@ const ProductPage = () => {
 
   //enquanto o produto não for carregado retorne null, ou seja, não renderiza nada
   if (!product) {
-    return <p>Carregando...</p>
+    return <Loader />
   }
 
   return (

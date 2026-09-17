@@ -2,12 +2,14 @@ import { GridPages } from '../../styles'
 import { useGetProductsByCollectionQuery } from '../../services/api'
 import CardProduct from '../../components/CardProduct'
 import CollectionHeader from '../../components/CollectionHeader'
+import Loader from '../../components/Loader'
 
 const Wear = () => {
   const { data: products } = useGetProductsByCollectionQuery('vestir')
 
   if (!products) {
-    return <p>Carregando...</p>
+    return
+    ;<Loader />
   }
 
   //modelo de requisição usando useState e useEffect apenas para fins de estudo
