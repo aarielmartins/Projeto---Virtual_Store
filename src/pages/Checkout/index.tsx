@@ -7,10 +7,8 @@ import { useState } from 'react'
 import { Navigate } from 'react-router-dom'
 import * as Yup from 'yup'
 import { usePurchaseMutation } from '../../services/api'
-import { formatarPreco } from '../../components/CardProduct'
 import { SectionTitle } from '../../components/Card/styles'
 import { RiBarcodeLine } from 'react-icons/ri'
-import { totalItem, valorFinalItens, valorFinal } from '../../components/Cart'
 import Card from '../../components/Card'
 import CollectionHeader from '../../components/CollectionHeader'
 import {
@@ -36,6 +34,12 @@ import {
 } from './styles'
 import OrderConfirmation from '../../components/OrderConfirmation'
 import { clear } from '../../store/reducers/cart'
+import {
+  finalValue,
+  totalItem,
+  priceSymbol,
+  finalValueItens
+} from '../../utils'
 
 export type Props = {
   gapNumber?: number
@@ -225,7 +229,7 @@ const Checkout = () => {
         <OrderConfirmation
           orderId={data.id}
           formaPagamento={formaPagamento}
-          total={valorFinal(items)}
+          total={finalValue(items)}
           email={form.values.email}
         />
       ) : (
@@ -552,7 +556,7 @@ const Checkout = () => {
                         ).map((parcela) => (
                           <option key={parcela} value={parcela}>
                             {parcela}x de{' '}
-                            {formatarPreco(valorFinal(items) / parcela)}
+                            {priceSymbol(finalValue(items) / parcela)}
                           </option>
                         ))}
                       </Select>
@@ -584,23 +588,23 @@ const Checkout = () => {
                     <ItemName>
                       {item.quantity} x {item.titulo}
                     </ItemName>
-                    <ItemPrice>{formatarPreco(totalItem(item))}</ItemPrice>
+                    <ItemPrice>{priceSymbol(totalItem(item))}</ItemPrice>
                   </ItemRow>
                 ))}
               </ItemsList>
               <Totals>
                 <TotalRow>
                   <span>Subtotal</span>
-                  <span>{formatarPreco(valorFinalItens(items))}</span>
+                  <span>{priceSymbol(finalValueItens(items))}</span>
                 </TotalRow>
                 <TotalRow>
                   <span>Entrega</span>
-                  <span>{items.length > 0 ? formatarPreco(40) : '—'}</span>
+                  <span>{items.length > 0 ? priceSymbol(40) : '—'}</span>
                 </TotalRow>
               </Totals>
               <GrandTotal>
                 <span>Total</span>
-                <span>{formatarPreco(valorFinal(items))}</span>
+                <span>{priceSymbol(finalValue(items))}</span>
               </GrandTotal>
               <CheckoutButton disabled={items.length === 0} type="submit">
                 {isLoading ? 'Enviando...' : 'Finalizar compra'}

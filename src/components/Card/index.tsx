@@ -1,4 +1,4 @@
-import { CardContainer, SectionTitle } from './styles'
+import * as S from './styles'
 
 type Props = {
   children: JSX.Element
@@ -6,10 +6,10 @@ type Props = {
 }
 
 const Card = ({ children, title }: Props) => (
-  <CardContainer>
-    <SectionTitle>{title}</SectionTitle>
+  <S.CardContainer>
+    <S.SectionTitle>{title}</S.SectionTitle>
     {children}
-  </CardContainer>
+  </S.CardContainer>
 )
 
 export default Card

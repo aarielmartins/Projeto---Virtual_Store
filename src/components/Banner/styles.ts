@@ -24,7 +24,7 @@ export const Content = styled.div`
   max-width: 480px;
 `
 
-export const Badge = styled.h1`
+export const Badge = styled.a`
   display: inline-flex;
   align-items: center;
   gap: 8px;
@@ -37,14 +37,7 @@ export const Badge = styled.h1`
   margin-bottom: 24px;
   text-decoration: none;
   transition: transform 0.2s ease;
-
-  &::before {
-    content: '';
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: ${cores.preto};
-  }
+  scroll-behavior: smooth;
 `
 
 export const Title = styled.h1`

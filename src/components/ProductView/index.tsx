@@ -5,7 +5,7 @@ import {
 } from '../../services/api'
 import { skipToken } from '@reduxjs/toolkit/query'
 import { useParams, Link } from 'react-router-dom'
-import CardProduct, { formatarPreco } from '../../components/CardProduct'
+import CardProduct from '../../components/CardProduct'
 import Product from '../../models/Product'
 import { add, open } from '../../store/reducers/cart'
 import Loader from '../Loader'
@@ -28,6 +28,7 @@ import {
   RelatedTitle,
   RelatedGrid
 } from './styles'
+import { priceSymbol } from '../../utils'
 
 //pega os valores do campo "dimensões" e transforma em uma string formatada
 const formatarDimensoes = (dimensoes: Product['dimensoes']) => {
@@ -94,11 +95,11 @@ const ProductPage = () => {
           <Title>{product.titulo}</Title>
 
           <Price>
-            {product.valorComDesconto && (
-              <OldPrice>{formatarPreco(product.valor)}</OldPrice>
+            {product.discountedPrice && (
+              <OldPrice>{priceSymbol(product.valor)}</OldPrice>
             )}
             <CurrentPrice>
-              {formatarPreco(product.valorComDesconto ?? product.valor)}
+              {priceSymbol(product.discountedPrice ?? product.valor)}
             </CurrentPrice>
           </Price>
 

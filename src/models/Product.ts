@@ -5,7 +5,7 @@ type Product = {
   colecao: 'habitar' | 'vestir'
   imagem: string
   valor: number
-  valorComDesconto?: number
+  discountedPrice?: number
   descricao: string
   composicao: string
   dimensoes?: {

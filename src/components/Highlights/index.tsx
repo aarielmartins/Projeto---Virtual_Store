@@ -3,7 +3,11 @@ import { useGetFeatureProductsQuery } from '../../services/api'
 import CardProduct from '../CardProduct'
 import Loader from '../Loader'
 
-const Highlights = () => {
+type Props = {
+  id?: string
+}
+
+const Highlights = ({ id }: Props) => {
   const { data: products } = useGetFeatureProductsQuery()
 
   //modelo de requisição usando useState e useEffect apenas para fins de estudo
@@ -20,7 +24,7 @@ const Highlights = () => {
   }
 
   return (
-    <HighlightsContainer>
+    <HighlightsContainer id={id}>
       <Title>Em destaque</Title>
       <Grid>
         <CardProduct products={products} />

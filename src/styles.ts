@@ -30,6 +30,10 @@ export const GlobalCss = createGlobalStyle`
     color: ${cores.preto};
     font-size: 16px;
   }
+
+  html {
+    scroll-behavior: smooth;
+  }
 `
 
 export const Container = styled.div`

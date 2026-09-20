@@ -1,14 +1,5 @@
-import {
-  Card,
-  ImageWrapper,
-  InfoRow,
-  Category,
-  Name,
-  PriceWrapper,
-  OldPrice,
-  CurrentPrice,
-  TittleBox
-} from './styles'
+import { priceSymbol } from '../../utils'
+import * as S from './styles'
 import ColorButton from '../CircleButton'
 import Product from '../../models/Product'
 
@@ -16,33 +7,30 @@ type Props = {
   products: Product[]
 }
 
-export const formatarPreco = (valor: number) =>
-  valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
-
 const CardProduct = ({ products }: Props) => (
   <>
     {products.map((product) => (
-      <Card key={product.id}>
-        <ImageWrapper>
+      <S.Card key={product.id}>
+        <S.ImageWrapper>
           <img src={product.imagem} alt={product.titulo} />
           <ColorButton to={`/produtos/${product.id}`} />
-        </ImageWrapper>
+        </S.ImageWrapper>
 
-        <InfoRow>
-          <TittleBox>
-            <Category>{product.categoria}</Category>
-            <PriceWrapper>
-              {product.valorComDesconto && (
-                <OldPrice>{formatarPreco(product.valor)}</OldPrice>
+        <S.InfoRow>
+          <S.TittleBox>
+            <S.Category>{product.categoria}</S.Category>
+            <S.PriceWrapper>
+              {product.discountedPrice && (
+                <S.OldPrice>{priceSymbol(product.valor)}</S.OldPrice>
               )}
-              <CurrentPrice>
-                {formatarPreco(product.valorComDesconto ?? product.valor)}
-              </CurrentPrice>
-            </PriceWrapper>
-          </TittleBox>
-          <Name>{product.titulo}</Name>
-        </InfoRow>
-      </Card>
+              <S.CurrentPrice>
+                {priceSymbol(product.discountedPrice ?? product.valor)}
+              </S.CurrentPrice>
+            </S.PriceWrapper>
+          </S.TittleBox>
+          <S.Name>{product.titulo}</S.Name>
+        </S.InfoRow>
+      </S.Card>
     ))}
   </>
 )

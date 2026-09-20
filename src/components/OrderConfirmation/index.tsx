@@ -11,7 +11,7 @@ import {
   ContinueButton
 } from './styles'
 
-const formatarPreco = (valor: number) =>
+const priceSymbol = (valor: number) =>
   valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
 type Props = {
@@ -50,7 +50,7 @@ const OrderConfirmation = ({
       </DetailRow>
       <DetailRow>
         <span>Total</span>
-        <span>{formatarPreco(total)}</span>
+        <span>{priceSymbol(total)}</span>
       </DetailRow>
       <DetailRow>
         <span>E-mail</span>

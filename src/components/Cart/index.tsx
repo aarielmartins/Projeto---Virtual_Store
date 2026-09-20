@@ -1,52 +1,17 @@
 import { RootReducer } from '../../store'
 import { useDispatch, useSelector } from 'react-redux'
-import { FiMinus, FiPlus, FiX } from 'react-icons/fi'
 import { useNavigate } from 'react-router-dom'
-import { add, remove, close, CartItem } from '../../store/reducers/cart'
-import { formatarPreco } from '../CardProduct'
+import { FiMinus, FiPlus, FiX } from 'react-icons/fi'
+import { add, remove, close } from '../../store/reducers/cart'
 import Product from '../../models/Product'
+import * as S from './styles'
 import {
-  CardBar,
-  Item,
-  ItemImage,
-  ItemInfo,
-  ItemHeader,
-  ItemCategory,
-  ItemName,
-  ItemPrice,
-  Quantity,
-  QuantityButton,
-  QuantityValue,
-  Overlay,
-  CartContainer,
-  Header,
-  Title,
-  CloseButton,
-  ItemsList,
-  EmptyMessage,
-  Footer,
-  SummaryRow,
-  TotalRow,
-  CheckoutButton
-} from './styles'
-
-//calcula o valor total do item multiplicando o preço pelo quantidade
-export const totalItem = (item: CartItem) => {
-  const preco = item.valorComDesconto ?? item.valor
-  return preco * item.quantity
-}
-
-export const valorFinalItens = (items: CartItem[]) => {
-  return items.reduce((total, item) => total + totalItem(item), 0)
-}
-
-export const valorFinal = (items: CartItem[]) => {
-  return valorFinalItens(items) + 40
-}
-
-export const totalItens = (items: CartItem[]) => {
-  return items.reduce((total, item) => total + item.quantity, 0)
-}
+  finalValue,
+  finalValueItens,
+  priceSymbol,
+  totalItem,
+  totalItens
+} from '../../utils'
 
 const Cart = () => {
   const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
@@ -73,75 +38,75 @@ const Cart = () => {
 
   return (
     <>
-      <CardBar className={isOpen ? 'is-open' : ''}>
-        <Overlay onClick={closeCart} />
+      <S.CardBar className={isOpen ? 'is-open' : ''}>
+        <S.Overlay onClick={closeCart} />
         <div>
-          <CartContainer>
-            <Header>
-              <Title>Seu carrinho</Title>
-              <CloseButton onClick={closeCart}>
+          <S.CartContainer>
+            <S.Header>
+              <S.Title>Seu carrinho</S.Title>
+              <S.CloseButton onClick={closeCart}>
                 <FiX />
-              </CloseButton>
-            </Header>
+              </S.CloseButton>
+            </S.Header>
 
-            <ItemsList>
+            <S.ItemsList>
               {items.length === 0 && (
-                <EmptyMessage>Seu carrinho ainda está vazio.</EmptyMessage>
+                <S.EmptyMessage>Seu carrinho ainda está vazio.</S.EmptyMessage>
               )}
 
               {items.map((item) => (
-                <Item key={item.id}>
-                  <ItemImage src={item.imagem} alt={item.titulo} />
-                  <ItemInfo>
-                    <ItemHeader>
+                <S.Item key={item.id}>
+                  <S.ItemImage src={item.imagem} alt={item.titulo} />
+                  <S.ItemInfo>
+                    <S.ItemHeader>
                       <div>
-                        <ItemCategory>{item.categoria}</ItemCategory>
-                        <ItemName>{item.titulo}</ItemName>
+                        <S.ItemCategory>{item.categoria}</S.ItemCategory>
+                        <S.ItemName>{item.titulo}</S.ItemName>
                       </div>
-                      <ItemPrice>{formatarPreco(totalItem(item))}</ItemPrice>
-                    </ItemHeader>
+                      <S.ItemPrice>{priceSymbol(totalItem(item))}</S.ItemPrice>
+                    </S.ItemHeader>
 
-                    <Quantity>
-                      <QuantityButton onClick={() => removeItem(item.id)}>
+                    <S.Quantity>
+                      <S.QuantityButton onClick={() => removeItem(item.id)}>
                         <FiMinus />
-                      </QuantityButton>
-                      <QuantityValue>{item.quantity}</QuantityValue>
-                      <QuantityButton onClick={() => addItem(item)}>
+                      </S.QuantityButton>
+                      <S.QuantityValue>{item.quantity}</S.QuantityValue>
+                      <S.QuantityButton onClick={() => addItem(item)}>
                         <FiPlus />
-                      </QuantityButton>
-                    </Quantity>
-                  </ItemInfo>
-                </Item>
+                      </S.QuantityButton>
+                    </S.Quantity>
+                  </S.ItemInfo>
+                </S.Item>
               ))}
-            </ItemsList>
+            </S.ItemsList>
             {items.length !== 0 && (
-              <Footer>
-                <SummaryRow>
+              <S.Footer>
+                <S.SummaryRow>
                   <span>
                     {totalItens(items)}
                     {totalItens(items) === 1 ? 'item' : 'itens'}
                   </span>
-                  <span>{formatarPreco(valorFinalItens(items))}</span>
-                </SummaryRow>
+                  <span>{priceSymbol(finalValueItens(items))}</span>
+                </S.SummaryRow>
 
-                <SummaryRow>
+                <S.SummaryRow>
                   <span>Entrega</span>
                   <span>R$40,00</span>
-                </SummaryRow>
+                </S.SummaryRow>
 
-                <TotalRow>
+                <S.TotalRow>
                   <span>Total</span>
-                  <span>{formatarPreco(valorFinal(items))}</span>
-                </TotalRow>
+                  <span>{priceSymbol(finalValue(items))}</span>
+                </S.TotalRow>
 
-                <CheckoutButton onClick={goToCheckout}>
+                <S.CheckoutButton onClick={goToCheckout}>
                   Finalizar compra
-                </CheckoutButton>
-              </Footer>
+                </S.CheckoutButton>
+              </S.Footer>
             )}
-          </CartContainer>
+          </S.CartContainer>
         </div>
-      </CardBar>
+      </S.CardBar>
     </>
   )
 }

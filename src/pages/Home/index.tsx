@@ -8,7 +8,7 @@ const Home = () => {
     <>
       <Banner />
       <Collections />
-      <Highlights />
+      <Highlights id="highlights" />
       <Manifest />
     </>
   )

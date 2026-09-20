@@ -1,44 +1,35 @@
 import chairImage from '../../assets/images/Poltrona.jpg'
 import Tag from '../Tag'
-import {
-  BannerContainer,
-  Content,
-  Badge,
-  Title,
-  Description,
-  Actions,
-  ImageWrapper,
-  HighlightTag
-} from './styles'
+import * as S from './styles'
 
 const Banner = () => (
-  <BannerContainer>
-    <Content>
-      <Badge href="#">Nova coleção · Primavera</Badge>
+  <S.BannerContainer>
+    <S.Content>
+      <S.Badge href="#highlights">Conheça nossa coleção</S.Badge>
 
-      <Title>Vestir a casa, habitar o corpo.</Title>
+      <S.Title>Vestir a casa, habitar o corpo.</S.Title>
 
-      <Description>
+      <S.Description>
         Trama é uma loja de peças em tecido — roupas e mobiliário estofado —
         feitas devagar, com fibras naturais e formas que envelhecem bem.
-      </Description>
+      </S.Description>
 
-      <Actions>
+      <S.Actions>
         <Tag to="/habitar">Explorar Habitar</Tag>
         <Tag to="/vestir" color="background" border="solid">
           Explorar Vestir
         </Tag>
-      </Actions>
-    </Content>
+      </S.Actions>
+    </S.Content>
 
-    <ImageWrapper href="#">
+    <S.ImageWrapper href="#">
       <img src={chairImage} alt="Poltrona Orbe" />
-      <HighlightTag>
+      <S.HighlightTag>
         <span className="label">Em destaque</span>
         <span className="name">Poltrona Orbe · Cru</span>
-      </HighlightTag>
-    </ImageWrapper>
-  </BannerContainer>
+      </S.HighlightTag>
+    </S.ImageWrapper>
+  </S.BannerContainer>
 )
 
 export default Banner

@@ -132,7 +132,7 @@ export const AddToCartButton = styled.button`
 `
 
 export const DetailsTable = styled.div`
-  border-top: 1px solid #ececec;
+  border-top: 1px solid ${cores.branco};
 `
 
 export const DetailRow = styled.div`
@@ -140,7 +140,7 @@ export const DetailRow = styled.div`
   align-items: center;
   justify-content: space-between;
   padding: 16px 0;
-  border-bottom: 1px solid #ececec;
+  border-bottom: 1px solid ${cores.branco};
   font-size: ${texto.detalhe};
 
   span:first-child {
