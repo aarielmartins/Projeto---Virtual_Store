@@ -1,5 +1,5 @@
-import { HighlightsContainer, Title, Grid } from './styles'
 import { useGetFeatureProductsQuery } from '../../services/api'
+import { HighlightsContainer, Title, Grid } from './styles'
 import CardProduct from '../CardProduct'
 import Loader from '../Loader'
 

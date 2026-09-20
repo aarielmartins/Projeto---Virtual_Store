@@ -1,7 +1,7 @@
 import { useGetProductQuery } from '../../services/api'
 import { FiArrowRight } from 'react-icons/fi'
-import ColorButton from '../CircleButton'
 import * as S from './styles'
+import ColorButton from '../CircleButton'
 import Loader from '../Loader'
 
 const Collections = () => {

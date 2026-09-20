@@ -1,15 +1,15 @@
-import { CardContainer, Title, Description } from './styles'
+import * as S from './styles'
 
 const Manifest = () => (
-  <CardContainer>
-    <Title>Fibras naturais, cortes generosos, formas que ficam.</Title>
+  <S.CardContainer>
+    <S.Title>Fibras naturais, cortes generosos, formas que ficam.</S.Title>
 
-    <Description>
+    <S.Description>
       Trabalhamos com pequenas confecções no Brasil, priorizando linhos,
       algodões e bouclês nacionais. Cada peça — de uma camiseta a um sofá —
       passa por checagem manual antes de sair da nossa oficina.
-    </Description>
-  </CardContainer>
+    </S.Description>
+  </S.CardContainer>
 )
 
 export default Manifest

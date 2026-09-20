@@ -1,17 +1,9 @@
-import { MdShoppingBag } from 'react-icons/md'
-// import { MdSearch } from 'react-icons/md'
-import logo from '../../assets/images/logo.png'
-import {
-  HeaderContainer,
-  Logo,
-  Menu,
-  Icons,
-  Item,
-  CartQuantity
-} from './styles'
-import { open } from '../../store/reducers/cart'
 import { useDispatch, useSelector } from 'react-redux'
 import { RootReducer } from '../../store'
+import { MdShoppingBag } from 'react-icons/md'
+import { open } from '../../store/reducers/cart'
+import logo from '../../assets/images/logo.png'
+import * as S from './styles'
 
 const Header = () => {
   const dispatch = useDispatch()
@@ -22,35 +14,32 @@ const Header = () => {
   }
 
   return (
-    <HeaderContainer>
-      <Logo src={logo} alt="logotipo trama"></Logo>
+    <S.HeaderContainer>
+      <S.Logo src={logo} alt="logotipo trama"></S.Logo>
 
-      <Menu>
+      <S.Menu>
         <ul>
           <li>
-            <Item to="/">Home</Item>
+            <S.Item to="/">Home</S.Item>
           </li>
           <li>
-            <Item to="/habitar">Habitar</Item>
+            <S.Item to="/habitar">Habitar</S.Item>
           </li>
           <li>
-            <Item to="/vestir">Vestir</Item>
+            <S.Item to="/vestir">Vestir</S.Item>
           </li>
         </ul>
-      </Menu>
+      </S.Menu>
 
-      <Icons>
-        {/* <a href="#">
-          <MdSearch />
-        </a> */}
+      <S.Icons>
         <a onClick={openCart}>
           <MdShoppingBag />
-          <CartQuantity className={items.length > 0 ? 'lenght-products' : ''}>
+          <S.CartQuantity className={items.length > 0 ? 'lenght-products' : ''}>
             {items.length}
-          </CartQuantity>
+          </S.CartQuantity>
         </a>
-      </Icons>
-    </HeaderContainer>
+      </S.Icons>
+    </S.HeaderContainer>
   )
 }
 

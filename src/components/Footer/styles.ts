@@ -1,5 +1,6 @@
-import styled from 'styled-components'
+import { Link } from 'react-router-dom'
 import { cores, texto } from '../../styles'
+import styled from 'styled-components'
 
 export const FooterContainer = styled.footer`
   border-top: 1px solid ${cores.cinza};
@@ -55,7 +56,7 @@ export const ColumnTitle = styled.span`
   margin-bottom: 16px;
 `
 
-export const ColumnLink = styled.a`
+export const ColumnLink = styled(Link)`
   color: ${cores.preto};
   text-decoration: none;
   margin-bottom: 8px;

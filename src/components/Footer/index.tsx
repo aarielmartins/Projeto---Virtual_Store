@@ -1,55 +1,29 @@
 import logo from '../../assets/images/logo.png'
-import {
-  FooterContainer,
-  Top,
-  Brand,
-  Logo,
-  Tagline,
-  Columns,
-  Column,
-  ColumnTitle,
-  ColumnLink,
-  Bottom,
-  Copyright
-} from './styles'
+import * as S from './styles'
 
 const Footer = () => (
-  <FooterContainer>
-    <Top>
-      <Brand>
-        <Logo src={logo} alt="logotipo trama" />
-        <Tagline>
+  <S.FooterContainer>
+    <S.Top>
+      <S.Brand>
+        <S.Logo src={logo} alt="logotipo trama" />
+        <S.Tagline>
           Roupas e mobiliário em tecido, feitos com calma no Brasil.
-        </Tagline>
-      </Brand>
+        </S.Tagline>
+      </S.Brand>
 
-      <Columns>
-        <Column>
-          <ColumnTitle>Loja</ColumnTitle>
-          <ColumnLink href="#">Vestir</ColumnLink>
-          <ColumnLink href="#">Habitar</ColumnLink>
-          <ColumnLink href="#">Novidades</ColumnLink>
-        </Column>
+      <S.Columns>
+        <S.Column>
+          <S.ColumnTitle>Loja</S.ColumnTitle>
+          <S.ColumnLink to="/vestir">Vestir</S.ColumnLink>
+          <S.ColumnLink to="/habitar">Habitar</S.ColumnLink>
+        </S.Column>
+      </S.Columns>
+    </S.Top>
 
-        <Column>
-          <ColumnTitle>Ajuda</ColumnTitle>
-          <ColumnLink href="#">Entrega</ColumnLink>
-          <ColumnLink href="#">Trocas</ColumnLink>
-          <ColumnLink href="#">Contato</ColumnLink>
-        </Column>
-
-        <Column>
-          <ColumnTitle>Social</ColumnTitle>
-          <ColumnLink href="#">Instagram</ColumnLink>
-          <ColumnLink href="#">Pinterest</ColumnLink>
-        </Column>
-      </Columns>
-    </Top>
-
-    <Bottom>
-      <Copyright>© 2026 Trama. Todos os direitos reservados.</Copyright>
-    </Bottom>
-  </FooterContainer>
+    <S.Bottom>
+      <S.Copyright>© 2026 Trama. Todos os direitos reservados.</S.Copyright>
+    </S.Bottom>
+  </S.FooterContainer>
 )
 
 export default Footer
