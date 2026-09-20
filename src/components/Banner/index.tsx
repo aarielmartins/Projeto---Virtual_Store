@@ -30,11 +30,11 @@ const Banner = () => {
         </S.Actions>
       </S.Content>
 
-      <S.ImageWrapper href="#">
+      <S.ImageWrapper to={`/produtos/${Product.id}`}>
         <img src={Product.imagem} alt="Poltrona Orbe" />
         <S.HighlightTag>
           <span className="label">Em destaque</span>
-          <span className="name">Poltrona Orbe · Cru</span>
+          <span className="name">{Product.titulo}</span>
         </S.HighlightTag>
       </S.ImageWrapper>
     </S.BannerContainer>

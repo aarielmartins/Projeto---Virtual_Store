@@ -1,5 +1,6 @@
 import styled from 'styled-components'
 import { cores, texto } from '../../styles'
+import { Link } from 'react-router-dom'
 
 export const BannerContainer = styled.section`
   display: flex;
@@ -63,7 +64,7 @@ export const Actions = styled.div`
   gap: 12px;
 `
 
-export const ImageWrapper = styled.a`
+export const ImageWrapper = styled(Link)`
   position: relative;
   flex-shrink: 0;
   width: 550px;
