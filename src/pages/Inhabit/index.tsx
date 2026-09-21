@@ -1,7 +1,7 @@
+import { useGetProductsByCollectionQuery } from '../../services/api'
+import { GridPages } from '../../styles'
 import CardProduct from '../../components/CardProduct'
 import CollectionHeader from '../../components/CollectionHeader'
-import { GridPages } from '../../styles'
-import { useGetProductsByCollectionQuery } from '../../services/api'
 import Loader from '../../components/Loader'
 
 const Inhabit = () => {

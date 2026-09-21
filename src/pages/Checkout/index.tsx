@@ -1,39 +1,19 @@
-import { RootReducer } from '../../store'
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
+import { RootReducer } from '../../store'
+import { useState } from 'react'
 import { FiCreditCard, FiShield } from 'react-icons/fi'
 import { useFormik } from 'formik'
-import { useState } from 'react'
 import { Navigate } from 'react-router-dom'
-import * as Yup from 'yup'
 import { usePurchaseMutation } from '../../services/api'
 import { SectionTitle } from '../../components/Card/styles'
 import { RiBarcodeLine } from 'react-icons/ri'
+import { clear } from '../../store/reducers/cart'
+import * as Yup from 'yup'
+import * as S from './styles'
 import Card from '../../components/Card'
 import CollectionHeader from '../../components/CollectionHeader'
-import {
-  Field,
-  Row,
-  Label,
-  Input,
-  MaskedInput,
-  PaymentTabs,
-  PaymentTab,
-  PaymentNotice,
-  Select,
-  ItemsList,
-  ItemRow,
-  ItemName,
-  ItemPrice,
-  Totals,
-  TotalRow,
-  GrandTotal,
-  CheckoutButton,
-  SecureNotice,
-  ErrorMessage
-} from './styles'
 import OrderConfirmation from '../../components/OrderConfirmation'
-import { clear } from '../../store/reducers/cart'
 import {
   finalValue,
   totalItem,
@@ -240,10 +220,10 @@ const Checkout = () => {
           />
           <Card title="Dados de cobrança">
             <>
-              <Row>
-                <Field>
-                  <Label htmlFor="nomeCompleto">Nome completo</Label>
-                  <Input
+              <S.Row>
+                <S.Field>
+                  <S.Label htmlFor="nomeCompleto">Nome completo</S.Label>
+                  <S.Input
                     id="nomeCompleto"
                     type="text"
                     name="nomeCompleto"
@@ -254,13 +234,13 @@ const Checkout = () => {
                       checkInputHasError('nomeCompleto') ? 'error' : ''
                     }
                   />
-                  <ErrorMessage>
+                  <S.ErrorMessage>
                     {getErrorMessage('nomeCompleto', form.errors.nomeCompleto)}
-                  </ErrorMessage>
-                </Field>
-                <Field>
-                  <Label htmlFor="email">E-mail</Label>
-                  <Input
+                  </S.ErrorMessage>
+                </S.Field>
+                <S.Field>
+                  <S.Label htmlFor="email">E-mail</S.Label>
+                  <S.Input
                     id="email"
                     type="email"
                     name="email"
@@ -269,13 +249,13 @@ const Checkout = () => {
                     onBlur={form.handleBlur}
                     className={checkInputHasError('email') ? 'error' : ''}
                   />
-                  <ErrorMessage>
+                  <S.ErrorMessage>
                     {getErrorMessage('email', form.errors.email)}
-                  </ErrorMessage>
-                </Field>
-                <Field>
-                  <Label htmlFor="cpf">CPF</Label>
-                  <MaskedInput
+                  </S.ErrorMessage>
+                </S.Field>
+                <S.Field>
+                  <S.Label htmlFor="cpf">CPF</S.Label>
+                  <S.MaskedInput
                     mask="000.000.000-00"
                     id="cpf"
                     name="cpf"
@@ -287,19 +267,19 @@ const Checkout = () => {
                     className={checkInputHasError('cpf') ? 'error' : ''}
                     placeholder="000.000.000-00"
                   />
-                  <ErrorMessage>
+                  <S.ErrorMessage>
                     {getErrorMessage('cpf', form.errors.cpf)}
-                  </ErrorMessage>
-                </Field>
-              </Row>
+                  </S.ErrorMessage>
+                </S.Field>
+              </S.Row>
 
               <SectionTitle style={{ marginTop: '32px' }}>
                 Dados de entrega
               </SectionTitle>
-              <Row gapNumber={4}>
-                <Field gapNumber={2}>
-                  <Label htmlFor="endereco">Endereço</Label>
-                  <Input
+              <S.Row gapNumber={4}>
+                <S.Field gapNumber={2}>
+                  <S.Label htmlFor="endereco">Endereço</S.Label>
+                  <S.Input
                     id="endereco"
                     type="text"
                     name="endereco"
@@ -308,13 +288,13 @@ const Checkout = () => {
                     onBlur={form.handleBlur}
                     className={checkInputHasError('endereco') ? 'error' : ''}
                   />
-                  <ErrorMessage>
+                  <S.ErrorMessage>
                     {getErrorMessage('endereco', form.errors.endereco)}
-                  </ErrorMessage>
-                </Field>
-                <Field gapNumber={1}>
-                  <Label htmlFor="numero">Número</Label>
-                  <Input
+                  </S.ErrorMessage>
+                </S.Field>
+                <S.Field gapNumber={1}>
+                  <S.Label htmlFor="numero">Número</S.Label>
+                  <S.Input
                     id="numero"
                     type="text"
                     name="numero"
@@ -323,13 +303,13 @@ const Checkout = () => {
                     onBlur={form.handleBlur}
                     className={checkInputHasError('numero') ? 'error' : ''}
                   />
-                  <ErrorMessage>
+                  <S.ErrorMessage>
                     {getErrorMessage('numero', form.errors.numero)}
-                  </ErrorMessage>
-                </Field>
-                <Field gapNumber={1}>
-                  <Label htmlFor="complemento">Complemento</Label>
-                  <Input
+                  </S.ErrorMessage>
+                </S.Field>
+                <S.Field gapNumber={1}>
+                  <S.Label htmlFor="complemento">Complemento</S.Label>
+                  <S.Input
                     id="complemento"
                     type="text"
                     name="complemento"
@@ -337,12 +317,12 @@ const Checkout = () => {
                     onChange={form.handleChange}
                     onBlur={form.handleBlur}
                   />
-                </Field>
-              </Row>
-              <Row>
-                <Field>
-                  <Label htmlFor="cep">CEP</Label>
-                  <MaskedInput
+                </S.Field>
+              </S.Row>
+              <S.Row>
+                <S.Field>
+                  <S.Label htmlFor="cep">CEP</S.Label>
+                  <S.MaskedInput
                     mask="00000-000"
                     id="cep"
                     name="cep"
@@ -354,13 +334,13 @@ const Checkout = () => {
                     className={checkInputHasError('cep') ? 'error' : ''}
                     placeholder="00000-000"
                   />
-                  <ErrorMessage>
+                  <S.ErrorMessage>
                     {getErrorMessage('cep', form.errors.cep)}
-                  </ErrorMessage>
-                </Field>
-                <Field>
-                  <Label htmlFor="cidade">Cidade</Label>
-                  <Input
+                  </S.ErrorMessage>
+                </S.Field>
+                <S.Field>
+                  <S.Label htmlFor="cidade">Cidade</S.Label>
+                  <S.Input
                     id="cidade"
                     type="text"
                     name="cidade"
@@ -369,13 +349,13 @@ const Checkout = () => {
                     onBlur={form.handleBlur}
                     className={checkInputHasError('cidade') ? 'error' : ''}
                   />
-                  <ErrorMessage>
+                  <S.ErrorMessage>
                     {getErrorMessage('cidade', form.errors.cidade)}
-                  </ErrorMessage>
-                </Field>
-                <Field>
-                  <Label htmlFor="estado">Estado</Label>
-                  <Input
+                  </S.ErrorMessage>
+                </S.Field>
+                <S.Field>
+                  <S.Label htmlFor="estado">Estado</S.Label>
+                  <S.Input
                     id="estado"
                     type="text"
                     name="estado"
@@ -384,43 +364,43 @@ const Checkout = () => {
                     onBlur={form.handleBlur}
                     className={checkInputHasError('estado') ? 'error' : ''}
                   />
-                  <ErrorMessage>
+                  <S.ErrorMessage>
                     {getErrorMessage('estado', form.errors.estado)}
-                  </ErrorMessage>
-                </Field>
-              </Row>
+                  </S.ErrorMessage>
+                </S.Field>
+              </S.Row>
             </>
           </Card>
           <Card title="Pagamento">
             <>
-              <PaymentTabs>
-                <PaymentTab
+              <S.PaymentTabs>
+                <S.PaymentTab
                   type="button"
                   isActive={!formaPagamento}
                   onClick={() => setFormaPagamento(false)}
                 >
                   <RiBarcodeLine />
                   Boleto bancário
-                </PaymentTab>
+                </S.PaymentTab>
 
-                <PaymentTab
+                <S.PaymentTab
                   type="button"
                   isActive={formaPagamento}
                   onClick={() => setFormaPagamento(true)}
                 >
                   <FiCreditCard />
                   Cartão de crédito
-                </PaymentTab>
-              </PaymentTabs>
+                </S.PaymentTab>
+              </S.PaymentTabs>
 
               {formaPagamento ? (
                 <>
-                  <Row>
-                    <Field gapNumber={2}>
-                      <Label htmlFor="nomeTitular">
+                  <S.Row>
+                    <S.Field gapNumber={2}>
+                      <S.Label htmlFor="nomeTitular">
                         Nome do titular do cartão
-                      </Label>
-                      <Input
+                      </S.Label>
+                      <S.Input
                         id="nomeTitular"
                         type="text"
                         name="nomeTitular"
@@ -431,16 +411,16 @@ const Checkout = () => {
                           checkInputHasError('nomeTitular') ? 'error' : ''
                         }
                       />
-                      <ErrorMessage>
+                      <S.ErrorMessage>
                         {getErrorMessage(
                           'nomeTitular',
                           form.errors.nomeTitular
                         )}
-                      </ErrorMessage>
-                    </Field>
-                    <Field gapNumber={1}>
-                      <Label htmlFor="cpfTitular">CPF do titular</Label>
-                      <MaskedInput
+                      </S.ErrorMessage>
+                    </S.Field>
+                    <S.Field gapNumber={1}>
+                      <S.Label htmlFor="cpfTitular">CPF do titular</S.Label>
+                      <S.MaskedInput
                         mask="000.000.000-00"
                         id="cpfTitular"
                         name="cpfTitular"
@@ -454,15 +434,15 @@ const Checkout = () => {
                         }
                         placeholder="000.000.000-00"
                       />
-                      <ErrorMessage>
+                      <S.ErrorMessage>
                         {getErrorMessage('cpfTitular', form.errors.cpfTitular)}
-                      </ErrorMessage>
-                    </Field>
-                  </Row>
-                  <Row gapNumber={6}>
-                    <Field gapNumber={2}>
-                      <Label htmlFor="numeroCartao">Número do cartão</Label>
-                      <MaskedInput
+                      </S.ErrorMessage>
+                    </S.Field>
+                  </S.Row>
+                  <S.Row gapNumber={6}>
+                    <S.Field gapNumber={2}>
+                      <S.Label htmlFor="numeroCartao">Número do cartão</S.Label>
+                      <S.MaskedInput
                         mask="0000 0000 0000 0000"
                         id="numeroCartao"
                         name="numeroCartao"
@@ -476,16 +456,16 @@ const Checkout = () => {
                         }
                         placeholder="0000 0000 0000 0000"
                       />
-                      <ErrorMessage>
+                      <S.ErrorMessage>
                         {getErrorMessage(
                           'numeroCartao',
                           form.errors.numeroCartao
                         )}
-                      </ErrorMessage>
-                    </Field>
-                    <Field gapNumber={1}>
-                      <Label htmlFor="mes">Mês</Label>
-                      <MaskedInput
+                      </S.ErrorMessage>
+                    </S.Field>
+                    <S.Field gapNumber={1}>
+                      <S.Label htmlFor="mes">Mês</S.Label>
+                      <S.MaskedInput
                         mask="00"
                         id="mes"
                         name="mes"
@@ -497,13 +477,13 @@ const Checkout = () => {
                         className={checkInputHasError('mes') ? 'error' : ''}
                         placeholder="MM"
                       />
-                      <ErrorMessage>
+                      <S.ErrorMessage>
                         {getErrorMessage('mes', form.errors.mes)}
-                      </ErrorMessage>
-                    </Field>
-                    <Field gapNumber={1}>
-                      <Label htmlFor="ano">Ano</Label>
-                      <MaskedInput
+                      </S.ErrorMessage>
+                    </S.Field>
+                    <S.Field gapNumber={1}>
+                      <S.Label htmlFor="ano">Ano</S.Label>
+                      <S.MaskedInput
                         mask="00"
                         id="ano"
                         name="ano"
@@ -515,13 +495,13 @@ const Checkout = () => {
                         className={checkInputHasError('ano') ? 'error' : ''}
                         placeholder="AA"
                       />
-                      <ErrorMessage>
+                      <S.ErrorMessage>
                         {getErrorMessage('ano', form.errors.ano)}
-                      </ErrorMessage>
-                    </Field>
-                    <Field gapNumber={1}>
-                      <Label htmlFor="cvv">CVV</Label>
-                      <MaskedInput
+                      </S.ErrorMessage>
+                    </S.Field>
+                    <S.Field gapNumber={1}>
+                      <S.Label htmlFor="cvv">CVV</S.Label>
+                      <S.MaskedInput
                         mask="000"
                         id="cvv"
                         name="cvv"
@@ -533,13 +513,13 @@ const Checkout = () => {
                         className={checkInputHasError('cvv') ? 'error' : ''}
                         placeholder="000"
                       />
-                      <ErrorMessage>
+                      <S.ErrorMessage>
                         {getErrorMessage('cvv', form.errors.cvv)}
-                      </ErrorMessage>
-                    </Field>
-                    <Field gapNumber={1}>
-                      <Label htmlFor="parcelamento">Parcelamento</Label>
-                      <Select
+                      </S.ErrorMessage>
+                    </S.Field>
+                    <S.Field gapNumber={1}>
+                      <S.Label htmlFor="parcelamento">Parcelamento</S.Label>
+                      <S.Select
                         id="parcelamento"
                         name="parcelamento"
                         value={form.values.parcelamento}
@@ -559,60 +539,60 @@ const Checkout = () => {
                             {priceSymbol(finalValue(items) / parcela)}
                           </option>
                         ))}
-                      </Select>
-                      <ErrorMessage>
+                      </S.Select>
+                      <S.ErrorMessage>
                         {getErrorMessage(
                           'parcelamento',
                           form.errors.parcelamento
                         )}
-                      </ErrorMessage>
-                    </Field>
-                  </Row>
+                      </S.ErrorMessage>
+                    </S.Field>
+                  </S.Row>
                 </>
               ) : (
-                <PaymentNotice>
+                <S.PaymentNotice>
                   Ao optar por essa forma de pagamento, a confirmação pode levar
                   até 3 dias úteis, devido aos prazos das instituições
                   financeiras.
                   <br />O envio das peças só é iniciado após a aprovação do
                   boleto.
-                </PaymentNotice>
+                </S.PaymentNotice>
               )}
             </>
           </Card>
           <Card title="Resumo do pedido">
             <>
-              <ItemsList>
+              <S.ItemsList>
                 {items.map((item) => (
-                  <ItemRow key={item.id}>
-                    <ItemName>
+                  <S.ItemRow key={item.id}>
+                    <S.ItemName>
                       {item.quantity} x {item.titulo}
-                    </ItemName>
-                    <ItemPrice>{priceSymbol(totalItem(item))}</ItemPrice>
-                  </ItemRow>
+                    </S.ItemName>
+                    <S.ItemPrice>{priceSymbol(totalItem(item))}</S.ItemPrice>
+                  </S.ItemRow>
                 ))}
-              </ItemsList>
-              <Totals>
-                <TotalRow>
+              </S.ItemsList>
+              <S.Totals>
+                <S.TotalRow>
                   <span>Subtotal</span>
                   <span>{priceSymbol(finalValueItens(items))}</span>
-                </TotalRow>
-                <TotalRow>
+                </S.TotalRow>
+                <S.TotalRow>
                   <span>Entrega</span>
                   <span>{items.length > 0 ? priceSymbol(40) : '—'}</span>
-                </TotalRow>
-              </Totals>
-              <GrandTotal>
+                </S.TotalRow>
+              </S.Totals>
+              <S.GrandTotal>
                 <span>Total</span>
                 <span>{priceSymbol(finalValue(items))}</span>
-              </GrandTotal>
-              <CheckoutButton disabled={items.length === 0} type="submit">
+              </S.GrandTotal>
+              <S.CheckoutButton disabled={items.length === 0} type="submit">
                 {isLoading ? 'Enviando...' : 'Finalizar compra'}
-              </CheckoutButton>
-              <SecureNotice>
+              </S.CheckoutButton>
+              <S.SecureNotice>
                 <FiShield />
                 Pagamento seguro criptografado
-              </SecureNotice>
+              </S.SecureNotice>
             </>
           </Card>
         </form>

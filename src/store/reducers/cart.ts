@@ -43,12 +43,15 @@ const cartSlice = createSlice({
         state.items = state.items.filter((item) => item.id !== action.payload)
       }
     },
+    //abre o carrinho
     open: (state) => {
       state.isOpen = true
     },
+    //fecha o carrinho
     close: (state) => {
       state.isOpen = false
     },
+    //limpa o carrinho
     clear: (state) => {
       state.items = []
     }

@@ -1,46 +1,15 @@
-import { useDispatch } from 'react-redux'
 import {
   useGetProductQuery,
   useGetProductsByCollectionQuery
 } from '../../services/api'
+import { useDispatch } from 'react-redux'
 import { skipToken } from '@reduxjs/toolkit/query'
 import { useParams, Link } from 'react-router-dom'
-import CardProduct from '../../components/CardProduct'
-import Product from '../../models/Product'
 import { add, open } from '../../store/reducers/cart'
+import { priceSymbol, colecaoLabel, dimensionAdjustment } from '../../utils'
+import CardProduct from '../../components/CardProduct'
 import Loader from '../Loader'
-import {
-  PageContainer,
-  Breadcrumb,
-  ProductGrid,
-  ImageWrapper,
-  Info,
-  Category,
-  Title,
-  Price,
-  OldPrice,
-  CurrentPrice,
-  Description,
-  AddToCartButton,
-  DetailsTable,
-  DetailRow,
-  RelatedSection,
-  RelatedTitle,
-  RelatedGrid
-} from './styles'
-import { priceSymbol } from '../../utils'
-
-//pega os valores do campo "dimensões" e transforma em uma string formatada
-const formatarDimensoes = (dimensoes: Product['dimensoes']) => {
-  if (!dimensoes) return ''
-  return `A${dimensoes.altura} x L${dimensoes.largura} x P${dimensoes.profundidade}`
-}
-
-//cria um objeto para mapear os valores da coleção para exibir como string "vestir" e "habitar"
-const colecaoLabel: Record<Product['colecao'], string> = {
-  vestir: 'Vestir',
-  habitar: 'Habitar'
-}
+import * as S from './styles'
 
 const ProductPage = () => {
   const dispatch = useDispatch()
@@ -76,83 +45,83 @@ const ProductPage = () => {
   }
 
   return (
-    <PageContainer>
-      <Breadcrumb>
+    <S.PageContainer>
+      <S.Breadcrumb>
         <Link to="/">Início</Link>
         <span> / </span>
         <Link to={`/${product.colecao}`}>{colecaoLabel[product.colecao]}</Link>
         <span> / </span>
         <span className="current">{product.titulo}</span>
-      </Breadcrumb>
+      </S.Breadcrumb>
 
-      <ProductGrid>
-        <ImageWrapper>
+      <S.ProductGrid>
+        <S.ImageWrapper>
           <img src={product.imagem} alt={product.titulo} />
-        </ImageWrapper>
+        </S.ImageWrapper>
 
-        <Info>
-          <Category>{product.categoria}</Category>
-          <Title>{product.titulo}</Title>
+        <S.Info>
+          <S.Category>{product.categoria}</S.Category>
+          <S.Title>{product.titulo}</S.Title>
 
-          <Price>
+          <S.Price>
             {product.discountedPrice && (
-              <OldPrice>{priceSymbol(product.valor)}</OldPrice>
+              <S.OldPrice>{priceSymbol(product.valor)}</S.OldPrice>
             )}
-            <CurrentPrice>
+            <S.CurrentPrice>
               {priceSymbol(product.discountedPrice ?? product.valor)}
-            </CurrentPrice>
-          </Price>
+            </S.CurrentPrice>
+          </S.Price>
 
-          <Description>{product.descricao}</Description>
+          <S.Description>{product.descricao}</S.Description>
 
-          <AddToCartButton onClick={addToCart}>
+          <S.AddToCartButton onClick={addToCart}>
             Adicionar ao carrinho
-          </AddToCartButton>
+          </S.AddToCartButton>
 
-          <DetailsTable>
-            <DetailRow>
+          <S.DetailsTable>
+            <S.DetailRow>
               <span>Composição</span>
               <span>{product.composicao}</span>
-            </DetailRow>
+            </S.DetailRow>
 
             {product.dimensoes && (
-              <DetailRow>
+              <S.DetailRow>
                 <span>Dimensões</span>
-                <span>{formatarDimensoes(product.dimensoes)}</span>
-              </DetailRow>
+                <span>{dimensionAdjustment(product.dimensoes)}</span>
+              </S.DetailRow>
             )}
 
             {product.tamanhos && (
-              <DetailRow>
+              <S.DetailRow>
                 <span>Tamanhos</span>
                 <span>{product.tamanhos.join(', ')}</span>
-              </DetailRow>
+              </S.DetailRow>
             )}
 
-            <DetailRow>
+            <S.DetailRow>
               <span>Feito à mão</span>
               <span>
                 {product.feitoAMao ? `Sim, no ${product.origem}` : 'Não'}
               </span>
-            </DetailRow>
+            </S.DetailRow>
 
-            <DetailRow>
+            <S.DetailRow>
               <span>Entrega</span>
               <span>{product.entrega}</span>
-            </DetailRow>
-          </DetailsTable>
-        </Info>
-      </ProductGrid>
+            </S.DetailRow>
+          </S.DetailsTable>
+        </S.Info>
+      </S.ProductGrid>
 
       {related && related.length > 0 && (
-        <RelatedSection>
-          <RelatedTitle>Você também pode gostar</RelatedTitle>
-          <RelatedGrid>
+        <S.RelatedSection>
+          <S.RelatedTitle>Você também pode gostar</S.RelatedTitle>
+          <S.RelatedGrid>
             <CardProduct products={related} />
-          </RelatedGrid>
-        </RelatedSection>
+          </S.RelatedGrid>
+        </S.RelatedSection>
       )}
-    </PageContainer>
+    </S.PageContainer>
   )
 }
 

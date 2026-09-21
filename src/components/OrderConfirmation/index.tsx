@@ -1,8 +1,6 @@
 import { FiCheck } from 'react-icons/fi'
+import { priceSymbol } from '../../utils'
 import * as S from './styles'
-
-const priceSymbol = (valor: number) =>
-  valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })
 
 type Props = {
   orderId: number | string
