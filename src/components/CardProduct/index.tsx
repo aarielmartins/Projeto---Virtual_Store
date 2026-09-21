@@ -1,7 +1,6 @@
 import { priceSymbol } from '../../utils'
 import * as S from './styles'
 import ColorButton from '../CircleButton'
-import Product from '../../models/Product'
 
 type Props = {
   products: Product[]

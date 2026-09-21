@@ -1,4 +1,3 @@
-import Product from '../models/Product'
 import { CartItem } from '../store/reducers/cart'
 
 //função para formatar preço

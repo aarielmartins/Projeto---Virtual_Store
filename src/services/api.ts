@@ -1,5 +1,4 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import Product from '../models/Product'
 
 type ProductOrder = {
   id: string

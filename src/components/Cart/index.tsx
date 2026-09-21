@@ -3,7 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { FiMinus, FiPlus, FiX } from 'react-icons/fi'
 import { add, remove, close } from '../../store/reducers/cart'
-import Product from '../../models/Product'
 import * as S from './styles'
 import {
   finalValue,
