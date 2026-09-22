@@ -6,7 +6,7 @@ export const priceSymbol = (valor: number) =>
 
 //calcula o valor total do item multiplicando o preço pelo quantidade
 export const totalItem = (item: CartItem) => {
-  const preco = item.discountedPrice ?? item.valor
+  const preco = item.valorComDesconto ?? item.valor
   return preco * item.quantity
 }
 

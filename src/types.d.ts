@@ -5,7 +5,7 @@ declare type Product = {
   colecao: 'habitar' | 'vestir'
   imagem: string
   valor: number
-  discountedPrice?: number
+  valorComDesconto?: number
   descricao: string
   composicao: string
   dimensoes?: {

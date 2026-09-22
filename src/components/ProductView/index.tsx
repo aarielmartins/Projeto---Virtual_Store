@@ -64,11 +64,11 @@ const ProductPage = () => {
           <S.Title>{product.titulo}</S.Title>
 
           <S.Price>
-            {product.discountedPrice && (
+            {product.valorComDesconto && (
               <S.OldPrice>{priceSymbol(product.valor)}</S.OldPrice>
             )}
             <S.CurrentPrice>
-              {priceSymbol(product.discountedPrice ?? product.valor)}
+              {priceSymbol(product.valorComDesconto ?? product.valor)}
             </S.CurrentPrice>
           </S.Price>
 

@@ -27,6 +27,7 @@ export type Props = {
 
 const Checkout = () => {
   const [formaPagamento, setFormaPagamento] = useState(false)
+  const [orderTotal, setOrderTotal] = useState(0)
   const dispatch = useDispatch()
   const [purchase, { data, isSuccess, isLoading }] = usePurchaseMutation()
   const { items } = useSelector((state: RootReducer) => state.cart)
@@ -143,8 +144,8 @@ const Checkout = () => {
     }),
     onSubmit: (values) => {
       // remove pontos, traços e espaços antes de enviar pra API
-      console.log(items)
       const onlyDigits = (value: string) => value.replace(/\D/g, '')
+      setOrderTotal(finalValue(items))
 
       purchase({
         billing: {
@@ -180,7 +181,7 @@ const Checkout = () => {
         },
         products: items.map((item) => ({
           id: String(item.id),
-          price: item.discountedPrice ?? item.valor,
+          price: item.valorComDesconto ?? item.valor,
           quantity: item.quantity
         }))
       })
@@ -209,7 +210,7 @@ const Checkout = () => {
         <OrderConfirmation
           orderId={data.id}
           payment={formaPagamento}
-          total={finalValue(items)}
+          total={orderTotal}
           email={form.values.email}
         />
       ) : (

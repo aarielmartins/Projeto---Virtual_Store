@@ -19,11 +19,11 @@ const CardProduct = ({ products }: Props) => (
           <S.TittleBox>
             <S.Category>{product.categoria}</S.Category>
             <S.PriceWrapper>
-              {product.discountedPrice && (
+              {product.valorComDesconto && (
                 <S.OldPrice>{priceSymbol(product.valor)}</S.OldPrice>
               )}
               <S.CurrentPrice>
-                {priceSymbol(product.discountedPrice ?? product.valor)}
+                {priceSymbol(product.valorComDesconto ?? product.valor)}
               </S.CurrentPrice>
             </S.PriceWrapper>
           </S.TittleBox>
