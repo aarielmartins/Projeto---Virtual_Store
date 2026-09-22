@@ -143,6 +143,7 @@ const Checkout = () => {
     }),
     onSubmit: (values) => {
       // remove pontos, traços e espaços antes de enviar pra API
+      console.log(items)
       const onlyDigits = (value: string) => value.replace(/\D/g, '')
 
       purchase({
@@ -175,14 +176,13 @@ const Checkout = () => {
             },
             code: Number(values.cvv)
           },
-          installments: 1
+          installments: formaPagamento ? Number(values.parcelamento) : 0
         },
-        products: [
-          {
-            id: '1',
-            price: 20
-          }
-        ]
+        products: items.map((item) => ({
+          id: String(item.id),
+          price: item.discountedPrice ?? item.valor,
+          quantity: item.quantity
+        }))
       })
     }
   })
