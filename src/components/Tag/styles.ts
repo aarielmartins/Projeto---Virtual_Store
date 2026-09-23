@@ -12,6 +12,7 @@ export const TagContainer = styled(Link)<Props>`
   border-radius: 999px;
   font-weight: 600;
   text-decoration: none;
+  text-align: center;
   cursor: pointer;
   background: ${(props) =>
     props.color === 'detalhe' ? cores.detalhe : cores.branco};

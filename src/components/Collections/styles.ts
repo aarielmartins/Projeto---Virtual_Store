@@ -66,6 +66,10 @@ export const Card = styled(Link)`
   &:hover img {
     transform: scale(1.05);
   }
+
+  @media (max-width: 1024px) {
+    justify-content: center;
+  }
 `
 
 export const CardInfo = styled.div`
@@ -75,6 +79,17 @@ export const CardInfo = styled.div`
   background: ${cores.branco};
   border-radius: 12px;
   padding: 10px 16px;
+
+  @media (max-width: 1230px) {
+    left: 0;
+    max-width: 85%;
+    height: 100px;
+    margin: 0 auto 24px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
 `
 
 export const CardLabel = styled.span`

@@ -14,15 +14,21 @@ export const BannerContainer = styled.section`
   margin-right: 32px;
   margin-left: 32px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1230px) {
     flex-direction: column;
     padding: 32px;
-    margin: 20px 20px;
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 102px;
   }
 `
 
 export const Content = styled.div`
   max-width: 480px;
+
+  @media (max-width: 1230px) {
+    max-width: 100%;
+  }
 `
 
 export const Badge = styled.a`
@@ -39,6 +45,11 @@ export const Badge = styled.a`
   text-decoration: none;
   transition: transform 0.2s ease;
   scroll-behavior: smooth;
+
+  @media (max-width: 1230px) {
+    display: flex;
+    justify-content: center;
+  }
 `
 
 export const Title = styled.h1`
@@ -48,7 +59,7 @@ export const Title = styled.h1`
   color: ${cores.preto};
   margin-bottom: 24px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1230px) {
     font-size: 36px;
   }
 `
@@ -62,6 +73,11 @@ export const Description = styled.p`
 export const Actions = styled.div`
   display: flex;
   gap: 12px;
+
+  @media (max-width: 1230px) {
+    display: flex;
+    justify-content: center;
+  }
 `
 
 export const ImageWrapper = styled(Link)`
@@ -85,10 +101,13 @@ export const ImageWrapper = styled(Link)`
     display: block;
   }
 
-  @media (max-width: 1000px) {
+  @media (max-width: 1230px) {
     width: 100%;
     height: 360px;
-    width: 450px;
+  }
+
+  @media (max-width: 640px) {
+    height: 280px;
   }
 `
 
