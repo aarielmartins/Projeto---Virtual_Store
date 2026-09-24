@@ -33,6 +33,7 @@ export const CircleButton = styled(Link)`
   }
 
   @media (max-width: 1230px) {
-    display: none;
+    bottom: 0px;
+    top: 24px;
   }
 `

@@ -16,7 +16,7 @@ export const Top = styled.div`
   gap: 48px;
   padding: 56px 32px 48px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
     flex-direction: column;
     gap: 32px;
   }
@@ -39,7 +39,7 @@ export const Columns = styled.div`
   display: flex;
   gap: 96px;
 
-  @media (max-width: 768px) {
+  @media (max-width: 640px) {
     gap: 48px;
     flex-wrap: wrap;
   }

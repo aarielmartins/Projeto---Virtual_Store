@@ -4,9 +4,10 @@ import { cores, texto } from '../../styles'
 export const PageContainer = styled.div`
   padding-top: 116px;
 
-  @media (max-width: 900px) {
-    padding-top: 46px;
-    margin: 20px 20px;
+  @media (max-width: 1230px) {
+    padding-top: 104px;
+    padding-left: 24px;
+    padding-right: 24px;
   }
 `
 
@@ -40,7 +41,7 @@ export const ProductGrid = styled.div`
   gap: 48px;
   margin-bottom: 80px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 640px) {
     flex-direction: column;
     gap: 24px;
   }
@@ -48,6 +49,7 @@ export const ProductGrid = styled.div`
 
 export const ImageWrapper = styled.div`
   flex: 1;
+  height: 560px;
   border-radius: 16px;
   overflow: hidden;
   background: ${cores.branco};
@@ -57,7 +59,10 @@ export const ImageWrapper = styled.div`
     height: 100%;
     object-fit: cover;
     display: block;
-    max-height: 560px;
+  }
+
+  @media (max-width: 640px) {
+    height: 420px;
   }
 `
 
@@ -65,7 +70,7 @@ export const Info = styled.div`
   flex: 1;
   max-width: 440px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 640px) {
     max-width: none;
   }
 `
@@ -168,11 +173,11 @@ export const RelatedGrid = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1230px) {
     grid-template-columns: repeat(2, 1fr);
   }
 
-  @media (max-width: 560px) {
+  @media (max-width: 640px) {
     grid-template-columns: 1fr;
   }
 `
