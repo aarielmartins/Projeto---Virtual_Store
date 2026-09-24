@@ -2,6 +2,10 @@ import styled from 'styled-components'
 import { cores } from '../../styles'
 import { Link } from 'react-router-dom'
 
+type MenuProps = {
+  isOpen: boolean
+}
+
 export const HeaderContainer = styled.header`
   position: fixed;
   top: 0;
@@ -16,6 +20,7 @@ export const HeaderContainer = styled.header`
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
   border-bottom: 1px solid ${cores.cinza};
+  z-index: 100;
 
   @media (max-width: 640px) {
     mangin: 16px 20px;
@@ -26,7 +31,14 @@ export const Logo = styled.img`
   height: 18px;
 `
 
-export const Menu = styled.nav`
+export const Overlay = styled.div`
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 90;
+`
+
+export const Menu = styled.nav<MenuProps>`
   ul {
     display: flex;
     gap: 36px;
@@ -34,7 +46,29 @@ export const Menu = styled.nav`
   }
 
   @media (max-width: 640px) {
-    display: none;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 70%;
+    max-width: 200px;
+    background: ${cores.branco};
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.1);
+    z-index: 101;
+    border-radius: 34px;
+
+    display: flex;
+    align-items: center;
+
+    transform: translateX(${(props) => (props.isOpen ? '0' : '100%')});
+    transition: transform 0.3s ease;
+
+    ul {
+      flex-direction: column;
+      gap: 24px;
+      width: 100%;
+      padding: 0 32px;
+    }
   }
 `
 export const Item = styled(Link)`
@@ -45,6 +79,11 @@ export const Item = styled(Link)`
 
   &:hover {
     color: ${cores.chumbo};
+  }
+
+  @media (max-width: 640px) {
+    display: block;
+    font-size: 18px;
   }
 `
 
@@ -68,6 +107,28 @@ export const Icons = styled.div`
   svg {
     width: 20px;
     height: 20px;
+  }
+`
+
+export const MenuButton = styled.button`
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  color: ${cores.preto};
+  cursor: pointer;
+  padding: 0;
+  position: relative;
+  z-index: 102;
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  @media (max-width: 640px) {
+    display: flex;
   }
 `
 
