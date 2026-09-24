@@ -7,6 +7,11 @@ export const CardContainer = styled.div`
   border: 1px solid ${cores.cinza};
   padding: 32px;
   margin-bottom: 24px;
+
+  @media (max-width: 1230px) {
+    margin-left: 24px;
+    margin-right: 24px;
+  }
 `
 
 export const SectionTitle = styled.h3`

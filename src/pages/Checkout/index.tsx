@@ -23,6 +23,8 @@ import {
 
 export type Props = {
   gapNumber?: number
+  rowGap?: number
+  fieldGap?: number
 }
 
 const Checkout = () => {

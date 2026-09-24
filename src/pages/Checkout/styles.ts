@@ -9,8 +9,11 @@ type PaymentTabType = {
 
 export const Row = styled.div<Props>`
   display: grid;
-  grid-template-columns: repeat(${(props) => props.gapNumber ?? 3}, 1fr);
-  gap: 16px;
+  grid-template-columns: repeat(
+    ${(props) => props.gapNumber ?? 3},
+    minmax(0, 1fr)
+  );
+  gap: ${(props) => `${props.rowGap ?? 16}px`};
   margin-bottom: 20px;
 
   &:last-child {
@@ -19,14 +22,20 @@ export const Row = styled.div<Props>`
 
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
+    gap: ${(props) => `${Math.min(props.rowGap ?? 16, 12)}px`};
   }
 `
 
 export const Field = styled.div<Props>`
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: ${(props) => `${props.fieldGap ?? 8}px`};
   grid-column: span ${(props) => props.gapNumber ?? 1};
+  min-width: 0;
+
+  @media (max-width: 640px) {
+    gap: ${(props) => `${Math.min(props.fieldGap ?? 8, 6)}px`};
+  }
 `
 
 export const Label = styled.label`
@@ -34,6 +43,8 @@ export const Label = styled.label`
 `
 
 export const MaskedInput = styled(IMaskInput)`
+  width: 100%;
+  box-sizing: border-box;
   padding: 12px 16px;
   border-radius: 999px;
   border: 1px solid ${cores.cinza};
@@ -57,6 +68,8 @@ export const MaskedInput = styled(IMaskInput)`
 `
 
 export const Input = styled.input`
+  width: 100%;
+  box-sizing: border-box;
   padding: 12px 16px;
   border-radius: 999px;
   border: 1px solid ${cores.cinza};
@@ -86,6 +99,8 @@ export const ErrorMessage = styled.small`
 `
 
 export const Select = styled.select`
+  width: 100%;
+  box-sizing: border-box;
   padding: 12px 16px;
   border-radius: 999px;
   border: 1px solid ${cores.cinza};
