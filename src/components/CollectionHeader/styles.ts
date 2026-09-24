@@ -13,8 +13,9 @@ export const Title = styled.h1`
   color: ${cores.preto};
   margin-bottom: 12px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1230px) {
     font-size: 36px;
+    padding: 0 24px;
   }
 `
 
@@ -22,4 +23,8 @@ export const Description = styled.p`
   line-height: 1.6;
   color: ${cores.chumbo};
   margin-bottom: 32px;
+
+  @media (max-width: 1230px) {
+    padding: 0 24px;
+  }
 `

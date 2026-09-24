@@ -47,8 +47,9 @@ export const GridPages = styled.div`
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1230px) {
     grid-template-columns: repeat(2, 1fr);
+    padding: 0 24px;
   }
 
   @media (max-width: 560px) {

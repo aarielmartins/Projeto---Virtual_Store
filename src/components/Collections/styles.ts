@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 export const CollectionsContainer = styled.section`
   margin: 32px 32px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 640px) {
     margin: 20px 20px;
   }
 `
@@ -39,7 +39,7 @@ export const Grid = styled.div`
   grid-template-columns: 1fr 1fr;
   gap: 24px;
 
-  @media (max-width: 900px) {
+  @media (max-width: 1230px) {
     grid-template-columns: 1fr;
   }
 `
@@ -67,7 +67,7 @@ export const Card = styled(Link)`
     transform: scale(1.05);
   }
 
-  @media (max-width: 1024px) {
+  @media (max-width: 1230px) {
     justify-content: center;
   }
 `
