@@ -21,12 +21,6 @@ import {
   finalValueItens
 } from '../../utils'
 
-export type Props = {
-  gapNumber?: number
-  rowGap?: number
-  fieldGap?: number
-}
-
 const Checkout = () => {
   const [formaPagamento, setFormaPagamento] = useState(false)
   const [orderTotal, setOrderTotal] = useState(0)
