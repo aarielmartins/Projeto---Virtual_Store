@@ -1,10 +1,13 @@
 import styled from 'styled-components'
 import { IMaskInput } from 'react-imask'
 import { cores, texto } from '../../styles'
-import { Props } from '.'
 
 type PaymentTabType = {
   isActive: boolean
+}
+
+type Props = {
+  gapNumber?: number
 }
 
 export const Row = styled.div<Props>`
@@ -13,7 +16,7 @@ export const Row = styled.div<Props>`
     ${(props) => props.gapNumber ?? 3},
     minmax(0, 1fr)
   );
-  gap: ${(props) => `${props.rowGap ?? 16}px`};
+  gap: 16px;
   margin-bottom: 20px;
 
   &:last-child {
@@ -22,19 +25,19 @@ export const Row = styled.div<Props>`
 
   @media (max-width: 640px) {
     grid-template-columns: 1fr;
-    gap: ${(props) => `${Math.min(props.rowGap ?? 16, 12)}px`};
+    gap: 12px;
   }
 `
 
 export const Field = styled.div<Props>`
   display: flex;
   flex-direction: column;
-  gap: ${(props) => `${props.fieldGap ?? 8}px`};
+  gap: 8px;
   grid-column: span ${(props) => props.gapNumber ?? 1};
   min-width: 0;
 
   @media (max-width: 640px) {
-    gap: ${(props) => `${Math.min(props.fieldGap ?? 8, 6)}px`};
+    gap: 6px;
   }
 `
 
