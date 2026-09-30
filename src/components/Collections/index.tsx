@@ -5,7 +5,7 @@ import ColorButton from '../CircleButton'
 import Loader from '../Loader'
 
 const Collections = () => {
-  const { data: wearProduct } = useGetProductQuery('15')
+  const { data: wearProduct } = useGetProductQuery('10')
   const { data: inhabitProduct } = useGetProductQuery('12')
 
   if (!wearProduct || !inhabitProduct) {

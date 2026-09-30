@@ -4,7 +4,7 @@ import Tag from '../Tag'
 import * as S from './styles'
 
 const Banner = () => {
-  const { data: Product } = useGetProductQuery('11')
+  const { data: Product } = useGetProductQuery('4')
 
   if (!Product) {
     return <Loader />
