@@ -46,7 +46,8 @@ type PurchaseResponse = {
 
 const api = createApi({
   baseQuery: fetchBaseQuery({
-    baseUrl: 'https://projeto-virtual-store-api.onrender.com'
+    //Variavel de ambiente
+    baseUrl: process.env.REACT_APP_API_URL
   }),
   endpoints: (builder) => ({
     getProduct: builder.query<Product, string>({
