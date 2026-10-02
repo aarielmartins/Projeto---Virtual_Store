@@ -37,6 +37,7 @@ export const Field = styled.div<Props>`
   min-width: 0;
 
   @media (max-width: 640px) {
+    grid-column: span 1;
     gap: 6px;
   }
 `
