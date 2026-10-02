@@ -1,6 +1,5 @@
 import { priceSymbol } from '../../utils'
 import * as S from './styles'
-import ColorButton from '../CircleButton'
 
 type Props = {
   products: Product[]
@@ -10,9 +9,8 @@ const CardProduct = ({ products }: Props) => (
   <>
     {products.map((product) => (
       <S.Card key={product.id}>
-        <S.ImageWrapper>
+        <S.ImageWrapper to={`/produtos/${product.id}`}>
           <img src={product.imagem} alt={product.titulo} />
-          <ColorButton to={`/produtos/${product.id}`} />
         </S.ImageWrapper>
 
         <S.InfoRow>

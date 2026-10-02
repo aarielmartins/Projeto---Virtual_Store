@@ -5,6 +5,12 @@ export const HeaderContainer = styled.div`
   margin-top: 122px;
   margin-right: 32px;
   margin-left: 32px;
+
+  @media (max-width: 1230px) {
+    margin-right: 20px;
+    margin-left: 20px;
+    margin-top: 102px;
+  }
 `
 
 export const Title = styled.h1`

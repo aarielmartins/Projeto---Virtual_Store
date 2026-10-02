@@ -1,12 +1,14 @@
 import styled from 'styled-components'
 import { cores, texto } from '../../styles'
+import { Link } from 'react-router-dom'
 
 export const Card = styled.div`
   display: block;
   cursor: default;
 `
 
-export const ImageWrapper = styled.div`
+export const ImageWrapper = styled(Link)`
+  display: block;
   position: relative;
   height: 280px;
   border-radius: 16px;

@@ -10,6 +10,7 @@ import { priceSymbol, colecaoLabel, dimensionAdjustment } from '../../utils'
 import CardProduct from '../../components/CardProduct'
 import Loader from '../Loader'
 import * as S from './styles'
+import { useEffect } from 'react'
 
 const ProductPage = () => {
   const dispatch = useDispatch()
@@ -38,6 +39,13 @@ const ProductPage = () => {
     dispatch(add(product))
     dispatch(open())
   }
+
+  //useEffect para rolar a página para o topo quando o produto mudar
+  useEffect(() => {
+    if (product) {
+      window.scrollTo(0, 0)
+    }
+  }, [product])
 
   //enquanto o produto não for carregado retorne null, ou seja, não renderiza nada
   if (!product) {
