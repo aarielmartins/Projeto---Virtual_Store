@@ -133,6 +133,13 @@ export const PaymentTabs = styled.div`
   display: flex;
   gap: 12px;
   margin-bottom: 24px;
+
+  @media (max-width: 640px) {
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-width: 100%;
+  }
 `
 
 export const PaymentTab = styled.button<PaymentTabType>`
@@ -154,6 +161,11 @@ export const PaymentTab = styled.button<PaymentTabType>`
   &:hover {
     background: ${(props) =>
       props.isActive ? cores.detalheClaro : cores.cinzaClaro};
+  }
+
+  @media (max-width: 640px) {
+    width: 100%;
+    justify-content: center;
   }
 
   svg {
