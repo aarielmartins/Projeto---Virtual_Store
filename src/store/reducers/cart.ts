@@ -7,12 +7,12 @@ export type CartItem = Product & {
 
 type CartState = {
   items: CartItem[]
-  isOpen: boolean
+  $isOpen: boolean
 }
 
 const initialState: CartState = {
   items: [],
-  isOpen: false
+  $isOpen: false
 }
 
 const cartSlice = createSlice({
@@ -44,11 +44,11 @@ const cartSlice = createSlice({
     },
     //abre o carrinho
     open: (state) => {
-      state.isOpen = true
+      state.$isOpen = true
     },
     //fecha o carrinho
     close: (state) => {
-      state.isOpen = false
+      state.$isOpen = false
     },
     //limpa o carrinho
     clear: (state) => {

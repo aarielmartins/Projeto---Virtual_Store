@@ -36,7 +36,7 @@ const criarStoreDeTeste = (items: CartItem[] = [itemDeExemplo]) =>
     preloadedState: {
       cart: {
         items,
-        isOpen: false
+        $isOpen: false
       }
     }
   })

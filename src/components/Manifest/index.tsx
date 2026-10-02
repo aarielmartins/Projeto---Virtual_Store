@@ -6,8 +6,8 @@ const Manifest = () => (
 
     <S.Description>
       Trabalhamos com pequenas confecções no Brasil, priorizando linhos,
-      algodões e bouclês nacionais. Cada peça — de uma camiseta a um sofá —
-      passa por checagem manual antes de sair da nossa oficina.
+      algodões e bouclês nacionais. Cada peça passa por checagem manual antes de
+      sair da nossa oficina.
     </S.Description>
   </S.CardContainer>
 )

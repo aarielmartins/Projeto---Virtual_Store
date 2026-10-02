@@ -17,7 +17,7 @@ const produtoExemplo = {
 describe('cartSlice', () => {
   it('deve retornar o estado inicial', () => {
     const state = reducer(undefined, { type: '' })
-    expect(state).toEqual({ items: [], isOpen: false })
+    expect(state).toEqual({ items: [], $isOpen: false })
   })
 
   it('deve adicionar um novo produto ao carrinho', () => {
@@ -58,9 +58,9 @@ describe('cartSlice', () => {
 
   it('deve abrir e fechar o carrinho', () => {
     let state = reducer(undefined, open())
-    expect(state.isOpen).toBe(true)
+    expect(state.$isOpen).toBe(true)
 
     state = reducer(state, close())
-    expect(state.isOpen).toBe(false)
+    expect(state.$isOpen).toBe(false)
   })
 })

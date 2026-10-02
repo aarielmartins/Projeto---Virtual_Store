@@ -13,7 +13,7 @@ import {
 } from '../../utils'
 
 const Cart = () => {
-  const { isOpen, items } = useSelector((state: RootReducer) => state.cart)
+  const { $isOpen, items } = useSelector((state: RootReducer) => state.cart)
   const navigate = useNavigate()
 
   const dispatch = useDispatch()
@@ -37,7 +37,7 @@ const Cart = () => {
 
   return (
     <>
-      <S.CardBar className={isOpen ? 'is-open' : ''}>
+      <S.CardBar className={$isOpen ? 'is-open' : ''}>
         <S.Overlay onClick={closeCart} />
         <div>
           <S.CartContainer>

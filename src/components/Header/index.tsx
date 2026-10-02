@@ -24,7 +24,7 @@ const Header = () => {
       <S.HeaderContainer>
         <S.Logo src={logo} alt="logotipo trama"></S.Logo>
 
-        <S.Menu isOpen={isMenuOpen}>
+        <S.Menu $isOpen={isMenuOpen}>
           <ul>
             <li>
               <S.Item to="/" onClick={closeMenu}>

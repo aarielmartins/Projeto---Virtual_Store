@@ -25,7 +25,7 @@ const Collections = () => {
           <S.CardInfo>
             <S.CardLabel>Vestir</S.CardLabel>
             <S.CardName>
-              Peças em tecidos nobre, cortadas e trançadas a mão.
+              Peças em tecidos naturais, cortadas e trançadas à mão.
             </S.CardName>
           </S.CardInfo>
           <ColorButton icon={FiArrowRight} to="/vestir" />

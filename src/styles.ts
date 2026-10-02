@@ -43,6 +43,8 @@ export const Container = styled.div`
 `
 
 export const GridPages = styled.div`
+  margin-right: 32px;
+  margin-left: 32px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 24px;

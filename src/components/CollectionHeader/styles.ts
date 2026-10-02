@@ -2,8 +2,9 @@ import styled from 'styled-components'
 import { cores, texto } from '../../styles'
 
 export const HeaderContainer = styled.div`
-  margin-bottom: 32px;
-  padding-top: 100px;
+  margin-top: 122px;
+  margin-right: 32px;
+  margin-left: 32px;
 `
 
 export const Title = styled.h1`

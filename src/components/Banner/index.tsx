@@ -18,8 +18,9 @@ const Banner = () => {
         <S.Title>Vestir a casa, habitar o corpo.</S.Title>
 
         <S.Description>
-          Trama é uma loja de peças em tecido — roupas e mobiliário estofado —
-          feitas devagar, com fibras naturais e formas que envelhecem bem.
+          Trama é uma loja de peças em tecidos nobres: sejam eles roupas,
+          mobiliários ou decoração. Feitos devagar, com fibras naturais e
+          técnicas manuais.
         </S.Description>
 
         <S.Actions>

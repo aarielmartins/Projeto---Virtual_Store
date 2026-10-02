@@ -3,7 +3,7 @@ import { cores } from '../../styles'
 import { Link } from 'react-router-dom'
 
 type MenuProps = {
-  isOpen: boolean
+  $isOpen: boolean
 }
 
 export const HeaderContainer = styled.header`
@@ -60,7 +60,7 @@ export const Menu = styled.nav<MenuProps>`
     display: flex;
     align-items: center;
 
-    transform: translateX(${(props) => (props.isOpen ? '0' : '100%')});
+    transform: translateX(${(props) => (props.$isOpen ? '0' : '100%')});
     transition: transform 0.3s ease;
 
     ul {
