@@ -42,6 +42,7 @@ export const ProductGrid = styled.div`
   display: flex;
   gap: 48px;
   margin-bottom: 80px;
+  align-items: center;
 
   @media (max-width: 640px) {
     flex-direction: column;
@@ -64,7 +65,7 @@ export const ImageWrapper = styled.div`
   }
 
   @media (max-width: 640px) {
-    height: 420px;
+    height: 500px;
   }
 `
 
@@ -114,7 +115,7 @@ export const CurrentPrice = styled.span`
 `
 
 export const Description = styled.p`
-  font-size: ${texto.subtitulo};
+  font-size: ${texto.detalhe};
   color: ${cores.chumbo};
   line-height: 1.6;
   margin-bottom: 32px;
